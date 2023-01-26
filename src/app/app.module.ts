@@ -4,10 +4,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { CNavbarComponent } from './components/c-navbar/c-navbar.component';
+import { CArtworkCardComponent } from './components/c-artwork-card/c-artwork-card.component';
+import { CCredentialsBoxComponent } from './components/c-credentials-box/c-credentials-box.component';
+import { CMuseuButtonComponent } from './components/c-museu-button/c-museu-button.component';
+import { CSignupBoxComponent } from './components/c-signup-box/c-signup-box.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CNavbarComponent,
+    CArtworkCardComponent,
+    CCredentialsBoxComponent,
+    CMuseuButtonComponent,
+    CSignupBoxComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,134 @@
+@mixin assignValue($properties, $value) {
+    @each $property in $properties {
+        #{$property}: $value
+    }
+}
+
+.navbar{
+    height: 7%;
+    display: flex;
+    justify-content: space-between;
+    color: #9ab;
+    position: absolute;
+
+    background-color: #2c3440;
+    background-image: linear-gradient(180deg,#14181c 0,#14181c 250px,#2c3440 251px);
+    background-position: 0 0;
+    font-family: Graphik Web Semibold Regular;
+    
+    @include assignValue(top left right, 0);
+
+    &__logo{
+        display: flex;
+        align-items: center;
+        padding-left: 8%;
+
+        &__img{
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: #9ab;
+        }
+    }
+
+    &__options{
+        padding-right: 8%;
+        display: flex;
+        align-items: center;
+
+        &__option{
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 25px;
+            text-decoration: none;
+            margin: 0 5px 0 5px;
+    
+            &:hover:not(.active){
+                background-color: #111;
+            }
+        }
+
+        &__profile-option{
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: fit-content;
+            height: 44.8px;
+            padding: 0 14px 0px 14px;
+
+            &__image{
+                border-radius: 50%;
+                width:  29px;
+                height: 29px;
+                box-shadow: 0 0 5px rgb(0 0 0 / 80%);
+            }
+
+            &__nickname{
+                cursor: pointer;
+                color: white;
+                white-space: nowrap;
+                padding-left: 10px;
+            }
+
+            &:hover:not(.active){
+                background-color: #8899a9;
+            }
+        }
+    }
+}
+
+.dropdown {
+    border-radius: 2px 2px 0 0;
+    position: relative;
+
+    &__content {
+        font-family: Graphik Web Regular Regular;
+        border-radius: 0 0 2px 2px;
+        display: none;
+        position: absolute;
+        background-color: #8899a9;
+        width: 100%;
+        z-index: 1;
+        top: 100%;
+        left: 0;
+
+        a {
+            color: #2c3440;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+
+            &:hover{
+                background-color: #667788;
+                color: white;
+                border-radius: 2px;
+            }
+        }
+    }
+  }
+  
+.dropdown:hover .dropdown__content {
+    display: block;
+}
+
+.active {
+    background-color: #00b020;
+    border-radius: 2px;
+}
+
+.arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    margin-left: 10px;
+    margin-bottom: 2px;
+    
+}
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
