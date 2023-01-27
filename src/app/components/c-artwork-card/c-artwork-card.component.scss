@@ -1,0 +1,41 @@
+@mixin assignValue($properties, $value) {
+    @each $property in $properties {
+        #{$property}: $value
+    }
+}
+.artwork-card {
+    width: 70px;
+    height: 105px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background-image: linear-gradient(90deg,hsla(0,0%,100%,0) 0,hsla(0,0%,100%,.5) 50%,hsla(0,0%,100%,0));
+    background-repeat: no-repeat;
+    background-size: 100% 1px;
+    border-radius: 4px;
+    box-shadow: inset 0 0 1px #def;
+    position: absolute;
+    
+
+    &__art{
+        width: 69px;
+        height: 103px;
+        border-radius: 3px;
+    }
+
+    &__overlay{
+        transition: border .1s linear;
+        white-space: nowrap;
+        position: absolute;
+        border: 1px transparent;
+        border-radius: 4px;
+    }
+
+    &:hover .artwork-card__overlay{
+        border: 3px solid #00e054;
+        display: block;
+        @include assignValue(top left right bottom, 0);
+    }
+}

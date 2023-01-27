@@ -4,3 +4,18 @@
   flex-direction: row;
   justify-content: space-around;
 }
+
+.cards {
+  width: 95%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 0px);
+  grid-auto-rows: auto;
+  grid-gap: 7.2rem 5.05rem;
+}
+
+.grid{
+  margin-top: 5%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
