@@ -6,18 +6,16 @@
 .artwork-card {
     width: 70px;
     height: 105px;
-
     display: flex;
     justify-content: center;
     align-items: center;
-    
     background-image: linear-gradient(90deg,hsla(0,0%,100%,0) 0,hsla(0,0%,100%,.5) 50%,hsla(0,0%,100%,0));
     background-repeat: no-repeat;
     background-size: 100% 1px;
     border-radius: 4px;
     box-shadow: inset 0 0 1px #def;
     position: absolute;
-    
+    cursor: pointer;
 
     &__art{
         width: 69px;
@@ -37,5 +35,57 @@
         border: 3px solid #00e054;
         display: block;
         @include assignValue(top left right bottom, 0);
+    }
+
+    &:hover .artwork-card__overlay-actions{
+        display: flex;
+    }
+
+    &__overlay-actions{
+        cursor: default;
+        display: none;
+        justify-content: center;
+        position: absolute;
+        bottom: 2px;
+        height: 24px;
+        width: 65px;
+        background: rgba(0,0,0,.8);
+        border-radius: 4px;
+
+        &__seen{
+            width: 20px;
+            background-position: -690px -610px !important; //Green Eye
+            background: url('../../../assets/sprite.d305a741.svg') no-repeat;
+        }
+
+        &__not-seen{
+            width: 20px;
+            background-position: -650px -610px  !important; //Grey Eye
+            background: url('../../../assets/sprite.d305a741.svg') no-repeat;
+
+            /*&:hover{
+                background-position: -670px -610px  !important; //Grey Eye Darker
+            }*/
+        }
+
+        &__rating-average{
+            &__value{
+                font-family: Graphik Web Regular Regular;
+                color: #789;
+                font-size: 11px;
+                margin-top: 5.5px;
+                margin-left: 1px;
+                margin-right: 2px;
+            }
+
+            &__star{
+                width: 12px;
+                height: 16px;
+                margin-top: 4px;
+                margin-right: 2px;
+                background-position: -450px -50px !important; //1 Green Small Star
+                background: url('../../../assets/sprite.d305a741.svg') no-repeat;
+            }
+        }
     }
 }
