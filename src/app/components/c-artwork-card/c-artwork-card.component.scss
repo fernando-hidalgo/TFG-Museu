@@ -3,6 +3,7 @@
         #{$property}: $value
     }
 }
+
 .artwork-card {
     width: 70px;
     height: 105px;
@@ -18,9 +19,10 @@
     cursor: pointer;
 
     &__art{
-        width: 69px;
+        width: 68px;
         height: 103px;
         border-radius: 3px;
+        object-fit: cover;
     }
 
     &__overlay{
@@ -48,7 +50,7 @@
         position: absolute;
         bottom: 2px;
         height: 24px;
-        width: 65px;
+        width: 64px;
         background: rgba(0,0,0,.8);
         border-radius: 4px;
 
@@ -87,5 +89,40 @@
                 background: url('../../../assets/sprite.d305a741.svg') no-repeat;
             }
         }
+    }
+}
+
+.user-rating{
+    margin-top: 105px;
+    width: 70px;
+    height: 11px;
+    display: flex;
+    padding-top: 3px;
+
+    &__value{
+        background: url('../../../assets/sprite.d305a741.svg') no-repeat 0 -200px;
+
+        //Full stars, width for amount: 11px = 1, 22px = 2, 33px = 3, 44px = 4, 55px = 5
+        //width: 11px; 
+
+        // 0.5 stars
+        /*background-position: -55px -200px;
+        width: 11px;*/
+
+        // 1.5 stars
+        /*background-position: -44px -200px;
+        width: 22px;*/
+
+        // 2.5 stars
+        background-position: -33px -200px;
+        width: 33px;
+
+        // 3.5 stars
+        /*background-position: -22px -200px;
+        width: 44px;*/
+
+        // 4.5 stars
+        /*background-position: -11px -200px;
+        width: 55px;*/
     }
 }
