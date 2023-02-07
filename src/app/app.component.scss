@@ -4,6 +4,7 @@
   }
 }
 
+// Login View
 .login-view{
   margin-top: 3%;
   display: flex;
@@ -11,6 +12,7 @@
   justify-content: space-around;
 }
 
+// Search View
 .grid {
   display: flex;
   justify-content: center;
@@ -25,7 +27,7 @@
   }
 }
 
-
+// Art Details View
 .artwork-details{
   &__banner{
     height: 300px;
@@ -116,11 +118,13 @@
   margin: 12px 0 12px 0;
 }
 
-.for-rating{
+.for-rating-header{
   top: 260px;
   position: relative;
   width: 90%;
   margin-left: 4%;
+  border: 1px solid #456;
+  margin-bottom: 15px;
 }
 
 .rating-header{
@@ -172,5 +176,35 @@
   //4.5 Stars
   background-position: -463px -50px;
   width: 65px;
+}
 
+.rating-section{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 240px;
+  height: 10px;
+  width: 90%;
+  margin-left: 4%;
+}
+
+.stars-slider{
+  background: url('../assets/sprite.d305a741.svg') no-repeat 1px -890px;
+  width: 180px;
+  height: 32px;
+  display: block;
+}
+
+.stars-slider-hover{
+  background: url('../assets/sprite.d305a741.svg') no-repeat 1px -960px;
+  height: 32px;
+  display: block;
+  width: 0px;
+}
+
+.stars-slider-selected{
+  background: url('../assets/sprite.d305a741.svg') no-repeat 1px -925px;;
+  height: 32px;
+  display: block;
+  width: 0px;
 }
