@@ -37,10 +37,13 @@ export class AppComponent {
   changeStarsWidth(id, event) {
     const stars = document.getElementById(id);
     const x = Math.max(0, event.clientX - this.bounds.left);
+    const y = Math.max(0, event.clientY - this.bounds.top);
     const widths = [18, 36, 54, 72, 90, 108, 126, 144, 162, 180];
     const index = Math.min(Math.floor(x / 18), widths.length - 1);
 
-    if(x == 0 || x > 178.6){
+    console.log(y);
+
+    if(x === 0 || x > 178.6 || y === 0 || y > 31.4){
       stars.style.width = '0px';
     }else{
       stars.style.width = `${widths[index]}px`;

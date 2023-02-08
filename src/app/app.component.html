@@ -21,14 +21,19 @@
         <div class="artwork-details__rating-box__stars">
             <span>Valoración</span>
             <div class="artwork-details__rating-box__top">
-                <mat-icon class="artwork-details__rating-box__top__delete-rating" id="delete-rating" (click)="deleteRating()" >close</mat-icon>
+                <mat-icon 
+                    class="artwork-details__rating-box__top__delete-rating" 
+                    id="delete-rating" 
+                    (click)="deleteRating()"
+                >close</mat-icon>
+
                 <div class="artwork-details__rating-box__top__stars-slider" 
                     [ngClass]=" disabled ? 'disabled' : '' " 
                     (mousemove)="ratingHover($event)" 
                     (click)="ratingSet($event)" id="stars-slider"
-                    >
-                        <div class="artwork-details__rating-box__top__stars-slider__hover" id="stars-slider-hover"></div>
-                        <div class="artwork-details__rating-box__top__stars-slider__selected" id="stars-slider-selected"></div>
+                >
+                    <div class="artwork-details__rating-box__top__stars-slider__hover" id="stars-slider-hover"></div>
+                    <div class="artwork-details__rating-box__top__stars-slider__selected" id="stars-slider-selected"></div>
                 </div>
             </div>
             <app-c-museu-button ></app-c-museu-button>
