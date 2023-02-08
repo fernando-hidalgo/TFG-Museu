@@ -86,6 +86,41 @@
         justify-content: flex-end;
         gap: 7px;
       }
+
+      &__top{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin-right: 29px;
+        gap: 5px;
+      
+        &__delete-rating{
+          cursor: pointer;
+          margin-top: 6px;
+          visibility: hidden;
+        }
+      
+        &__stars-slider{
+          background: url('../assets/sprite.d305a741.svg') no-repeat 1px -890px;
+          width: 180px;
+          height: 32px;
+          display: block;
+        
+          &__hover{
+            background: url('../assets/sprite.d305a741.svg') no-repeat 1px -960px;
+            height: 32px;
+            display: block;
+            width: 0px;
+          }
+        
+          &__selected{
+            background: url('../assets/sprite.d305a741.svg') no-repeat 1px -925px;;
+            height: 32px;
+            display: block;
+            width: 0px;
+          }
+        }
+      }
       
       &__stars{
         margin-left: 15px;
@@ -135,47 +170,47 @@
   margin-left: 4%;
   display: flex;
   align-items: center;
-}
 
-.rating-title {
-  margin-right: 10px;
-}
+  &__title {
+    margin-right: 10px;
+  }
 
-.rating-amount{
-  margin-top: 4px;
-  font-size: 10px;
-  margin-left: 5px;
-}
+  &__amount{
+    margin-top: 4px;
+    font-size: 10px;
+    margin-left: 5px;
+  }
 
-.average-stars{
-  margin-top: 2px;
-  height: 16px;
-
-  background: url('../assets/sprite.d305a741.svg') no-repeat -290px -90px;
-
-  //Full stars, width for amount: 13px = 1, 26px = 2, 39px = 3, 52px = 4, 65px = 5
-  //background-position: -450px -50px;
-  //width: 65px;
-
-  //0.5 Stars
-  //background-position: -515px -50px;
-  //width: 13px;
-
-  //1.5 Stars
-  //background-position: -502px -50px;
-  //width: 26px;
-
-  //2.5 Stars
-  background-position: -489px -50px;
-  width: 39px;
-
-  //3.5 Stars
-  //background-position: -476px -50px;
-  //width: 52px;
-
-  //4.5 Stars
-  //background-position: -463px -50px;
-  //width: 65px;
+  &__average-stars{
+    margin-top: 2px;
+    height: 16px;
+  
+    background: url('../assets/sprite.d305a741.svg') no-repeat -290px -90px;
+  
+    //Full stars, width for amount: 13px = 1, 26px = 2, 39px = 3, 52px = 4, 65px = 5
+    //background-position: -450px -50px;
+    //width: 65px;
+  
+    //0.5 Stars
+    //background-position: -515px -50px;
+    //width: 13px;
+  
+    //1.5 Stars
+    //background-position: -502px -50px;
+    //width: 26px;
+  
+    //2.5 Stars
+    background-position: -489px -50px;
+    width: 39px;
+  
+    //3.5 Stars
+    //background-position: -476px -50px;
+    //width: 52px;
+  
+    //4.5 Stars
+    //background-position: -463px -50px;
+    //width: 65px;
+  }
 }
 
 .rating-section{
@@ -186,41 +221,6 @@
   height: 10px;
   width: 90%;
   margin-left: 4%;
-}
-
-.rating-box-top{
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin-right: 29px;
-  gap: 5px;
-}
-
-.delete-rating{
-  cursor: pointer;
-  margin-top: 6px;
-  visibility: hidden;
-}
-
-.stars-slider{
-  background: url('../assets/sprite.d305a741.svg') no-repeat 1px -890px;
-  width: 180px;
-  height: 32px;
-  display: block;
-}
-
-.stars-slider-hover{
-  background: url('../assets/sprite.d305a741.svg') no-repeat 1px -960px;
-  height: 32px;
-  display: block;
-  width: 0px;
-}
-
-.stars-slider-selected{
-  background: url('../assets/sprite.d305a741.svg') no-repeat 1px -925px;;
-  height: 32px;
-  display: block;
-  width: 0px;
 }
 
 .disabled{

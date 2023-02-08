@@ -20,15 +20,15 @@
     <div class="artwork-details__rating-box">
         <div class="artwork-details__rating-box__stars">
             <span>Valoración</span>
-            <div class="rating-box-top">
-                <mat-icon class="delete-rating" id="delete-rating" (click)="deleteRating()" >close</mat-icon>
-                <div class="stars-slider" 
+            <div class="artwork-details__rating-box__top">
+                <mat-icon class="artwork-details__rating-box__top__delete-rating" id="delete-rating" (click)="deleteRating()" >close</mat-icon>
+                <div class="artwork-details__rating-box__top__stars-slider" 
                     [ngClass]=" disabled ? 'disabled' : '' " 
                     (mousemove)="ratingHover($event)" 
                     (click)="ratingSet($event)" id="stars-slider"
                     >
-                        <div class="stars-slider-hover" id="stars-slider-hover"></div>
-                        <div class="stars-slider-selected" id="stars-slider-selected"></div>
+                        <div class="artwork-details__rating-box__top__stars-slider__hover" id="stars-slider-hover"></div>
+                        <div class="artwork-details__rating-box__top__stars-slider__selected" id="stars-slider-selected"></div>
                 </div>
             </div>
             <app-c-museu-button ></app-c-museu-button>
@@ -53,9 +53,9 @@
 </div>
 
 <span class="rating-header">
-    <span class="rating-title">Reseñas</span>
-    <span class="average-stars"></span>
-    <span class="rating-amount">(Media de 1467 reseñas)</span>
+    <span class="rating-header__title">Reseñas</span>
+    <span class="rating-header__average-stars"></span>
+    <span class="rating-header__amount">(Media de 1467 reseñas)</span>
 </span>
 
 <hr class="separator for-rating-header">
