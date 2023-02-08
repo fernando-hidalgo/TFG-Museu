@@ -9,7 +9,8 @@ export class AppComponent {
   title = 'tfg-museu';
   starsValue: number;
   bounds: DOMRect;
-  saveValue
+  saveValue: number;
+  disabled:boolean = false;
   
   ngOnInit(){
     this.bounds = document.getElementById("stars-slider").getBoundingClientRect();
@@ -21,19 +22,16 @@ export class AppComponent {
   
   ratingSet(event) {
     document.getElementById("stars-slider-hover").style.display = "none";
+    document.getElementById("delete-rating").style.visibility = "visible";
     this.changeStarsWidth("stars-slider-selected", event);
-  }
-  
-  ratingHoverClear() {
-    //No vale asi:
-    //document.getElementById("stars-slider-hover").style.width = "0px";
-
-    
   }
 
   deleteRating(){
     document.getElementById("stars-slider-hover").style.display = "block";
+    document.getElementById("delete-rating").style.visibility = "hidden";
     document.getElementById("stars-slider-selected").style.width = "0px";
+    document.getElementById("stars-slider-hover").style.width = "0px";
+    this.disabled = false;
   }
   
   changeStarsWidth(id, event) {
@@ -41,9 +39,15 @@ export class AppComponent {
     const x = Math.max(0, event.clientX - this.bounds.left);
     const widths = [18, 36, 54, 72, 90, 108, 126, 144, 162, 180];
     const index = Math.min(Math.floor(x / 18), widths.length - 1);
-    stars.style.width = `${widths[index]}px`;
+
+    if(x == 0 || x > 178.6){
+      stars.style.width = '0px';
+    }else{
+      stars.style.width = `${widths[index]}px`;
+    }
 
     if(id === "stars-slider-selected"){
+      this.disabled = true;
       const ratings = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
       this.saveValue = ratings[index];
       console.log(this.saveValue)

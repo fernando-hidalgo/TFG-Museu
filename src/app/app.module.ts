@@ -14,6 +14,8 @@ import { CListCardComponent } from './components/c-list-card/c-list-card.compone
 import { CSearchFilterComponent } from './components/c-search-filter/c-search-filter.component';
 import { CProfileFilterComponent } from './components/c-profile-filter/c-profile-filter.component';
 import { COrderFilterComponent } from './components/c-order-filter/c-order-filter.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { COrderFilterComponent } from './components/c-order-filter/c-order-filte
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    NoopAnimationsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
