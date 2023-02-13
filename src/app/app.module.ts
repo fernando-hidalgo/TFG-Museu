@@ -16,10 +16,16 @@ import { CProfileFilterComponent } from './components/c-profile-filter/c-profile
 import { COrderFilterComponent } from './components/c-order-filter/c-order-filter.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
+import { CRatingStarsComponent } from './components/c-rating-stars/c-rating-stars.component';
+import { VArtworkDetailsComponent } from './views/v-artwork-details/v-artwork-details.component';
+import { VLoginSignupComponent } from './views/v-login-signup/v-login-signup.component';
+import { VHomeSearchComponent } from './views/v-home-search/v-home-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+
+    //Components
     CNavbarComponent,
     CArtworkCardComponent,
     CCredentialsBoxComponent,
@@ -30,6 +36,12 @@ import {MatIconModule} from '@angular/material/icon';
     CSearchFilterComponent,
     CProfileFilterComponent,
     COrderFilterComponent,
+    CRatingStarsComponent,
+
+    //Views
+    VArtworkDetailsComponent,
+    VLoginSignupComponent,
+    VHomeSearchComponent,
   ],
   imports: [
     BrowserModule,
