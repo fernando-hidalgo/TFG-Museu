@@ -1,0 +1,61 @@
+@mixin assignValue($properties, $value) {
+    @each $property in $properties {
+        #{$property}: $value
+    }
+}
+
+.list-card{
+    display: flex;
+    top: 80px;
+    gap: 25px;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid #456;
+    border-color: #2c3440;
+    height: 135px;
+
+    &__cover{
+        width: 250px;
+        height: 105px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: linear-gradient(90deg,hsla(0,0%,100%,0) 0,hsla(0,0%,100%,.5) 50%,hsla(0,0%,100%,0));
+        background-repeat: no-repeat;
+        background-size: 100% 1px;
+        border-radius: 4px;
+        box-shadow: inset 0px 0px 15px #def;
+        cursor: pointer;
+
+        &__pic{
+            width: 99%;
+            height: 97%;
+            border-radius: 3px;
+            object-fit: cover;
+        }
+    }
+
+    &__text{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    
+        &__title{
+            cursor: pointer;
+            font-family: Graphik Web Semibold Regular;
+            color: white;
+        }
+    
+        &__amount{
+            font-family: Graphik Web Regular Regular;
+            color: #789;
+            font-size: 11px;
+        }
+    
+        &__description{
+            color: #abc;
+            font-family: Graphik Web Regular Regular;
+        }
+    }
+}

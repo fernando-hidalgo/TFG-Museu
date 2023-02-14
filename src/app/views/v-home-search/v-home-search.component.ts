@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./v-home-search.component.scss']
 })
 export class VHomeSearchComponent implements OnInit {
+  cards = [1,2,3]
+  userRatings = [];
 
   constructor() { }
 

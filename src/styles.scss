@@ -12,3 +12,8 @@ html {
     background-clip: border-box;
     padding: 30px 0;
 }
+
+body{
+    display: flex;
+    flex-direction: column;
+}

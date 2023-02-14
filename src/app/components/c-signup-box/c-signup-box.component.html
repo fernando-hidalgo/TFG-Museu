@@ -4,28 +4,28 @@
     <div class="credential-box__content">
         <div style="padding-top: 20px;">
             <div>
-                <label class="credential-box__content__label" for="nick-mail">Usuario</label><br>
+                <label class="credential-box__content__label" for="nick-mail">{{ literals.userTitle }}</label><br>
                 <input class="credential-box__content__input" type="text" id="nick-mail" name="nick-mail">
             </div><br>
 
             <div>
-                <label class="credential-box__content__label" for="nick-mail">Correo</label><br>
+                <label class="credential-box__content__label" for="nick-mail">{{ literals.mailTitle }}</label><br>
                 <input class="credential-box__content__input" type="text" id="nick-mail" name="nick-mail">
             </div><br>
 
             <div>
-                <label class="credential-box__content__label" for="password">Contraseña</label><br>
+                <label class="credential-box__content__label" for="password">{{ literals.passwordTitle }}</label><br>
                 <input class="credential-box__content__input" id="password" name="password">
             </div><br>
 
             <div>
-                <label class="credential-box__content__label" for="password">Confirmar Contraseña</label><br>
+                <label class="credential-box__content__label" for="password">{{ literals.repeatPasswordTitle }}</label><br>
                 <input class="credential-box__content__input" id="password" name="password">
             </div><br>
         </div>
 
         <div class="button-container">
-            <app-c-museu-button></app-c-museu-button>
+            <app-c-museu-button [text]="literals.button"></app-c-museu-button>
         </div>
     <div>
 </div>

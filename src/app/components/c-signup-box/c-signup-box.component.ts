@@ -6,6 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./c-signup-box.component.scss']
 })
 export class CSignupBoxComponent implements OnInit {
+  literals = {
+    userTitle: 'Usuario',
+    mailTitle: 'Correo',
+    passwordTitle: 'Contraseña',
+    repeatPasswordTitle: 'Confirmar Contraseña',
+    button: 'REGISTRAR'
+  }
 
   constructor() { }
 

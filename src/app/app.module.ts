@@ -20,6 +20,11 @@ import { CRatingStarsComponent } from './components/c-rating-stars/c-rating-star
 import { VArtworkDetailsComponent } from './views/v-artwork-details/v-artwork-details.component';
 import { VLoginSignupComponent } from './views/v-login-signup/v-login-signup.component';
 import { VHomeSearchComponent } from './views/v-home-search/v-home-search.component';
+import { VProfileComponent } from './views/v-profile/v-profile.component';
+import { VListsComponent } from './views/v-lists/v-lists.component';
+import { VListDetailsComponent } from './views/v-list-details/v-list-details.component';
+import { VListEditorComponent } from './views/v-list-editor/v-list-editor.component';
+import { CFooterComponent } from './components/c-footer/c-footer.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +47,11 @@ import { VHomeSearchComponent } from './views/v-home-search/v-home-search.compon
     VArtworkDetailsComponent,
     VLoginSignupComponent,
     VHomeSearchComponent,
+    VProfileComponent,
+    VListsComponent,
+    VListDetailsComponent,
+    VListEditorComponent,
+    CFooterComponent,
   ],
   imports: [
     BrowserModule,
