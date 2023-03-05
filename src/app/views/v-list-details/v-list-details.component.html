@@ -1,1 +1,8 @@
-<p>v-list-details works!</p>
+<div class="grid">
+    <div class="grid__cards">
+        <app-c-artwork-card 
+            *ngFor="let c of cards" 
+            [userRatings]="userRatings">
+        </app-c-artwork-card>
+    </div>
+</div>

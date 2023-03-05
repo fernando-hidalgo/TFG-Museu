@@ -6,6 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./v-login-signup.component.scss']
 })
 export class VLoginSignupComponent implements OnInit {
+  credentialsLiterals = {
+    nickMailTitle: 'Usuario / Correo',
+    passwordTitle: 'Contraseña',
+    button: "ACCEDER"
+  }
+
+  signupLiterals = {
+    userTitle: 'Usuario',
+    mailTitle: 'Correo',
+    passwordTitle: 'Contraseña',
+    repeatPasswordTitle: 'Confirmar Contraseña',
+    button: 'REGISTRAR'
+  }
 
   constructor() { }
 

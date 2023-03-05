@@ -11,7 +11,6 @@ export class CArtworkCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.userRatings)
   }
 
 }

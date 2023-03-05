@@ -70,26 +70,25 @@ export class CRatingStarsComponent implements OnInit {
     stars.style.width = widths[userRating]  || '0px';
   };
 
-  //Backend interaction
-  
+  //BACKEND INTERACTIONS
+
+  //Get rating from BD
   getRating(){
-    //Get rating from BD
     return 0.5
   }
 
+  //Save rating into BD
   saveRating(rate: number){
-    //Save rating into BD
     console.log('A guardar en BD', rate)
   }
 
+  //Delete rating in BD
   deleteRating(){
     document.getElementById("stars-slider-hover").style.display = "block";
     document.getElementById("delete-rating").style.visibility = "hidden";
     document.getElementById("stars-slider-selected").style.width = "0px";
     document.getElementById("stars-slider-hover").style.width = "0px";
     this.disabled = false;
-
-    //Delete rating in BD
   }
 
 }

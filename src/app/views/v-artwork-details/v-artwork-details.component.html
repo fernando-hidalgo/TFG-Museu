@@ -18,7 +18,7 @@
         <div class="artwork-details__rating-box__stars">
             <span>Valoración</span>
             <app-c-rating-stars></app-c-rating-stars>
-            <app-c-museu-button></app-c-museu-button>
+            <app-c-museu-button [text]="literals.button"></app-c-museu-button>
         </div>
         <hr class="separator">
         <span class="artwork-details__rating-box__museum">
@@ -48,8 +48,5 @@
 <hr class="separator for-rating-header">
 
 <div class="rating-section">
-    <app-c-review-card></app-c-review-card>
-    <app-c-review-card></app-c-review-card>
-    <app-c-review-card></app-c-review-card>
-    <app-c-review-card></app-c-review-card>
+    <app-c-review-card *ngFor="let r of reviews" ></app-c-review-card>
 </div>

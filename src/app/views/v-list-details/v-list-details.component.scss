@@ -1,0 +1,14 @@
+// Search View
+.grid {
+  display: flex;
+  justify-content: center;
+
+  &__cards{
+    margin-top: 5%;
+    display: grid;
+    grid-template-columns: repeat(9, 0px);
+    grid-auto-rows: auto;
+    grid-gap: 11.5rem 7.5rem;
+    margin-right: 12%;
+  }
+}

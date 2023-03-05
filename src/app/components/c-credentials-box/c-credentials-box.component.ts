@@ -6,11 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./c-credentials-box.component.scss']
 })
 export class CCredentialsBoxComponent implements OnInit {
-  literals = {
-    nickMailTitle: 'Usuario / Correo',
-    passwordTitle: 'Contraseña',
-    button: "ACCEDER"
-  }
+  @Input() literals;
 
   constructor() { }
 

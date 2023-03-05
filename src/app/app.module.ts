@@ -25,6 +25,7 @@ import { VListsComponent } from './views/v-lists/v-lists.component';
 import { VListDetailsComponent } from './views/v-list-details/v-list-details.component';
 import { VListEditorComponent } from './views/v-list-editor/v-list-editor.component';
 import { CFooterComponent } from './components/c-footer/c-footer.component';
+import { CDialogComponent } from './components/c-dialog/c-dialog.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { CFooterComponent } from './components/c-footer/c-footer.component';
     VListDetailsComponent,
     VListEditorComponent,
     CFooterComponent,
+    CDialogComponent,
   ],
   imports: [
     BrowserModule,

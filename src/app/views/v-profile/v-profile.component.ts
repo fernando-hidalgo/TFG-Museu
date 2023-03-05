@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./v-profile.component.scss']
 })
 export class VProfileComponent implements OnInit {
-  cards = [1,2,3]
+  cards = [1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3]
   userRatings = [1];
 
   constructor() { }
