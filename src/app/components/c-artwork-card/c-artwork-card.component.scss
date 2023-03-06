@@ -89,6 +89,19 @@
                 background: url('../../../assets/sprite.d305a741.svg') no-repeat;
             }
         }
+
+        &__list-edit{
+            margin-top: 4px;
+            background: url('../../../assets/sprite.d305a741.svg') no-repeat;
+            background-position: -190px -350px;
+            height: 16px;
+            width: 16px;
+
+            &:hover{
+                background-position: -210px -350px;
+                cursor: pointer;
+            }
+        }
     }
 }
 

@@ -1,205 +1,205 @@
 @mixin assignValue($properties, $value) {
-    @each $property in $properties {
-        #{$property}: $value
-    }
+  @each $property in $properties {
+  #{$property}: $value
   }
+}
 
 // Art Details View
 .artwork-details{
-    &__banner{
-      height: 300px;
-      width: 100%;
-      object-fit: cover;
-      position: absolute;
-      top: 52.75px;
-      @include assignValue(left right, 0);
-      box-shadow: 0px 10px 20px 14px rgb(0 0 0 / 50%);
+  &__banner{
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 52.75px;
+    @include assignValue(left right, 0);
+    box-shadow: 0px 10px 20px 14px rgb(0 0 0 / 50%);
+  }
+
+  &__content{
+    top: 325px;
+    height: 400px;
+    width: 50%;
+    position: relative;
+    color: white;
+
+    &__title{
+      font-family: Graphik Web Semibold Regular;
+      display: flex;
+      align-items: center;
+
+      &__name{
+        padding-right: 28px;
+      }
+
+      &__artist-date{
+        font-size: 20px;
+        margin-top: 5px;
+        text-decoration: underline;
+      }
     }
-  
-    &__content{
-      top: 325px;
-      height: 400px;
-      width: 50%;
-      position: relative;
-      color: white;
-  
-      &__title{
-        font-family: Graphik Web Semibold Regular;
+
+    &__description{
+      font-family: Graphik Web Regular Regular;
+      width: 40ch;
+    }
+  }
+
+  &__rating-box{
+    font-family: Graphik Web Regular Regular;
+    color: white;
+    top: 350px;
+    position: relative;
+    width: 270px;
+    height: 290px;
+    background-color: #445565;
+    border-radius: 10px;
+
+      &__stars{
+        display: flex;
+        height: 35%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 7px;
+      }
+
+      &__top{
         display: flex;
         align-items: center;
-  
-        &__name{
-          padding-right: 28px;
+        justify-content: space-around;
+        margin-right: 29px;
+        gap: 5px;
+      
+        &__delete-rating{
+          cursor: pointer;
+          margin-top: 6px;
+          visibility: hidden;
         }
-  
-        &__artist-date{
-          font-size: 20px;
-          margin-top: 5px;
-          text-decoration: underline;
-        }
-      }
-  
-      &__description{
-        font-family: Graphik Web Regular Regular;
-        width: 40ch;
-      }
-    }
-  
-    &__rating-box{
-      font-family: Graphik Web Regular Regular;
-      color: white;
-      top: 350px;
-      position: relative;
-      width: 270px;
-      height: 290px;
-      background-color: #445565;
-      border-radius: 10px;
-  
-        &__stars{
-          display: flex;
-          height: 35%;
-          flex-direction: column;
-          align-items: center;
-          justify-content: flex-end;
-          gap: 7px;
-        }
-  
-        &__top{
-          display: flex;
-          align-items: center;
-          justify-content: space-around;
-          margin-right: 29px;
-          gap: 5px;
+      
+        &__stars-slider{
+          background: url('../../../assets/sprite.d305a741.svg') no-repeat 1px -890px;
+          width: 180px;
+          height: 32px;
+          display: block;
         
-          &__delete-rating{
-            cursor: pointer;
-            margin-top: 6px;
-            visibility: hidden;
-          }
-        
-          &__stars-slider{
-            background: url('../../../assets/sprite.d305a741.svg') no-repeat 1px -890px;
-            width: 180px;
+          &__hover{
+            background: url('../../../assets/sprite.d305a741.svg') no-repeat 1px -960px;
             height: 32px;
             display: block;
-          
-            &__hover{
-              background: url('../../../assets/sprite.d305a741.svg') no-repeat 1px -960px;
-              height: 32px;
-              display: block;
-              width: 0px;
-            }
-          
-            &__selected{
-              background: url('../../../assets/sprite.d305a741.svg') no-repeat 1px -925px;;
-              height: 32px;
-              display: block;
-              width: 0px;
-            }
+            width: 0px;
+          }
+        
+          &__selected{
+            background: url('../../../assets/sprite.d305a741.svg') no-repeat 1px -925px;;
+            height: 32px;
+            display: block;
+            width: 0px;
           }
         }
-        
-        &__stars{
-          margin-left: 15px;
-        }
-  
-        &__museum{
-          margin-left: 15px;
-        }
-  
-        &__colection{
-          margin-left: 15px;
-        }
-  
-        &__display{
-          margin-left: 15px;
-        }
-  
-        &__room{
-          margin-left: 15px;
-        }
-    }
+      }
+      
+      &__stars{
+        margin-left: 15px;
+      }
+
+      &__museum{
+        margin-left: 15px;
+      }
+
+      &__colection{
+        margin-left: 15px;
+      }
+
+      &__display{
+        margin-left: 15px;
+      }
+
+      &__room{
+        margin-left: 15px;
+      }
+  }
 }
   
 .align{
-    display: flex;
-    justify-content: space-around;;
+  display: flex;
+  justify-content: space-around;;
 }
   
 .separator{
-    margin: 12px 0 12px 0;
+  margin: 12px 0 12px 0;
 }
   
 .for-rating-header{
-    top: 260px;
-    position: relative;
-    width: 90%;
-    margin-left: 4%;
-    border: 1px solid #456;
-    margin-bottom: 15px;
+  top: 260px;
+  position: relative;
+  width: 90%;
+  margin-left: 4%;
+  border: 1px solid #456;
+  margin-bottom: 15px;
 }
   
 .rating-header{
-    font-family: Graphik Web Regular Regular;
-    color: white;
-    top: 270px;
-    position: relative;
-    margin-left: 4%;
-    display: flex;
-    align-items: center;
+  font-family: Graphik Web Regular Regular;
+  color: white;
+  top: 270px;
+  position: relative;
+  margin-left: 4%;
+  display: flex;
+  align-items: center;
+
+  &__title {
+    margin-right: 10px;
+  }
+
+  &__amount{
+    margin-top: 4px;
+    font-size: 10px;
+    margin-left: 5px;
+  }
+
+  &__average-stars{
+    margin-top: 2px;
+    height: 16px;
   
-    &__title {
-      margin-right: 10px;
-    }
+    background: url('../../../assets/sprite.d305a741.svg') no-repeat -290px -90px;
   
-    &__amount{
-      margin-top: 4px;
-      font-size: 10px;
-      margin-left: 5px;
-    }
+    //Full stars, width for amount: 13px = 1, 26px = 2, 39px = 3, 52px = 4, 65px = 5
+    //background-position: -450px -50px;
+    //width: 65px;
   
-    &__average-stars{
-      margin-top: 2px;
-      height: 16px;
-    
-      background: url('../../../assets/sprite.d305a741.svg') no-repeat -290px -90px;
-    
-      //Full stars, width for amount: 13px = 1, 26px = 2, 39px = 3, 52px = 4, 65px = 5
-      //background-position: -450px -50px;
-      //width: 65px;
-    
-      //0.5 Stars
-      //background-position: -515px -50px;
-      //width: 13px;
-    
-      //1.5 Stars
-      //background-position: -502px -50px;
-      //width: 26px;
-    
-      //2.5 Stars
-      background-position: -489px -50px;
-      width: 39px;
-    
-      //3.5 Stars
-      //background-position: -476px -50px;
-      //width: 52px;
-    
-      //4.5 Stars
-      //background-position: -463px -50px;
-      //width: 65px;
-    }
+    //0.5 Stars
+    //background-position: -515px -50px;
+    //width: 13px;
+  
+    //1.5 Stars
+    //background-position: -502px -50px;
+    //width: 26px;
+  
+    //2.5 Stars
+    background-position: -489px -50px;
+    width: 39px;
+  
+    //3.5 Stars
+    //background-position: -476px -50px;
+    //width: 52px;
+  
+    //4.5 Stars
+    //background-position: -463px -50px;
+    //width: 65px;
+  }
 }
   
 .rating-section{
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    top: 240px;
-    height: 10px;
-    width: 90%;
-    margin-left: 4%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 240px;
+  height: 10px;
+  width: 90%;
+  margin-left: 4%;
 }
   
 .disabled{
-    pointer-events: none;
+  pointer-events: none;
 }

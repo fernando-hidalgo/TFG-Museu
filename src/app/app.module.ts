@@ -31,7 +31,7 @@ import { CDialogComponent } from './components/c-dialog/c-dialog.component';
   declarations: [
     AppComponent,
 
-    //Components
+    //COMPONENTS
     CNavbarComponent,
     CArtworkCardComponent,
     CCredentialsBoxComponent,
@@ -43,8 +43,10 @@ import { CDialogComponent } from './components/c-dialog/c-dialog.component';
     CProfileFilterComponent,
     COrderFilterComponent,
     CRatingStarsComponent,
+    CFooterComponent,
+    CDialogComponent,
 
-    //Views
+    //VIEWS
     VArtworkDetailsComponent,
     VLoginSignupComponent,
     VHomeSearchComponent,
@@ -52,8 +54,6 @@ import { CDialogComponent } from './components/c-dialog/c-dialog.component';
     VListsComponent,
     VListDetailsComponent,
     VListEditorComponent,
-    CFooterComponent,
-    CDialogComponent,
   ],
   imports: [
     BrowserModule,
