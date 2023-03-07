@@ -1,9 +1,9 @@
-<div class="artwork-card">
-    <img class="artwork-card__art" src="./assets/nighthawks.jpg" alt="Art">
+<div [routerLink]="['/artwork/', data.id]" class="artwork-card">
+    <img class="artwork-card__art" [src]="data.picLink" alt="Art">
     <span class="artwork-card__overlay"></span>
     <span class="artwork-card__overlay-actions">
-        <span *ngIf=" averageRating && editMode == false " class="artwork-card__overlay-actions__rating-average__value">{{averageRating}}/5</span>
-        <span *ngIf=" averageRating && editMode == false " class="artwork-card__overlay-actions__rating-average__star"></span>
+        <span *ngIf=" data.averageRating && editMode == false " class="artwork-card__overlay-actions__rating-average__value">{{data.averageRating}}/5</span>
+        <span *ngIf=" data.averageRating && editMode == false " class="artwork-card__overlay-actions__rating-average__star"></span>
 
         <span *ngIf=" editMode == false " [ngClass]=" {
             'artwork-card__overlay-actions__seen' : seen,

@@ -9,14 +9,18 @@ import { ArtworkService } from 'src/app/services/artwork.service';
 })
 
 export class VHomeSearchComponent implements OnInit {
-  cards = [1,2,3]
+  artworks= []
   userRatings = [];
 
   constructor(private artworkService: ArtworkService) { }
 
   ngOnInit(): void {
-    this.artworkService.getArtworkById().subscribe(data => {
-      console.log(data);
+    this.getAllArtworks()
+  }
+
+  getAllArtworks() {
+    this.artworkService.getAllArtworks().subscribe(data => {
+      this.artworks = data;
     });
   }
 }
