@@ -26,6 +26,7 @@ import { VListDetailsComponent } from './views/v-list-details/v-list-details.com
 import { VListEditorComponent } from './views/v-list-editor/v-list-editor.component';
 import { CFooterComponent } from './components/c-footer/c-footer.component';
 import { CDialogComponent } from './components/c-dialog/c-dialog.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { CDialogComponent } from './components/c-dialog/c-dialog.component';
     HttpClientModule,
     FormsModule,
     NoopAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -11,6 +11,7 @@ import { ArtworkService } from 'src/app/services/artwork.service';
 export class VHomeSearchComponent implements OnInit {
   artworks= []
   userRatings = [];
+  page: number = 1;
 
   constructor(private artworkService: ArtworkService) { }
 

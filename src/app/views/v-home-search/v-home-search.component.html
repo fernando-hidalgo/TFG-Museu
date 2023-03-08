@@ -1,9 +1,13 @@
-<div class="grid">
-    <div class="grid__cards">
-        <app-c-artwork-card 
-            *ngFor="let artwork of artworks"
-            [data]="artwork"
-            [userRatings]="userRatings">
-        </app-c-artwork-card>
+<div class="page">
+    <div class="grid">
+        <div class="grid__cards">
+            <app-c-artwork-card 
+                *ngFor="let artwork of artworks | paginate: { itemsPerPage: 7, currentPage: page }"
+                [data]="artwork"
+                [userRatings]="userRatings">
+            </app-c-artwork-card>
+        </div>
     </div>
+                 
+    <pagination-controls class="pagination" (pageChange)="page = $event"></pagination-controls>
 </div>
