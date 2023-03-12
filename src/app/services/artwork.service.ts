@@ -16,7 +16,7 @@ export class ArtworkService {
     }
 
     public getAllArtworks() {
-        return this.httpClient.get<any[]>(`${HOST}${AppEndpoints.ARTWORK}`);
+        return this.httpClient.get<any>(`${HOST}${AppEndpoints.ARTWORK}`);
     }
 
 }

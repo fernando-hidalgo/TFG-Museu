@@ -1,4 +1,16 @@
 <div class="page">
+    <div class="filter">
+        <input class="filter__input text" placeholder="Name..." type="text" id="filter" name="filter">
+        <div class="filter__dropdown">
+            <div *ngIf=" nameFilter.length > 0 " class="filter__dropdown__results">
+                <span  *ngFor="let name of nameFilter" class="filter__dropdown__results__option">{{name}}</span>
+            </div>
+
+            <span *ngIf=" sugestions.length === 0 " class="filter__dropdown__results__option empty-option">Sin resultados</span>
+        </div>
+    </div>
+    
+
     <div class="grid">
         <div class="grid__cards">
             <app-c-artwork-card 

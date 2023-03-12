@@ -9,9 +9,16 @@ import { ArtworkService } from 'src/app/services/artwork.service';
 })
 
 export class VHomeSearchComponent implements OnInit {
-  artworks= []
+  artworks = []
+  nameFilter: string;
+  artistFilter: string;
+  styleFilter: string;
+  museumFilter: string;
+
   userRatings = [];
   page: number = 1;
+
+  sugestions = [1,1,1,1,1,1,1,1,1,1];
 
   constructor(private artworkService: ArtworkService) { }
 
@@ -21,7 +28,13 @@ export class VHomeSearchComponent implements OnInit {
 
   getAllArtworks() {
     this.artworkService.getAllArtworks().subscribe(data => {
-      this.artworks = data;
+      this.artworks = data.artworks;
+      this.nameFilter = data.nameFilter;
+      this.artistFilter = data.artistFilter;
+      this.styleFilter = data.styleFilter;
+      this.museumFilter = data.museumFilter;
+
+      console.log(this.nameFilter);
     });
   }
 }
