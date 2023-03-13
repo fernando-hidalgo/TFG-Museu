@@ -19,4 +19,8 @@ export class ArtworkService {
         return this.httpClient.get<any>(`${HOST}${AppEndpoints.ARTWORK}`);
     }
 
+    public findFiltered(params) {
+        return this.httpClient.get<any>(`${HOST}${AppEndpoints.ARTWORK_SEARCH}`, {params: params});
+    }
+
 }

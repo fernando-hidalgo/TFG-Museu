@@ -1,12 +1,27 @@
 <div class="page">
     <div class="filter">
-        <input class="filter__input text" placeholder="Name..." type="text" id="filter" name="filter">
-        <div class="filter__dropdown">
+        <input 
+            class="filter__input text" 
+            placeholder="Nombre..." 
+            (keyup)="triggerFilterOptions($event, 'nameFilter')" 
+            type="text" 
+            id="nameFilter"
+            name="filter"
+        >
+
+        <div class="filter__dropdown" id="nameFilter-dropdown">
             <div *ngIf=" nameFilter.length > 0 " class="filter__dropdown__results">
-                <span  *ngFor="let name of nameFilter" class="filter__dropdown__results__option">{{name}}</span>
+                <span *ngFor="let name of nameFilter"
+                    class="filter__dropdown__results__option"
+                    (click)="filterSetOption(name, 'nameFilter')">
+                        {{name}}
+                </span>
             </div>
 
-            <span *ngIf=" sugestions.length === 0 " class="filter__dropdown__results__option empty-option">Sin resultados</span>
+            <span *ngIf=" nameFilter.length === 0 "
+                class="filter__dropdown__results__option empty-option">
+                    Sin resultados
+            </span>
         </div>
     </div>
     
