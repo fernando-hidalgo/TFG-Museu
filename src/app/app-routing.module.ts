@@ -10,7 +10,6 @@ import { VProfileComponent } from './views/v-profile/v-profile.component';
 
 const routes: Routes = [
   {path:'', component: VHomeSearchComponent},
-  {path:'home', component: VHomeSearchComponent},
   {path:'search', component: VHomeSearchComponent},
   {path:'login', component: VLoginSignupComponent},
   {path:'artwork/:artworkId', component: VArtworkDetailsComponent},

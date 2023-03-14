@@ -66,7 +66,7 @@ export class VHomeSearchComponent implements OnInit {
   filterSetOption(option, filterId){
     (document.getElementById(filterId) as HTMLInputElement).value = option;
     document.getElementById(filterId).style.pointerEvents = 'none';
-    document.getElementById(`${filterId}-dropdown`).style.display = 'none'
+    //document.getElementById(`${filterId}-dropdown`).style.display = 'none'
 
     this.findFiltered()
   }

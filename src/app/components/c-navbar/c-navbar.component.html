@@ -1,9 +1,25 @@
 <nav class="navbar">
     <div class="navbar__logo">
-        <a routerLink="" class="navbar__logo__img">Museu</a>
+        <a 
+            class="navbar__logo__img"
+            routerLink="" 
+            routerLinkActive 
+            [routerLinkActiveOptions]="{exact: true}"
+            #home="routerLinkActive" 
+            >Museu
+        </a>
     </div>
     <div class="navbar__options">
-        <a class="navbar__options__search active" routerLink="/search">BUSCADOR</a>
+        <a 
+            class="navbar__options__search" 
+            routerLink="/search" 
+            routerLinkActive
+            [routerLinkActiveOptions]="{exact: true}"
+            #search="routerLinkActive"
+            [ngClass]="{'active': home.isActive || search.isActive }"
+            >BUSCADOR
+        </a>
+
         <a class="navbar__options__profile dropdown">
             <img class="navbar__options__profile__image shadowed" src="./assets/temp_profile.jpeg" alt="Avatar">
             <span class="navbar__options__profile__nickname" >MISCO_JONES <i class="arrow down"></i> </span>
