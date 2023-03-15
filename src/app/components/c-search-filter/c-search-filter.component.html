@@ -1,1 +1,27 @@
-<p>c-search-filter works!</p>
+<div class="filter">
+    <input 
+        class="filter__input text" 
+        [placeholder]="placeholder"
+        (keyup)="triggerFilterOptions($event)" 
+        type="text" 
+        [id]="type"
+        name="filter"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
+    >
+
+    <div *ngIf=" showOptions " class="filter__dropdown" id="{{type}}-dropdown" (mousemove)="dropdownBounds($event)">
+        <div *ngIf=" filter.length > 0 " class="filter__dropdown__results">
+            <span *ngFor="let option of filter"
+                class="filter__dropdown__results__option"
+                (click)="filterSetOption(option)">
+                    {{option}}
+            </span>
+        </div>
+
+        <span *ngIf=" filter.length === 0 "
+            class="filter__dropdown__results__option empty-option">
+                Sin resultados
+        </span>
+    </div>
+</div>
