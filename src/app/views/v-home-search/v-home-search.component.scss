@@ -139,8 +139,18 @@
 .empty-option {
   background-color: #ff8000;
   text-shadow: 0 -1px 0 rgba(0,0,0,.15);
-
-  &:hover{
-    background-color: #ff8000;
-  }
+  pointer-events: none;
 }
+
+.filter__input:focus .filter__dropdown{
+  display: none;
+}
+
+.open{
+  display: flex;
+}
+
+.close{
+  display: none;
+}
+

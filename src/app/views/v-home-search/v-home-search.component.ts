@@ -10,18 +10,35 @@ import { ArtworkService } from 'src/app/services/artwork.service';
 
 export class VHomeSearchComponent implements OnInit {
   searchResult;
-
   artworks: any[];
-
-  //Filtros
-  nameFilter: string[] = [];
-  artistFilter: string[] = [];
-  styleFilter: string[] = [];
-  museumFilter: string[] = [];
-
-  userRatings = [];
   page: number = 1;
   timeout = null;
+
+  //NOMBRE
+  nameFilter: string[] = [];
+  showNameOptions = false;
+  nameOptionsX = 0
+  nameOptionsY = 0
+
+  //ARTISTA
+  artistFilter: string[] = [];
+  showArtistOptions = false;
+  artistOptionsX = 0
+  artistOptionsY = 0
+
+  //ESTILO
+  styleFilter: string[] = [];
+  showNameStyle = false;
+  styleOptionsX = 0
+  styleOptionsY = 0
+
+  //MUSEO
+  museumFilter: string[] = [];
+  showNameMuseum = false;
+  museumOptionsX = 0
+  museumOptionsY = 0
+
+  userRatings = [];
 
   constructor(private artworkService: ArtworkService) { }
 
@@ -102,5 +119,29 @@ export class VHomeSearchComponent implements OnInit {
     this.artworks = data.artworks;
 
     this.nameFilter = data.nameFilter;
+  }
+
+  onFocus(){
+    this.showNameOptions = true;
+  }
+  
+  onBlur(){
+    //Blur rápido, cuando se clicka FUERA del dropdown
+    if(this.nameOptionsX < 3 || this.nameOptionsX > 290 || this.nameOptionsY < 3 || this.nameOptionsY > 160){
+      this.showNameOptions = false;
+    } else {
+      //Blur lento, cuando se clicka DENTRO del dropdown
+      clearTimeout(this.timeout);
+      this.timeout = setTimeout(() => {
+        this.showNameOptions = false;
+      }, 100);
+    }
+    
+  }
+
+  changeStarsWidth(event) {
+    let bounds = document.getElementById("nameFilter-dropdown").getBoundingClientRect();
+    this.nameOptionsX = Math.max(0, event.clientX - bounds.left);
+    this.nameOptionsY = Math.max(0, event.clientY - bounds.top);
   }
 }

@@ -7,9 +7,10 @@
             type="text" 
             id="nameFilter"
             name="filter"
+            (focus)="onFocus()" (blur)="onBlur()"
         >
 
-        <div class="filter__dropdown" id="nameFilter-dropdown">
+        <div *ngIf=" showNameOptions " class="filter__dropdown" id="nameFilter-dropdown" (mousemove)="changeStarsWidth($event)">
             <div *ngIf=" nameFilter.length > 0 " class="filter__dropdown__results">
                 <span *ngFor="let name of nameFilter"
                     class="filter__dropdown__results__option"
