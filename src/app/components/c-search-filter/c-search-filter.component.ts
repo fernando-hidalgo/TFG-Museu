@@ -25,10 +25,14 @@ export class CSearchFilterComponent implements OnInit {
   }
 
   setPlaceholder() {
-    if (this.type === 'nameFilter') this.placeholder = "Nombre..."
-    if (this.type === 'artistFilter') this.placeholder = "Artista..."
-    if (this.type === 'styleFilter') this.placeholder = "Estilo..."
-    if (this.type === 'museumFilter') this.placeholder = "Museo..."
+    const typeToPlaceholder = {
+      nameFilter: 'Nombre...',
+      artistFilter: 'Artista...',
+      styleFilter: 'Estilo...',
+      museumFilter: 'Museo...'
+    };
+    
+    this.placeholder = typeToPlaceholder[this.type];
   }
 
   triggerFilterOptions(event) {

@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CArtworkCardComponent implements OnInit {
   @Input() data;
-  @Input() userRatings;
+  @Input() userRating;
 
   editMode = false;
   seen = true;

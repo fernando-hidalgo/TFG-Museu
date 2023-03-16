@@ -1,4 +1,4 @@
-<div class="filters">
+<div class="filters"> <!--Botón Reset para todos los filtros a la vez-->
     <app-c-search-filter 
         [searchResult]="data"
         [filter]="data.nameFilter"
@@ -34,7 +34,7 @@
             <app-c-artwork-card 
                 *ngFor="let artwork of data.artworks | paginate: { itemsPerPage: 13, currentPage: page }"
                 [data]="artwork"
-                [userRatings]="userRatings"> <!--artwork.userRating-->
+                [userRating]="[]">
             </app-c-artwork-card>
         </div>
     </div>

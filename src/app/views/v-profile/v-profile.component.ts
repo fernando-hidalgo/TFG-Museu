@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VProfileComponent implements OnInit {
   cards = [1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3]
-  userRatings = [1];
+  userRating = [1];
 
   constructor() { }
 

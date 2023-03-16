@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VListEditorComponent implements OnInit {
   cards = [1,2,3,1,2,3,1,2,3,1,2,3]
-  userRatings = [];
+  userRating = [];
 
   constructor() { }
 
