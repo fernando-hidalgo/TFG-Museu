@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtworkService } from 'src/app/services/artwork.service';
 
-
 @Component({
   selector: 'app-v-home-search',
   templateUrl: './v-home-search.component.html',
@@ -9,16 +8,8 @@ import { ArtworkService } from 'src/app/services/artwork.service';
 })
 
 export class VHomeSearchComponent implements OnInit {
-  searchResult;
-  artworks: any[];
+  data: any;
   page: number = 1;
-  timeout = null;
-
-  nameFilter: string[] = [];
-  artistFilter: string[] = [];
-  styleFilter: string[] = [];
-  museumFilter: string[] = [];
-
   userRatings = [];
 
   constructor(private artworkService: ArtworkService) { }
@@ -38,11 +29,6 @@ export class VHomeSearchComponent implements OnInit {
   }
 
   loadData(data){
-    this.searchResult = data;
-    this.artworks = data.artworks;
-    this.nameFilter = data.nameFilter;
-    this.artistFilter = data.artistFilter;
-    this.styleFilter = data.styleFilter;
-    this.museumFilter = data.museumFilter;
+    this.data = data;
   }
 }
