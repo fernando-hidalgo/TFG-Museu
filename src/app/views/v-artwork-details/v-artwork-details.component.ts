@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { firstValueFrom, Subscription } from 'rxjs';
 import { ArtworkService } from 'src/app/services/artwork.service';
+import { RatingService } from 'src/app/services/rating.service';
 
 @Component({
   selector: 'app-v-artwork-details',
@@ -14,22 +15,28 @@ export class VArtworkDetailsComponent implements OnInit {
   }
   
   data;
+  ratings
+  mock: any;
 
-  reviews = [1,2,3]
+  constructor(private route: ActivatedRoute, private artworkService: ArtworkService, private ratingService: RatingService) { }
 
-  constructor(private route: ActivatedRoute, private artworkService: ArtworkService) { }
+  async ngOnInit() {
+    this.route.params.subscribe(async params => {
+      let artworkId = params['artworkId']
 
-  ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.getArtworkById(params['artworkId'])
+      this.data = await firstValueFrom(this.getArtworkById(artworkId));
+      this.ratings = await firstValueFrom(this.getRatingByArtworkId(artworkId));
+
+      console.log(this.ratings)
     });
   }
 
   getArtworkById(id) {
-    this.artworkService.getArtworkById(id).subscribe(data => {
-      this.data = data;
-      console.log(this.data)
-    });
+    return this.artworkService.getArtworkById(id);
+  }
+
+  getRatingByArtworkId(id) {
+    return this.ratingService.getRatingByArtworkId(id);
   }
 
 }
