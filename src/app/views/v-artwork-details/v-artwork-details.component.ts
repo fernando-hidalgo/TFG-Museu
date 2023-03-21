@@ -13,11 +13,11 @@ export class VArtworkDetailsComponent implements OnInit {
   literals = {
     button: 'Escribir reseña'
   }
-  currentUser = 2  //TODO: Debe ser cambiado por el id del usuario actualmente logueado
-  
+  currentUser = 5  //TODO: Debe ser cambiado por el id del usuario actualmente logueado
+
   data;
   ratings
-  mock: any;
+  curretUserRating;
 
   constructor(private route: ActivatedRoute, private artworkService: ArtworkService, private ratingService: RatingService) { }
 
@@ -27,7 +27,7 @@ export class VArtworkDetailsComponent implements OnInit {
 
       this.data = await firstValueFrom(this.getArtworkById(artworkId));
       this.ratings = await firstValueFrom(this.getRatingByArtworkId(artworkId));
-      this.orderRatings();
+      this.curretUserRating = await this.orderRatings()
     });
   }
 
@@ -43,8 +43,13 @@ export class VArtworkDetailsComponent implements OnInit {
     En el caso que el usuario actual haya valorado la obra, 
     las reseñas se reordenan, para mostrar la propia como la primera
   */
-  orderRatings(){
+  async orderRatings(){
     const curretUserRating = this.ratings.find(r => r.id === this.currentUser);
-    if (curretUserRating) this.ratings = [curretUserRating, ...this.ratings.filter(r => r.id !== this.currentUser)];
+    if (curretUserRating){
+      this.ratings = [curretUserRating, ...this.ratings.filter(r => r.id !== this.currentUser)];
+      return curretUserRating
+    } else {
+      return true
+    }
   }
 }

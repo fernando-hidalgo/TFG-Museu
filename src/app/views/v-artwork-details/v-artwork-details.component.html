@@ -17,7 +17,7 @@
     <div class="artwork-details__rating-box">
         <div class="artwork-details__rating-box__stars">
             <span>Valoración</span>
-            <app-c-rating-stars></app-c-rating-stars>
+            <app-c-rating-stars *ngIf="curretUserRating" [curretUserRating]="curretUserRating" [artworkId]="data.id"></app-c-rating-stars>
             <app-c-museu-button [text]="literals.button"></app-c-museu-button>
         </div>
         <hr class="separator">

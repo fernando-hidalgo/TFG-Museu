@@ -8,7 +8,7 @@
                     {{ratingData.user.nickname}}
                 </span>
                 <span class="yourself">
-                    {{ ratingData.user.id === 2? '(Tu)' : '' }}
+                    {{ ratingData.user.id === 2? '(Tu)' : '' }} <!--TODO: currentUser.id-->
                 </span>
             </div>
             <span class="average-stars one-full" [ngClass]="{

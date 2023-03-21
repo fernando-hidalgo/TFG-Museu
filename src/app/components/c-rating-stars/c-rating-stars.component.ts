@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
+import { RatingService } from 'src/app/services/rating.service';
 
 @Component({
   selector: 'app-c-rating-stars',
@@ -6,13 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./c-rating-stars.component.scss']
 })
 export class CRatingStarsComponent implements OnInit {
+  @Input() curretUserRating
+  @Input() artworkId
 
-  constructor() { }
+  constructor(private ratingService: RatingService) { }
 
   disabled:boolean = false;
   
-  ngOnInit(){
-    this.loadRating();
+  ngOnInit() {
+    if(this.curretUserRating !== true) this.loadRating()
   }
 
   ratingHover(event) {
@@ -23,7 +27,7 @@ export class CRatingStarsComponent implements OnInit {
     this.changeStarsWidth("stars-slider-selected", event);
   }
 
-  ratingExists(){
+  displayRating(){
     this.disabled = true;
     document.getElementById("stars-slider-hover").style.display = "none";
     document.getElementById("delete-rating").style.visibility = "visible";
@@ -44,15 +48,15 @@ export class CRatingStarsComponent implements OnInit {
     }
 
     if(id === "stars-slider-selected"){
-      this.ratingExists()
+      this.displayRating()
       const ratings = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
       this.saveRating(ratings[index])
     }
   }
 
   loadRating(){
-    this.ratingExists();
-    let userRating = this.getRating();
+    this.displayRating();
+    let userRating = this.curretUserRating.value;
 
     let stars = document.getElementById("stars-slider-selected");
     const widths = {
@@ -71,24 +75,48 @@ export class CRatingStarsComponent implements OnInit {
   };
 
   //BACKEND INTERACTIONS
+  //Create or Update rating
+  async saveRating(rate: number){
+    if(this.curretUserRating && this.curretUserRating !== true){
+      console.log('ALREADY')
 
-  //Get rating from BD
-  getRating(){
-    return 0.5
+      let body = {
+        value: rate,
+        text: this.curretUserRating.text
+      }
+      this.ratingService.updateRating(this.curretUserRating.id, body).subscribe(() => {
+        console.log('EXITO')
+      })
+
+    } else {
+      console.log('NEW')
+
+      let body = {
+        value: rate,
+        text: this.curretUserRating.text,
+        artwork: this.artworkId,
+        user: 3 //TODO: Debe ser cambiado por el id del usuario actualmente logueado
+      }
+
+      this.ratingService.createRating(body).subscribe(newRating => {
+        this.curretUserRating = newRating
+      })
+
+    }
   }
 
-  //Save rating into BD
-  saveRating(rate: number){
-    console.log('A guardar en BD', rate)
-  }
-
-  //Delete rating in BD
+  //Delete rating
   deleteRating(){
     document.getElementById("stars-slider-hover").style.display = "block";
     document.getElementById("delete-rating").style.visibility = "hidden";
     document.getElementById("stars-slider-selected").style.width = "0px";
     document.getElementById("stars-slider-hover").style.width = "0px";
     this.disabled = false;
+
+    //TODO: Esta petición debe estar realmente en un modal de confirmación
+    this.ratingService.deleteRating(this.curretUserRating.id).subscribe(() => {
+      this.curretUserRating = null;
+    });
   }
 
 }
