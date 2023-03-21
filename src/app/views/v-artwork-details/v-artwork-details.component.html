@@ -5,7 +5,7 @@
             <h1 class="artwork-details__content__title__name">{{data.name}}</h1>
             <span class="artwork-details__content__title__artist-date">{{data.date}} - {{data.artist}}</span>
         </div>
-        <p class="artwork-details__content__description"> <!--{{data.description}}-->
+        <p class="artwork-details__content__description"> <!-- TODO: {{data.description}}-->
             Nighthawks es un cuadro del pintor estadounidense Edward Hopper
             en el cual se ve a cuatro personas en un restaurante urbano por la noche.
             <br><br>
@@ -53,11 +53,11 @@
         'three-half': data.averageRating == '3.5',
         'four-half': data.averageRating == '4.5'
     }"></span>
-    <span class="rating-header__amount">(Media de 1467 reseñas)</span> <!--Media de reseñas! BD-->
+    <span class="rating-header__amount">(Media de {{ratings.length}} reseñas)</span>
 </span>
 
 <hr class="separator for-rating-header">
 
 <div class="rating-section">
-    <app-c-review-card *ngFor="let r of ratings" ></app-c-review-card>
+    <app-c-review-card *ngFor="let rating of ratings" [ratingData]="rating"></app-c-review-card>
 </div>

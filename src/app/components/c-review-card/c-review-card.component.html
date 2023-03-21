@@ -1,18 +1,32 @@
 <div class="review-card">
-    <img class="profile-image" src="./assets/temp_profile1.jpeg" alt="Avatar">
+    <img class="profile-image" src="./assets/temp_profile1.jpeg" alt="Avatar"> <!--TODO: {{ratingData.user.profilePic}}-->
     <div class="content">
         <div class="header">
-            <a>
+            <div>
                 Por
-                <span class="author">
-                    Fernando H
+                <span class="author" [routerLink]="['/profile/', ratingData.user.id]">
+                    {{ratingData.user.nickname}}
                 </span>
-            </a>
-            <span class="average-stars"></span>
+                <span class="yourself">
+                    {{ ratingData.user.id === 2? '(Tu)' : '' }}
+                </span>
+            </div>
+            <span class="average-stars one-full" [ngClass]="{
+                'one-full': ratingData.value === 1,
+                'two-full': ratingData.value === 2,
+                'three-full': ratingData.value === 3,
+                'four-full': ratingData.value === 4,
+                'five-full': ratingData.value === 5,
+                'half': ratingData.value == '0.5',
+                'one-half': ratingData.value == '1.5',
+                'two-half': ratingData.value == '2.5',
+                'three-half': ratingData.value == '3.5',
+                'four-half': ratingData.value == '4.5'
+            }"></span>
         </div>
         <div class="text-container">
             <span class="text">
-                Muy bonito, me gustó. Sale un hombre con sombrero
+                {{ratingData.text}}
             </span>
         </div>
     </div>
