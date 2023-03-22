@@ -11,8 +11,12 @@ export class RatingService {
 
     constructor(private httpClient: HttpClient) { }
 
-    public getRatingByArtworkId(id) {
+    public getRatingById(id) {
         return this.httpClient.get(`${HOST}${AppEndpoints.RATING}${id}`);
+    }
+
+    public getRatingByArtworkId(id) {
+        return this.httpClient.get(`${HOST}${AppEndpoints.RATING}artwork/${id}`);
     }
 
     public createRating(body){

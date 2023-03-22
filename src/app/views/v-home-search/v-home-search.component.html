@@ -1,28 +1,28 @@
 <div class="filters"> <!--TODO: Botón Reset para todos los filtros a la vez-->
     <app-c-search-filter 
         [searchResult]="data"
-        [filter]="data.nameFilter"
+        [filter]="data?.nameFilter"
         type="nameFilter"
         (updateData)="updateData($event)">
     </app-c-search-filter>
 
     <app-c-search-filter 
         [searchResult]="data"
-        [filter]="data.artistFilter"
+        [filter]="data?.artistFilter"
         type="artistFilter"
         (updateData)="updateData($event)">
     </app-c-search-filter>
     
     <app-c-search-filter 
         [searchResult]="data"
-        [filter]="data.styleFilter"
+        [filter]="data?.styleFilter"
         type="styleFilter"
         (updateData)="updateData($event)">
     </app-c-search-filter>
     
     <app-c-search-filter 
         [searchResult]="data"
-        [filter]="data.museumFilter"
+        [filter]="data?.museumFilter"
         type="museumFilter"
         (updateData)="updateData($event)">
     </app-c-search-filter>
@@ -32,7 +32,7 @@
     <div class="grid">
         <div class="grid__cards">
             <app-c-artwork-card 
-                *ngFor="let artwork of data.artworks | paginate: { itemsPerPage: 13, currentPage: page }"
+                *ngFor="let artwork of data?.artworks | paginate: { itemsPerPage: 13, currentPage: page }"
                 [data]="artwork"
                 [userRating]="[]">
             </app-c-artwork-card>

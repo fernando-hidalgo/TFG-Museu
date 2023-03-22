@@ -1,11 +1,11 @@
-<img class="artwork-details__banner" [src]="data.picLink" alt="Avatar">
+<img class="artwork-details__banner" [src]="artwork?.picLink" alt="Avatar">
 <div class="align">
     <div class="artwork-details__content">
         <div class="artwork-details__content__title">
-            <h1 class="artwork-details__content__title__name">{{data.name}}</h1>
-            <span class="artwork-details__content__title__artist-date">{{data.date}} - {{data.artist}}</span>
+            <h1 class="artwork-details__content__title__name">{{artwork?.name}}</h1>
+            <span class="artwork-details__content__title__artist-date">{{artwork?.date}} - {{artwork?.artist}}</span>
         </div>
-        <p class="artwork-details__content__description"> <!-- TODO: {{data.description}}-->
+        <p class="artwork-details__content__description"> <!-- TODO: {{artwork?.description}}-->
             Nighthawks es un cuadro del pintor estadounidense Edward Hopper
             en el cual se ve a cuatro personas en un restaurante urbano por la noche.
             <br><br>
@@ -17,24 +17,32 @@
     <div class="artwork-details__rating-box">
         <div class="artwork-details__rating-box__stars">
             <span>Valoración</span>
-            <app-c-rating-stars *ngIf="curretUserRating" [curretUserRating]="curretUserRating" [artworkId]="data.id"></app-c-rating-stars>
-            <app-c-museu-button [text]="literals.button"></app-c-museu-button>
+            <app-c-rating-stars 
+                *ngIf="curretUserRating || curretUserRating == '' "
+                [curretUserRating]="curretUserRating"
+                [artworkId]="artwork?.id"
+                (updateRatings)="updateRatings($event)">
+            </app-c-rating-stars>
+            <app-c-museu-button
+                [disabled]="disableReview"
+                [text]="literals.button">
+            </app-c-museu-button>
         </div>
         <hr class="separator">
         <span class="artwork-details__rating-box__museum">
-            Museo: {{data.museum}}
+            Museo: {{artwork?.museum}}
         </span>
         <hr class="separator">
         <span class="artwork-details__rating-box__colection">
-            Colección: {{data.colection}}
+            Colección: {{artwork?.colection}}
         </span>
         <hr class="separator">
         <span class="artwork-details__rating-box__display">
-            Expuesto: {{data.display ? 'Si' : 'No'}}
+            Expuesto: {{artwork?.display ? 'Si' : 'No'}}
         </span>
         <hr class="separator">
         <span class="artwork-details__rating-box__room">
-            Sala: {{data.room}}
+            Sala: {{artwork?.room}}
         </span>
     </div>
 </div>
@@ -42,18 +50,23 @@
 <span class="rating-header">
     <span class="rating-header__title">Reseñas</span>
     <span class="rating-header__average-stars" [ngClass]="{
-        'one-full': data.averageRating === 1,
-        'two-full': data.averageRating === 2,
-        'three-full': data.averageRating === 3,
-        'four-full': data.averageRating === 4,
-        'five-full': data.averageRating === 5,
-        'half': data.averageRating == '0.5',
-        'one-half': data.averageRating == '1.5',
-        'two-half': data.averageRating == '2.5',
-        'three-half': data.averageRating == '3.5',
-        'four-half': data.averageRating == '4.5'
+        'half': artwork?.averageRating == 0.5,
+
+        'one-full': artwork?.averageRating > 0.5 && artwork?.averageRating <= 1,
+        'one-half': artwork?.averageRating > 1 && artwork?.averageRating <= 1.5 ,
+
+        'two-full': artwork?.averageRating > 1.5 && artwork?.averageRating <= 2,
+        'two-half': artwork?.averageRating > 2 && artwork?.averageRating <= 2.5,
+
+        'three-full': artwork?.averageRating > 2.5 && artwork?.averageRating <= 3,
+        'three-half': artwork?.averageRating > 3 && artwork?.averageRating <= 3.5,
+
+        'four-full': artwork?.averageRating > 3.5 && artwork?.averageRating <= 4,
+        'four-half': artwork?.averageRating > 4 && artwork?.averageRating <= 4.5,
+
+        'five-full': artwork?.averageRating > 5  && artwork?.averageRating <= 5
     }"></span>
-    <span class="rating-header__amount">(Media de {{ratings.length}} reseñas)</span>
+    <span class="rating-header__amount">(Media de {{ratings?.length}} reseñas)</span>
 </span>
 
 <hr class="separator for-rating-header">

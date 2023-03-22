@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { RatingService } from 'src/app/services/rating.service';
 
@@ -10,29 +10,30 @@ import { RatingService } from 'src/app/services/rating.service';
 export class CRatingStarsComponent implements OnInit {
   @Input() curretUserRating
   @Input() artworkId
+  @Output("updateRatings") updateRatings: EventEmitter<any> = new EventEmitter();
 
   constructor(private ratingService: RatingService) { }
 
-  disabled:boolean = false;
-  
+  disabled: boolean = false;
+
   ngOnInit() {
-    if(this.curretUserRating !== true) this.loadRating()
+    if (this.curretUserRating !== '') this.loadRating()
   }
 
   ratingHover(event) {
     this.changeStarsWidth("stars-slider-hover", event);
   }
-  
+
   ratingSet(event) {
     this.changeStarsWidth("stars-slider-selected", event);
   }
 
-  displayRating(){
+  displayRating() {
     this.disabled = true;
     document.getElementById("stars-slider-hover").style.display = "none";
     document.getElementById("delete-rating").style.visibility = "visible";
   }
-  
+
   changeStarsWidth(id, event) {
     const stars = document.getElementById(id);
     let bounds = document.getElementById("stars-slider").getBoundingClientRect();
@@ -41,20 +42,20 @@ export class CRatingStarsComponent implements OnInit {
     const widths = [18, 36, 54, 72, 90, 108, 126, 144, 162, 180];
     const index = Math.min(Math.floor(x / 18), widths.length - 1);
 
-    if(x === 0 || x > 177 || y === 0 || y > 30){
+    if (x === 0 || x > 177 || y === 0 || y > 30) {
       stars.style.width = '0px';
-    }else{
+    } else {
       stars.style.width = `${widths[index]}px`;
     }
 
-    if(id === "stars-slider-selected"){
+    if (id === "stars-slider-selected") {
       this.displayRating()
       const ratings = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
-      this.saveRating(ratings[index])
+      this.createRating(ratings[index])
     }
   }
 
-  loadRating(){
+  loadRating() {
     this.displayRating();
     let userRating = this.curretUserRating.value;
 
@@ -71,42 +72,28 @@ export class CRatingStarsComponent implements OnInit {
       4.5: '162px',
       5: '180px'
     };
-    stars.style.width = widths[userRating]  || '0px';
+    stars.style.width = widths[userRating] || '0px';
   };
 
   //BACKEND INTERACTIONS
-  //Create or Update rating
-  async saveRating(rate: number){
-    if(this.curretUserRating && this.curretUserRating !== true){
-      console.log('ALREADY')
-
-      let body = {
-        value: rate,
-        text: this.curretUserRating.text
-      }
-      this.ratingService.updateRating(this.curretUserRating.id, body).subscribe(() => {
-        console.log('EXITO')
-      })
-
-    } else {
-      console.log('NEW')
-
-      let body = {
-        value: rate,
-        text: this.curretUserRating.text,
-        artwork: this.artworkId,
-        user: 3 //TODO: Debe ser cambiado por el id del usuario actualmente logueado
-      }
-
-      this.ratingService.createRating(body).subscribe(newRating => {
-        this.curretUserRating = newRating
-      })
-
+  //Create
+  async createRating(rate: number) {
+    let body = {
+      value: rate,
+      text: this.curretUserRating?.text || '',
+      artwork: this.artworkId,
+      user: 2 //TODO: Debe ser cambiado por el id del usuario actualmente logueado
     }
+
+    this.ratingService.createRating(body).subscribe(newRating => {
+      this.curretUserRating = newRating
+      const ratingId = this.curretUserRating.id
+      this.updateRatings.emit({ratingId, mode: 'create'});
+    })
   }
 
   //Delete rating
-  deleteRating(){
+  deleteRating() {
     document.getElementById("stars-slider-hover").style.display = "block";
     document.getElementById("delete-rating").style.visibility = "hidden";
     document.getElementById("stars-slider-selected").style.width = "0px";
@@ -115,8 +102,9 @@ export class CRatingStarsComponent implements OnInit {
 
     //TODO: Esta petición debe estar realmente en un modal de confirmación
     this.ratingService.deleteRating(this.curretUserRating.id).subscribe(() => {
+      const ratingId = this.curretUserRating.id
       this.curretUserRating = null;
+      this.updateRatings.emit({ratingId, mode: 'delete'});
     });
   }
-
 }

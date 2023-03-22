@@ -1,15 +1,21 @@
-.museu-button{
-    cursor: pointer;
-    background-color: #00b020;
-    color: white;
-    border: 0;
-    border-radius: 2px;
-    text-align: center;
-    font-family: Graphik Web Semibold Regular;
-    width: fit-content;
-    height: 30px;
+.museu-button {
+  cursor: pointer;
+  background-color: #00b020;
+  color: white;
+  border: 0;
+  border-radius: 2px;
+  text-align: center;
+  font-family: Graphik Web Semibold Regular;
+  width: fit-content;
+  height: 30px;
 
-    &:hover{
-        background-color: #00a11d;
-    }
+  &:hover {
+    background-color: #00a11d;
+  }
+}
+
+.disabled {
+  pointer-events: none;
+  background-color: #404d59;
+  color: #678;
 }
