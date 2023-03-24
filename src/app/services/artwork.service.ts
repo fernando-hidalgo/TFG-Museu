@@ -15,12 +15,16 @@ export class ArtworkService {
         return this.httpClient.get(`${HOST}${AppEndpoints.ARTWORK}${id}`);
     }
 
+    public updateArtowrk(id, body) {
+        return this.httpClient.put(`${HOST}${AppEndpoints.ARTWORK}${id}`, body);
+    }
+
     public getAllArtworks() {
         return this.httpClient.get<any>(`${HOST}${AppEndpoints.ARTWORK}`);
     }
 
     public findFiltered(params) {
-        return this.httpClient.get<any>(`${HOST}${AppEndpoints.ARTWORK_SEARCH}`, {params: params});
+        return this.httpClient.get<any>(`${HOST}${AppEndpoints.ARTWORK_SEARCH}`, {params});
     }
 
 }

@@ -60,16 +60,29 @@ export class VArtworkDetailsComponent implements OnInit {
 
   updateArtworkAverageRating() {
     const sum = this.ratings.reduce((total, item) => total + item.value, 0);
-    this.artwork.averageRating = (sum / this.ratings.length)
+    this.artwork.averageRating = sum / this.ratings.length || 0;
 
-    //TODO: Update del artwork en back, con la nueva media
+    let body = {
+      name: this.artwork.name,
+      picLink: this.artwork.picLink,
+      date: this.artwork.date,
+      artist: this.artwork.artist,
+      museum: this.artwork.museum,
+      description: this.artwork.description,
+      style: this.artwork.style || "", //TODO: Añadir en el BACK al entity de Artwork la columna style
+      colection: this.artwork.colection,
+      display: this.artwork.display,
+      room: this.artwork.room,
+      averageRating: this.artwork.averageRating
+    }
+
+    this.artworkService.updateArtowrk(this.artwork.id, body).subscribe();
   }
 
   orderRatings(curretUserRating){
     this.ratings = [curretUserRating, ...this.ratings.filter(r => r.user.id !== this.currentUser)];
   }
 
-  //SERVICE
   getArtworkById(id) {
     return this.artworkService.getArtworkById(id);
   }
