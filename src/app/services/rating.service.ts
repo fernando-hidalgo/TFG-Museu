@@ -16,7 +16,7 @@ export class RatingService {
     }
 
     public getRatingByArtworkId(id) {
-        return this.httpClient.get(`${HOST}${AppEndpoints.RATING}artwork/${id}`);
+        return this.httpClient.get(`${HOST}${AppEndpoints.RATING_OF_ARTWORK}${id}`);
     }
 
     public createRating(body){

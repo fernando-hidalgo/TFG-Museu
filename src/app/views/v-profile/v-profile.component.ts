@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ArtworkService } from 'src/app/services/artwork.service';
 
 @Component({
   selector: 'app-v-profile',
@@ -6,12 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./v-profile.component.scss']
 })
 export class VProfileComponent implements OnInit {
-  cards = [1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3]
-  userRating = [1];
+  currentUser = 2  //TODO: Debe ser cambiado por datos del usuario actualmente logueado
+  page: number = 1;
+  data;
 
-  constructor() { }
+  constructor(private artworkService: ArtworkService) { }
 
   ngOnInit(): void {
+    this.artworkService.getArtworkByUserId(this.currentUser).subscribe(data => {
+      this.data = data;
+    });
   }
-
 }

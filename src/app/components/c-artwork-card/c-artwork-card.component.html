@@ -15,6 +15,22 @@
     </span>
 </div>
 
-<p class="user-rating" *ngIf=" userRating.length > 0 " >
-    <span class="user-rating__value"></span>
+<p class="user-rating" *ngIf="userRating" >
+    <span class="user-rating" [ngClass]="{
+        'half': userRating == 0.5,
+
+        'one-full': userRating > 0.5 && userRating <= 1,
+        'one-half': userRating > 1 && userRating <= 1.5 ,
+
+        'two-full': userRating > 1.5 && userRating <= 2,
+        'two-half': userRating > 2 && userRating <= 2.5,
+
+        'three-full': userRating > 2.5 && userRating <= 3,
+        'three-half': userRating > 3 && userRating <= 3.5,
+
+        'four-full': userRating > 3.5 && userRating <= 4,
+        'four-half': userRating > 4 && userRating <= 4.5,
+
+        'five-full': userRating > 4.5  && userRating <= 5
+    }"></span>
 </p>

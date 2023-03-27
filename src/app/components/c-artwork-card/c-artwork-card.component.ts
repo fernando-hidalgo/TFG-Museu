@@ -7,14 +7,16 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CArtworkCardComponent implements OnInit {
   @Input() data;
+  @Input() seen;
   @Input() userRating;
 
+  decimalPoint = 10
   editMode = false;
-  seen = true;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.data.averageRating = Math.round((this.data.averageRating + Number.EPSILON) * this.decimalPoint) / this.decimalPoint
   }
 
 }

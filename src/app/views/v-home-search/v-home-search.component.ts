@@ -10,15 +10,26 @@ import { ArtworkService } from 'src/app/services/artwork.service';
 export class VHomeSearchComponent implements OnInit {
   data: any;
   page: number = 1;
+  currentUser = 2  //TODO: Debe ser cambiado por datos del usuario actualmente logueado
 
   constructor(private artworkService: ArtworkService) { }
 
   ngOnInit(): void {
-    this.getAllArtworks()
+    if(this.currentUser){
+      this.getAllArtworksLogged()
+    } else {
+      this.getAllArtworks()
+    }
   }
 
   getAllArtworks() {
     this.artworkService.getAllArtworks().subscribe(data => {
+      this.loadData(data);
+    });
+  }
+
+  getAllArtworksLogged() {
+    this.artworkService.getAllArtworksLogged(this.currentUser).subscribe(data => {
       this.loadData(data);
     });
   }
@@ -29,5 +40,6 @@ export class VHomeSearchComponent implements OnInit {
 
   loadData(data){
     this.data = data;
+    console.log(this.data)
   }
 }

@@ -34,7 +34,8 @@
             <app-c-artwork-card 
                 *ngFor="let artwork of data?.artworks | paginate: { itemsPerPage: 13, currentPage: page }"
                 [data]="artwork"
-                [userRating]="[]">
+                [seen]="artwork.seen"
+                [userRating]="">
             </app-c-artwork-card>
         </div>
     </div>

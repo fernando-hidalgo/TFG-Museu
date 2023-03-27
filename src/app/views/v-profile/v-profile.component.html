@@ -1,8 +1,12 @@
 <div class="grid">
     <div class="grid__cards">
         <app-c-artwork-card 
-            *ngFor="let c of cards" 
-            [userRating]="userRating"> <!--TODO: artwork.userRating-->
+            *ngFor="let d of data | paginate: { itemsPerPage: 13, currentPage: page }"
+            [data]="d.artwork"
+            [seen]="true"
+            [userRating]="d.value">
         </app-c-artwork-card>
     </div>
+
+    <pagination-controls class="pagination" (pageChange)="page = $event"></pagination-controls>
 </div>

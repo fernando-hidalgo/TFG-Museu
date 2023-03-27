@@ -18,6 +18,8 @@ export class CSearchFilterComponent implements OnInit {
   optionsY = 0
   placeholder;
 
+  currentUser = 2  //TODO: Debe ser cambiado por datos del usuario actualmente logueado
+
   constructor(private artworkService: ArtworkService) { }
 
   ngOnInit(): void {
@@ -73,9 +75,15 @@ export class CSearchFilterComponent implements OnInit {
       params['museumFilter'] = (document.getElementById('museumFilter') as HTMLInputElement).value;
     }
 
-    this.artworkService.findFiltered(params).subscribe(data => {
-      this.updateData.emit({data});
-    });
+    if(this.currentUser){
+      this.artworkService.findFilteredLogged(this.currentUser, params).subscribe(data => {
+        this.updateData.emit({data});
+      });
+    } else {
+      this.artworkService.findFiltered(params).subscribe(data => {
+        this.updateData.emit({data});
+      });
+    }
   }
 
   onFocus(){
