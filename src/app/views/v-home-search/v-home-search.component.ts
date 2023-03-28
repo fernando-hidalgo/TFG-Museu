@@ -40,6 +40,5 @@ export class VHomeSearchComponent implements OnInit {
 
   loadData(data){
     this.data = data;
-    console.log(this.data)
   }
 }

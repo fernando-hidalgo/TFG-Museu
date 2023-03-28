@@ -14,8 +14,16 @@ export class VProfileComponent implements OnInit {
   constructor(private artworkService: ArtworkService) { }
 
   ngOnInit(): void {
-    this.artworkService.getArtworkByUserId(this.currentUser).subscribe(data => {
-      this.data = data;
+    this.artworkService.findArtworkRatedByUser(this.currentUser).subscribe(data => {
+      this.loadData(data)
     });
+  }
+
+  updateData(event){
+    this.loadData(event.data)
+  }
+
+  loadData(data){
+    this.data = data;
   }
 }

@@ -1,4 +1,10 @@
-// Search View
+.filters{
+  display: flex;
+  flex-direction: row;
+  gap: 250px;
+  margin-left: 18%;
+}
+
 .grid {
   display: flex;
   justify-content: center;

@@ -1,10 +1,44 @@
+<div class="filters"> <!--TODO: Botón Reset para todos los filtros a la vez-->
+    <app-c-search-filter 
+        [searchResult]="data"
+        [filter]="data?.nameFilter"
+        mode="profile"  
+        type="nameFilter"
+        (updateData)="updateData($event)"> <!--TODO: Sacar mode a una constante-->
+    </app-c-search-filter>
+
+    <app-c-search-filter 
+        [searchResult]="data"
+        [filter]="data?.artistFilter"
+        mode="profile"
+        type="artistFilter"
+        (updateData)="updateData($event)">
+    </app-c-search-filter>
+    
+    <app-c-search-filter 
+        [searchResult]="data"
+        [filter]="data?.styleFilter"
+        mode="profile"
+        type="styleFilter"
+        (updateData)="updateData($event)">
+    </app-c-search-filter>
+    
+    <app-c-search-filter 
+        [searchResult]="data"
+        [filter]="data?.museumFilter"
+        mode="profile"
+        type="museumFilter"
+        (updateData)="updateData($event)">
+    </app-c-search-filter>
+</div>
+
 <div class="grid">
     <div class="grid__cards">
         <app-c-artwork-card 
-            *ngFor="let d of data | paginate: { itemsPerPage: 13, currentPage: page }"
-            [data]="d.artwork"
+            *ngFor="let artwork of data?.artworks | paginate: { itemsPerPage: 13, currentPage: page }"
+            [data]="artwork"
             [seen]="true"
-            [userRating]="d.value">
+            [userRating]="artwork.userRating">
         </app-c-artwork-card>
     </div>
 

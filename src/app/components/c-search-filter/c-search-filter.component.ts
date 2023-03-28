@@ -10,6 +10,7 @@ export class CSearchFilterComponent implements OnInit {
   @Input() searchResult;
   @Input() filter;
   @Input() type;
+  @Input() mode;
   @Output("updateData") updateData: EventEmitter<any> = new EventEmitter();
 
   timeout = null;
@@ -75,15 +76,24 @@ export class CSearchFilterComponent implements OnInit {
       params['museumFilter'] = (document.getElementById('museumFilter') as HTMLInputElement).value;
     }
 
-    if(this.currentUser){
-      this.artworkService.findFilteredLogged(this.currentUser, params).subscribe(data => {
-        this.updateData.emit({data});
-      });
+    
+    if(this.mode === "search"){
+      if(this.currentUser){
+        this.artworkService.findFilteredLogged(this.currentUser, params).subscribe(data => {
+          this.updateData.emit({data});
+        });
+      } else {
+        this.artworkService.findFiltered(params).subscribe(data => {
+          this.updateData.emit({data});
+        });
+      }
     } else {
-      this.artworkService.findFiltered(params).subscribe(data => {
+      this.artworkService.findFilteredArtworkRatedByUser(this.currentUser, params).subscribe(data => {
         this.updateData.emit({data});
       });
     }
+
+    
   }
 
   onFocus(){

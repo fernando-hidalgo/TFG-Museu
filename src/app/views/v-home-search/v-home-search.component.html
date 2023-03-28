@@ -2,13 +2,15 @@
     <app-c-search-filter 
         [searchResult]="data"
         [filter]="data?.nameFilter"
+        mode="search"
         type="nameFilter"
-        (updateData)="updateData($event)">
+        (updateData)="updateData($event)"> <!--TODO: Sacar mode a una constante-->
     </app-c-search-filter>
 
     <app-c-search-filter 
         [searchResult]="data"
         [filter]="data?.artistFilter"
+        mode="search"
         type="artistFilter"
         (updateData)="updateData($event)">
     </app-c-search-filter>
@@ -16,6 +18,7 @@
     <app-c-search-filter 
         [searchResult]="data"
         [filter]="data?.styleFilter"
+        mode="search"
         type="styleFilter"
         (updateData)="updateData($event)">
     </app-c-search-filter>
@@ -23,6 +26,7 @@
     <app-c-search-filter 
         [searchResult]="data"
         [filter]="data?.museumFilter"
+        mode="search"
         type="museumFilter"
         (updateData)="updateData($event)">
     </app-c-search-filter>
