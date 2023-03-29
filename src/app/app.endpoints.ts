@@ -8,4 +8,6 @@ export class AppEndpoints {
 
     public static RATING = '/rating/'
     public static RATING_OF_ARTWORK = '/rating/artwork/'
+
+    public static ARTLIST_OF_USER = '/art-list/user/'
 }

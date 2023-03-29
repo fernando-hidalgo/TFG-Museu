@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-c-list-card',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./c-list-card.component.scss']
 })
 export class CListCardComponent implements OnInit {
+  @Input() data;
 
   constructor() { }
 

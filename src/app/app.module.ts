@@ -12,7 +12,6 @@ import { CSignupBoxComponent } from './components/c-signup-box/c-signup-box.comp
 import { CReviewCardComponent } from './components/c-review-card/c-review-card.component';
 import { CListCardComponent } from './components/c-list-card/c-list-card.component';
 import { CSearchFilterComponent } from './components/c-search-filter/c-search-filter.component';
-import { CProfileFilterComponent } from './components/c-profile-filter/c-profile-filter.component';
 import { COrderFilterComponent } from './components/c-order-filter/c-order-filter.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
@@ -41,7 +40,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CReviewCardComponent,
     CListCardComponent,
     CSearchFilterComponent,
-    CProfileFilterComponent,
     COrderFilterComponent,
     CRatingStarsComponent,
     CFooterComponent,

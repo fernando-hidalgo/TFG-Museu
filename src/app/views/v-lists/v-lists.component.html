@@ -1,3 +1,4 @@
-<app-c-list-card></app-c-list-card>
-<app-c-list-card></app-c-list-card>
-<app-c-list-card></app-c-list-card>
+<app-c-list-card 
+    *ngFor="let list of lists"
+    [data]="list">
+</app-c-list-card>
