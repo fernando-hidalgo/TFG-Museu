@@ -15,8 +15,8 @@ const routes: Routes = [
   {path:'artwork/:artworkId', component: VArtworkDetailsComponent},
   {path:'profile/:userId', component: VProfileComponent},
   {path:'profile/:userId/lists', component: VListsComponent},
-  {path:'profile/:userId/lists/:listId', component: VListDetailsComponent},
-  {path:'profile/:userId/lists/:listId/edit', component: VListEditorComponent}
+  {path:'profile/:userId/lists/:artlistId', component: VListDetailsComponent},
+  {path:'profile/:userId/lists/:artlistId/edit', component: VListEditorComponent}
 ];
 
 @NgModule({

@@ -1,14 +1,56 @@
-// Search View
+.filters{
+  display: flex;
+  flex-direction: row;
+  gap: 250px;
+  margin-left: 18%;
+}
+
 .grid {
   display: flex;
   justify-content: center;
 
-  &__cards{
+  &__cards {
     margin-top: 5%;
     display: grid;
     grid-template-columns: repeat(9, 0px);
     grid-auto-rows: auto;
-    grid-gap: 11.5rem 7.5rem;
+    grid-gap: 0rem 7.5rem;
     margin-right: 12%;
+  }
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 7%;
+}
+
+.pagination {
+  font-family: Graphik Web Regular Regular;
+  margin-top: 11%;
+}
+
+.pagination ::ng-deep .ngx-pagination {
+  .current {
+    background: transparent;
+
+    span {
+      color: #567;
+    }
+  }
+
+  a {
+    color: #9ab;
+
+    &:hover {
+      background: #303840;
+      color: #def;
+    }
+  }
+
+  .pagination-previous,
+  .pagination-next {
+    display: none;
   }
 }

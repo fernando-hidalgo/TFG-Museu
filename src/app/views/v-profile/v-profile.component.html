@@ -37,9 +37,9 @@
         <app-c-artwork-card 
             *ngFor="let artwork of data?.artworks | paginate: { itemsPerPage: 13, currentPage: page }"
             [data]="artwork"
-            [seen]="true"
+            [seen]="true" 
             [userRating]="artwork.userRating">
-        </app-c-artwork-card>
+        </app-c-artwork-card> <!--TODO: [seen] no puede ser siempre true, puedes estar viendo el perfil de otra persona-->
     </div>
 
     <pagination-controls class="pagination" (pageChange)="page = $event"></pagination-controls>

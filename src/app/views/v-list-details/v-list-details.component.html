@@ -1,8 +1,46 @@
+<div class="filters"> <!--TODO: Botón Reset para todos los filtros a la vez-->
+    <app-c-search-filter 
+        [searchResult]="data"
+        [filter]="data?.nameFilter"
+        mode="artlist"  
+        type="nameFilter"
+        (updateData)="updateData($event)"> <!--TODO: Sacar mode a una constante-->
+    </app-c-search-filter>
+
+    <app-c-search-filter 
+        [searchResult]="data"
+        [filter]="data?.artistFilter"
+        mode="artlist"
+        type="artistFilter"
+        (updateData)="updateData($event)">
+    </app-c-search-filter>
+    
+    <app-c-search-filter 
+        [searchResult]="data"
+        [filter]="data?.styleFilter"
+        mode="artlist"
+        type="styleFilter"
+        (updateData)="updateData($event)">
+    </app-c-search-filter>
+    
+    <app-c-search-filter 
+        [searchResult]="data"
+        [filter]="data?.museumFilter"
+        mode="artlist"
+        type="museumFilter"
+        (updateData)="updateData($event)">
+    </app-c-search-filter>
+</div>
+
 <div class="grid">
     <div class="grid__cards">
         <app-c-artwork-card 
-            *ngFor="let c of cards" 
-            [userRating]="userRating">
+            *ngFor="let artwork of data?.artworks | paginate: { itemsPerPage: 13, currentPage: page }"
+            [data]="artwork"
+            [seen]="artwork.seen"
+            [userRating]="">
         </app-c-artwork-card>
     </div>
+
+    <pagination-controls class="pagination" (pageChange)="page = $event"></pagination-controls>
 </div>
