@@ -15,21 +15,14 @@ export class VHomeSearchComponent implements OnInit {
   constructor(private artworkService: ArtworkService) { }
 
   ngOnInit(): void {
-    if(this.currentUser){
-      this.getAllArtworksLogged()
-    } else {
-      this.getAllArtworks()
-    }
+    this.getAllArtworks()
   }
 
   getAllArtworks() {
-    this.artworkService.getAllArtworks().subscribe(data => {
-      this.loadData(data);
-    });
-  }
+    let params = {}
+    if (this.currentUser) params['currentUserId'] = this.currentUser
 
-  getAllArtworksLogged() {
-    this.artworkService.getAllArtworksLogged(this.currentUser).subscribe(data => {
+    this.artworkService.getAllArtworks(params).subscribe(data => {
       this.loadData(data);
     });
   }

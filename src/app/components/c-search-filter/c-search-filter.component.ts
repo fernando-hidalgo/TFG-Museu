@@ -59,53 +59,50 @@ export class CSearchFilterComponent implements OnInit {
   }
 
   findFiltered() {
-    this.route.params.subscribe(async urlParams => {
-      let profileId = urlParams['userId']
-      let params = {}
+    let params = {}
 
-      console.log(this.currentUser)
+    if ((document.getElementById('nameFilter') as HTMLInputElement).value != "") {
+      params['nameFilter'] = (document.getElementById('nameFilter') as HTMLInputElement).value;
+    }
 
-      if (this.currentUser) {
-        if (profileId != this.currentUser) {
-          params['currentUserId'] = this.currentUser
-        } else {
-          params['currentUserId'] = profileId
-        }
-      } //En caso de no estar logeado, params se envía vacio, así el ojo siempre sale gris
+    if ((document.getElementById('artistFilter') as HTMLInputElement).value != "") {
+      params['artistFilter'] = (document.getElementById('artistFilter') as HTMLInputElement).value;
+    }
 
-      if ((document.getElementById('nameFilter') as HTMLInputElement).value != "") {
-        params['nameFilter'] = (document.getElementById('nameFilter') as HTMLInputElement).value;
-      }
+    if ((document.getElementById('styleFilter') as HTMLInputElement).value != "") {
+      params['styleFilter'] = (document.getElementById('styleFilter') as HTMLInputElement).value;
+    }
 
-      if ((document.getElementById('artistFilter') as HTMLInputElement).value != "") {
-        params['artistFilter'] = (document.getElementById('artistFilter') as HTMLInputElement).value;
-      }
+    if ((document.getElementById('museumFilter') as HTMLInputElement).value != "") {
+      params['museumFilter'] = (document.getElementById('museumFilter') as HTMLInputElement).value;
+    }
 
-      if ((document.getElementById('styleFilter') as HTMLInputElement).value != "") {
-        params['styleFilter'] = (document.getElementById('styleFilter') as HTMLInputElement).value;
-      }
+    //TODO: Usar queryParams para eliminar las funciones Logged, enviando this.currentUser dentro de params
+    if (this.mode === "search") {
+      if (this.currentUser) params['currentUserId'] = this.currentUser
 
-      if ((document.getElementById('museumFilter') as HTMLInputElement).value != "") {
-        params['museumFilter'] = (document.getElementById('museumFilter') as HTMLInputElement).value;
-      }
+      this.artworkService.findFiltered(params).subscribe(data => {
+        this.updateData.emit({ data });
+      });
+    }
 
-      //TODO: Usar queryParams para eliminar las funciones Logged, enviando this.currentUser dentro de params
-      if (this.mode === "search") {
+    if (this.mode === "profile") {
+      this.route.params.subscribe(async urlParams => {
+        let profileId = urlParams['userId']
+
         if (this.currentUser) {
-          this.artworkService.findFilteredLogged(this.currentUser, params).subscribe(data => {
-            this.updateData.emit({ data });
-          });
-        } else {
-          this.artworkService.findFiltered(params).subscribe(data => {
-            this.updateData.emit({ data });
-          });
-        }
-      } else {
+          if (profileId != this.currentUser) {
+            params['currentUserId'] = this.currentUser
+          } else {
+            params['currentUserId'] = profileId
+          }
+        } //En caso de no estar logeado, params se envía vacio, así el ojo siempre sale gris
+
         this.artworkService.findFilteredArtworkRatedByUser(profileId, params).subscribe(data => {
           this.updateData.emit({ data });
         });
-      }
-    });
+      });
+    }
   }
 
   onFocus(){
