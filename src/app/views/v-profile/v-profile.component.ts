@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ArtworkService } from 'src/app/services/artwork.service';
 
 @Component({
@@ -11,11 +12,24 @@ export class VProfileComponent implements OnInit {
   page: number = 1;
   data;
 
-  constructor(private artworkService: ArtworkService) { }
+  constructor(private route: ActivatedRoute, private artworkService: ArtworkService) { }
 
   ngOnInit(): void {
-    this.artworkService.findArtworkRatedByUser(this.currentUser).subscribe(data => {
-      this.loadData(data)
+    this.route.params.subscribe(async urlParams => {
+      let profileId = urlParams['userId']
+      let params = {}
+
+      if(this.currentUser){
+        if(profileId != this.currentUser){
+          params['currentUserId'] = this.currentUser
+        } else {
+          params['currentUserId'] = profileId
+        }
+      } //En caso de no estar logeado, params se envía vacio, así el ojo siempre sale gris
+
+      this.artworkService.findArtworkRatedByUser(profileId, params).subscribe(data => {
+        this.loadData(data)
+      });
     });
   }
 

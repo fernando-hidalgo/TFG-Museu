@@ -15,12 +15,12 @@ export class ArtworkService {
         return this.httpClient.get(`${HOST}${AppEndpoints.ARTWORK}${artworkId}`);
     }
 
-    public findArtworkRatedByUser(userId) {
-        return this.httpClient.get(`${HOST}${AppEndpoints.ARTWORK_RATED}${userId}`);
+    public findArtworkRatedByUser(profileId, params) {
+        return this.httpClient.get(`${HOST}${AppEndpoints.ARTWORK_RATED}${profileId}`, {params});
     }
 
-    public findFilteredArtworkRatedByUser(userId, params) {
-        return this.httpClient.get(`${HOST}${AppEndpoints.ARTWORK_RATED_SEARCH}${userId}`, {params});
+    public findFilteredArtworkRatedByUser(profileId, params) {
+        return this.httpClient.get(`${HOST}${AppEndpoints.ARTWORK_RATED_SEARCH}${profileId}`, {params});
     }
 
     public updateArtowrk(artworkId, body) {
