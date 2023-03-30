@@ -16,8 +16,12 @@ export class ArtlistService {
         return this.httpClient.get(`${HOST}${AppEndpoints.ARTLIST_OF_USER}${userId}`);
     }
 
-    public getListContent(artlistId: number): Observable<Object> {
-        return this.httpClient.get(`${HOST}${AppEndpoints.ARTLIST}${artlistId}`);
+    public getListContent(artlistId: number, params): Observable<Object> {
+        return this.httpClient.get(`${HOST}${AppEndpoints.ARTLIST}${artlistId}`, {params});
+    }
+
+    public findFiltered(artlistId: number, params) {
+        return this.httpClient.get(`${HOST}${AppEndpoints.ARTLIST_SEARCH}${artlistId}`, {params});
     }
 
 }

@@ -11,13 +11,17 @@ export class VListDetailsComponent implements OnInit {
   page:number = 1;
   data
 
+  currentUser = 2  //TODO: Debe ser cambiado por datos del usuario actualmente logueado
+
   constructor(private route: ActivatedRoute, private artlistService: ArtlistService) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(async params => {
-      let artlistId = params['artlistId']
+    this.route.params.subscribe(async urlParams => {
+      let params = {}
+      let artlistId = urlParams['artlistId']
+      if (this.currentUser) params['currentUserId'] = this.currentUser
 
-      this.artlistService.getListContent(artlistId).subscribe(data => {
+      this.artlistService.getListContent(artlistId, params).subscribe(data => {
         this.loadData(data)
       });
     });

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ArtlistService } from 'src/app/services/artlist.service';
 import { ArtworkService } from 'src/app/services/artwork.service';
 
 @Component({
@@ -22,7 +23,7 @@ export class CSearchFilterComponent implements OnInit {
 
   currentUser = 2  //TODO: Debe ser cambiado por datos del usuario actualmente logueado
 
-  constructor(private route: ActivatedRoute, private artworkService: ArtworkService) { }
+  constructor(private route: ActivatedRoute, private artworkService: ArtworkService, private artlitsService: ArtlistService) { }
 
   ngOnInit(): void {
     this.setPlaceholder()
@@ -77,7 +78,6 @@ export class CSearchFilterComponent implements OnInit {
       params['museumFilter'] = (document.getElementById('museumFilter') as HTMLInputElement).value;
     }
 
-    //TODO: Usar queryParams para eliminar las funciones Logged, enviando this.currentUser dentro de params
     if (this.mode === "search") {
       if (this.currentUser) params['currentUserId'] = this.currentUser
 
@@ -99,6 +99,17 @@ export class CSearchFilterComponent implements OnInit {
         } //En caso de no estar logeado, params se envía vacio, así el ojo siempre sale gris
 
         this.artworkService.findFilteredArtworkRatedByUser(profileId, params).subscribe(data => {
+          this.updateData.emit({ data });
+        });
+      });
+    }
+
+    if(this.mode === "artlist") {
+      this.route.params.subscribe(async urlParams => {
+        let artlistId = urlParams['artlistId']
+        if (this.currentUser) params['currentUserId'] = this.currentUser
+
+        this.artlitsService.findFiltered(artlistId, params).subscribe(data => {
           this.updateData.emit({ data });
         });
       });
