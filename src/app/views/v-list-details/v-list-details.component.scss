@@ -54,3 +54,36 @@
     display: none;
   }
 }
+
+.list-progress{
+  margin-top: 50px;
+}
+
+mat-progress-bar{
+  border-radius: 0 0 2px 2px;
+  width: 10%;
+}
+
+::ng-deep {
+  .mat-progress-bar-buffer {
+    background: #303840;
+  }
+  
+  .progress-bar{
+    &__not-completed{
+      .mat-progress-bar-fill::after {
+        background-color: #40bcf4;
+      }
+    }
+
+    &__completed{
+      .mat-progress-bar-fill::after {
+        background-color: #00e054;
+      }
+    }
+  }
+}
+
+sup {
+  font-size: 20px;
+}

@@ -44,3 +44,21 @@
 
     <pagination-controls class="pagination" (pageChange)="page = $event"></pagination-controls>
 </div>
+
+<div class="list-progress">
+    <span class="watched">
+        Has visto {{totalSeen}} de {{data?.artworks.length}} obras
+    </span>
+
+    <span class="percetange">
+        {{progress}} <sup>%</sup>
+    </span>
+
+    <mat-progress-bar 
+        class="progress-bar"
+        [ngClass]="progress === 100 ? 'progress-bar__completed' : 'progress-bar__not-completed'"
+        mode="determinate"
+        [value]="progress">
+    </mat-progress-bar>
+</div>
+

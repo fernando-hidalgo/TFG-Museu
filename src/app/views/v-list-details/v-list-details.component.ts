@@ -8,7 +8,9 @@ import { ArtlistService } from 'src/app/services/artlist.service';
   styleUrls: ['./v-list-details.component.scss']
 })
 export class VListDetailsComponent implements OnInit {
-  page:number = 1;
+  page: number = 1;
+  progress: number;
+  totalSeen: number;
   data
 
   currentUser = 2  //TODO: Debe ser cambiado por datos del usuario actualmente logueado
@@ -23,6 +25,7 @@ export class VListDetailsComponent implements OnInit {
 
       this.artlistService.getListContent(artlistId, params).subscribe(data => {
         this.loadData(data)
+        this.setProgressBar(data);
       });
     });
   }
@@ -33,6 +36,12 @@ export class VListDetailsComponent implements OnInit {
 
   loadData(data){
     this.data = data;
+  }
+
+  setProgressBar(data){
+    let totalArtworks = data.artworks.length
+    this.totalSeen = data.artworks.filter(artwork => artwork.seen === true).length;
+    this.progress = (this.totalSeen / totalArtworks) * 100
   }
 
 }
