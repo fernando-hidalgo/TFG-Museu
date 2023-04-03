@@ -12,7 +12,6 @@ import { CSignupBoxComponent } from './components/c-signup-box/c-signup-box.comp
 import { CReviewCardComponent } from './components/c-review-card/c-review-card.component';
 import { CListCardComponent } from './components/c-list-card/c-list-card.component';
 import { CSearchFilterComponent } from './components/c-search-filter/c-search-filter.component';
-import { COrderFilterComponent } from './components/c-order-filter/c-order-filter.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
 import { CRatingStarsComponent } from './components/c-rating-stars/c-rating-stars.component';
@@ -42,7 +41,6 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     CReviewCardComponent,
     CListCardComponent,
     CSearchFilterComponent,
-    COrderFilterComponent,
     CRatingStarsComponent,
     CFooterComponent,
     CDialogComponent,
