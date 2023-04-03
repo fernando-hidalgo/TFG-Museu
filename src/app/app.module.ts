@@ -27,6 +27,7 @@ import { CFooterComponent } from './components/c-footer/c-footer.component';
 import { CDialogComponent } from './components/c-dialog/c-dialog.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     NoopAnimationsModule,
     MatIconModule,
     MatProgressBarModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    BrowserModule,
+    LeafletModule
   ],
   providers: [],
   bootstrap: [AppComponent]

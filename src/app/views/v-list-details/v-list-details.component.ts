@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArtlistService } from 'src/app/services/artlist.service';
+import * as Leaflet from 'leaflet';
 
+Leaflet.Icon.Default.imagePath = 'assets/';
 @Component({
   selector: 'app-v-list-details',
   templateUrl: './v-list-details.component.html',
@@ -12,7 +14,6 @@ export class VListDetailsComponent implements OnInit {
   progress: number;
   totalSeen: number;
   data
-
   currentUser = 2  //TODO: Debe ser cambiado por datos del usuario actualmente logueado
 
   constructor(private route: ActivatedRoute, private artlistService: ArtlistService) { }
@@ -42,6 +43,56 @@ export class VListDetailsComponent implements OnInit {
     let totalArtworks = data.artworks.length
     this.totalSeen = data.artworks.filter(artwork => artwork.seen === true).length;
     this.progress = (this.totalSeen / totalArtworks) * 100
+  }
+
+  //TODO: Una vez funcione, mover a componente propio
+  map!: Leaflet.Map;
+  markers: Leaflet.Marker[] = [];
+  options = {
+    layers: [Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')],
+    zoom: 3,
+    center: { lat: 37.3828300, lng: -5.9731700 } //Sevilla
+  }
+
+  initMarkers() {
+    //TODO: Se crea un objeto Lat,Lng por cada obra en la lista
+    const listMarkers = [
+      { position: { lat: 37.3828300, lng: -5.9731700 } }
+    ];
+
+    for (let index = 0; index < listMarkers.length; index++) {
+      const data = listMarkers[index];
+      const marker = this.generateMarker(data, index);
+
+      //Tooltip
+      marker.addTo(this.map).bindPopup(`<b>${data.position.lat},  ${data.position.lng}</b>`);
+
+      this.map.panTo(data.position);
+      this.markers.push(marker)
+    }
+  }
+
+  generateMarker(data: any, index: number) {
+    return Leaflet.marker(data.position)
+      .on('click', (event) => this.markerClicked(event, index))
+      .on('dragend', (event) => this.markerDragEnd(event, index));
+  }
+
+  onMapReady($event: Leaflet.Map) {
+    this.map = $event;
+    this.initMarkers();
+  }
+
+  mapClicked($event: any) {
+    console.log($event.latlng.lat, $event.latlng.lng);
+  }
+
+  markerClicked($event: any, index: number) {
+    console.log($event.latlng.lat, $event.latlng.lng);
+  }
+
+  markerDragEnd($event: any, index: number) {
+    console.log($event.target.getLatLng());
   }
 
 }
