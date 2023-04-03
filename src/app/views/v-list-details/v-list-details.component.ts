@@ -10,10 +10,18 @@ Leaflet.Icon.Default.imagePath = 'assets/';
   styleUrls: ['./v-list-details.component.scss']
 })
 export class VListDetailsComponent implements OnInit {
+  data
   page: number = 1;
   progress: number;
   totalSeen: number;
-  data
+  map: Leaflet.Map;
+  markers: Leaflet.Marker[] = [];
+  options = {
+    layers: [Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')],
+    zoom: 3,
+    center: { lat: 37.3828300, lng: -5.9731700 } //Sevilla
+  }
+
   currentUser = 2  //TODO: Debe ser cambiado por datos del usuario actualmente logueado
 
   constructor(private route: ActivatedRoute, private artlistService: ArtlistService) { }
@@ -37,62 +45,53 @@ export class VListDetailsComponent implements OnInit {
 
   loadData(data){
     this.data = data;
+    this.setMarkers()
   }
 
   setProgressBar(data){
     let totalArtworks = data.artworks.length
     this.totalSeen = data.artworks.filter(artwork => artwork.seen === true).length;
-    this.progress = (this.totalSeen / totalArtworks) * 100
+    this.progress = Math.round((this.totalSeen / totalArtworks) * 100)
   }
 
-  //TODO: Una vez funcione, mover a componente propio
-  map!: Leaflet.Map;
-  markers: Leaflet.Marker[] = [];
-  options = {
-    layers: [Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')],
-    zoom: 3,
-    center: { lat: 37.3828300, lng: -5.9731700 } //Sevilla
+  /*MAP*/
+  onMapReady($event: Leaflet.Map) {
+    this.map = $event;
   }
 
-  initMarkers() {
-    //TODO: Se crea un objeto Lat,Lng por cada obra en la lista
-    const listMarkers = [
-      { position: { lat: 37.3828300, lng: -5.9731700 } }
-    ];
+  setMarkers() {
+    this.markers.forEach(marker => this.map.removeLayer(marker));
 
-    for (let index = 0; index < listMarkers.length; index++) {
-      const data = listMarkers[index];
+    const markersByMuseum = this.data.artworks.reduce((markers, artwork) => {
+      const museum = artwork.museum;
+      const existingMarker = markers.find((marker) => marker.museum === museum);
+    
+      if (existingMarker) {
+        existingMarker.artworks.push(artwork.name);
+      } else {
+        markers.push({
+          position: { lat: artwork.latitude, lng: artwork.longitude },
+          museum: museum,
+          artworks: [artwork.name],
+        });
+      }
+    
+      return markers;
+    }, []);
+
+    markersByMuseum.forEach((data, index) => {
       const marker = this.generateMarker(data, index);
-
-      //Tooltip
-      marker.addTo(this.map).bindPopup(`<b>${data.position.lat},  ${data.position.lng}</b>`);
-
-      this.map.panTo(data.position);
-      this.markers.push(marker)
-    }
+      this.map.addLayer(marker);
+      this.markers.push(marker);
+    });
   }
 
   generateMarker(data: any, index: number) {
-    return Leaflet.marker(data.position)
-      .on('click', (event) => this.markerClicked(event, index))
-      .on('dragend', (event) => this.markerDragEnd(event, index));
-  }
-
-  onMapReady($event: Leaflet.Map) {
-    this.map = $event;
-    this.initMarkers();
-  }
-
-  mapClicked($event: any) {
-    console.log($event.latlng.lat, $event.latlng.lng);
+    return Leaflet.marker(data.position).on('click', (event) => this.markerClicked(data, index))
   }
 
   markerClicked($event: any, index: number) {
-    console.log($event.latlng.lat, $event.latlng.lng);
+    //TODO: Hacer visible el Modal que muestra las obras de ese museo
+    console.log($event);
   }
-
-  markerDragEnd($event: any, index: number) {
-    console.log($event.target.getLatLng());
-  }
-
 }
