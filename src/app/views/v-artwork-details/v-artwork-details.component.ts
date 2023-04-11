@@ -69,7 +69,7 @@ export class VArtworkDetailsComponent implements OnInit {
       artist: this.artwork.artist,
       museum: this.artwork.museum,
       description: this.artwork.description,
-      style: this.artwork.style || "", //TODO: Añadir en el BACK al entity de Artwork la columna style
+      style: this.artwork.style,
       colection: this.artwork.colection,
       display: this.artwork.display,
       room: this.artwork.room,

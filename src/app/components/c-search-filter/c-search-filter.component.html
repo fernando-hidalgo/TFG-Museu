@@ -12,9 +12,9 @@
 
     <div *ngIf=" showOptions " class="filter__dropdown" id="{{type}}-dropdown" (mousemove)="dropdownBounds($event)">
         <div *ngIf=" filter?.length > 0 " class="filter__dropdown__results">
-            <span *ngFor="let option of filter"
+            <span *ngFor="let option of filter; index as i"
                 class="filter__dropdown__results__option"
-                (click)="filterSetOption(option)">
+                (click)="filterSetOption(option, i)">
                     {{option}}
             </span>
         </div>

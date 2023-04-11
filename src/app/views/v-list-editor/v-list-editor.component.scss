@@ -82,3 +82,32 @@
       margin-right: 12%;
     }
 }
+
+.pagination {
+    font-family: Graphik Web Regular Regular;
+    margin-top: 11%;
+}
+  
+.pagination ::ng-deep .ngx-pagination {
+    .current {
+      background: transparent;
+  
+      span {
+        color: #567;
+      }
+    }
+  
+    a {
+      color: #9ab;
+  
+      &:hover {
+        background: #303840;
+        color: #def;
+      }
+    }
+  
+    .pagination-previous,
+    .pagination-next {
+      display: none;
+    }
+}

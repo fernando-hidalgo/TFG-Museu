@@ -20,8 +20,16 @@ export class ArtlistService {
         return this.httpClient.get(`${HOST}${AppEndpoints.ARTLIST}${artlistId}`, {params});
     }
 
+    public getListToEdit(artlistId: number, body?): Observable<Object> {
+        return this.httpClient.put(`${HOST}${AppEndpoints.ARTLIST_TO_EDIT}${artlistId}`, body);
+    }
+
     public findFiltered(artlistId: number, params) {
         return this.httpClient.get(`${HOST}${AppEndpoints.ARTLIST_SEARCH}${artlistId}`, {params});
+    }
+
+    public updateList(artlistId: number, body) {
+        return this.httpClient.put(`${HOST}${AppEndpoints.ARTLIST}${artlistId}`, body);
     }
 
 }

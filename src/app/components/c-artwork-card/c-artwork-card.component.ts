@@ -9,9 +9,9 @@ export class CArtworkCardComponent implements OnInit {
   @Input() data;
   @Input() seen;
   @Input() userRating;
+  @Input() editMode = false;
 
-  decimalPoint = 10
-  editMode = false;
+  decimalPoint = 10 //Change for accuracy
 
   constructor() { }
 

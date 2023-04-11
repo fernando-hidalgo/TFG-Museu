@@ -1,27 +1,42 @@
 <div class="view-container">
-    
-    <div class="inputs-container">
-        <div class="inputs-container__align">
-            <label class="label" for="list-name">Nombre</label>
-            <input class="input text" type="text" id="list-name" name="list-name"><br>
 
-            <label class="label" for="list-name">Añadir obra</label>
-            <input class="input text" type="text" id="list-name" name="list-name">
+    <form [formGroup]="editListForm">
+        <app-c-museu-button [text]="literals.buttonSave" type="submit" (click)="saveListChanges()"></app-c-museu-button>
+        
+        <div class="inputs-container">
+            <div class="inputs-container__align">
+                <label class="label" for="listName">Nombre</label>
+                <input class="input text" type="text" id="listName" name="listName" formControlName="listName"><br>
+            
+                <label class="label" for="listAddArtwork">Añadir obra</label>
+                <app-c-search-filter 
+                    [searchResult]="data"
+                    [filter]="data?.nameFilter"
+                    mode="artlist-edit"
+                    type="nameFilter"
+                    (updateData)="updateData($event)"> <!--TODO: Sacar mode a una constante-->
+                </app-c-search-filter>
+            </div>
+        
+            <div class="inputs-container__align">
+                <label class="label" for="listDescription">Descripción</label>
+                <textarea class="input textarea" rows="4" cols="50" id="listDescription" name="listDescription" formControlName="listDescription" ></textarea>
+            </div>
         </div>
-
-        <div class="inputs-container__align">
-            <label class="label" for="description">Descripción</label>
-            <textarea class="input textarea" id="description" name="description" rows="4" cols="50"></textarea>
-        </div>
-    </div>
+    </form>
     
 
     <div class="grid">
-        <div class="grid__cards">
-            <app-c-artwork-card 
-                *ngFor="let c of cards" 
-                [userRating]="userRating">
-            </app-c-artwork-card>
-        </div>
+    <div class="grid__cards">
+        <app-c-artwork-card 
+            *ngFor="let artwork of data?.artworks | paginate: { itemsPerPage: 13, currentPage: page }"
+            [data]="artwork"
+            [seen]="artwork.seen"
+            [editMode]="editMode"
+            [userRating]="">
+        </app-c-artwork-card>
     </div>
+
+    <pagination-controls class="pagination" (pageChange)="page = $event"></pagination-controls>
+</div>
 </div>

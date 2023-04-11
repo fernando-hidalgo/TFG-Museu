@@ -20,6 +20,7 @@ export class CSearchFilterComponent implements OnInit {
   optionsX = 0
   optionsY = 0
   placeholder;
+  selectedIndex;
 
   currentUser = 2  //TODO: Debe ser cambiado por datos del usuario actualmente logueado
 
@@ -53,29 +54,34 @@ export class CSearchFilterComponent implements OnInit {
     this.filter = filterAllOptions.filter(str => str.toLowerCase().includes(text.toLowerCase()));
   }
 
-  filterSetOption(option){
-    (document.getElementById(this.type) as HTMLInputElement).value = option;
-    document.getElementById(this.type).style.pointerEvents = 'none';
+  filterSetOption(option, index){
+    if(this.mode === "artlist-edit"){
+      (document.getElementById(this.type) as HTMLInputElement).value = '';
+    } else {
+      (document.getElementById(this.type) as HTMLInputElement).value = option;
+      document.getElementById(this.type).style.pointerEvents = 'none';
+    }
+    this.selectedIndex = index;
     this.findFiltered()
   }
 
   findFiltered() {
     let params = {}
 
-    if ((document.getElementById('nameFilter') as HTMLInputElement).value != "") {
-      params['nameFilter'] = (document.getElementById('nameFilter') as HTMLInputElement).value;
+    if ((document.getElementById('nameFilter') as HTMLInputElement)?.value != "") {
+      params['nameFilter'] = (document.getElementById('nameFilter') as HTMLInputElement)?.value;
     }
 
-    if ((document.getElementById('artistFilter') as HTMLInputElement).value != "") {
-      params['artistFilter'] = (document.getElementById('artistFilter') as HTMLInputElement).value;
+    if ((document.getElementById('artistFilter') as HTMLInputElement)?.value != "") {
+      params['artistFilter'] = (document.getElementById('artistFilter') as HTMLInputElement)?.value;
     }
 
-    if ((document.getElementById('styleFilter') as HTMLInputElement).value != "") {
-      params['styleFilter'] = (document.getElementById('styleFilter') as HTMLInputElement).value;
+    if ((document.getElementById('styleFilter') as HTMLInputElement)?.value != "") {
+      params['styleFilter'] = (document.getElementById('styleFilter') as HTMLInputElement)?.value;
     }
 
-    if ((document.getElementById('museumFilter') as HTMLInputElement).value != "") {
-      params['museumFilter'] = (document.getElementById('museumFilter') as HTMLInputElement).value;
+    if ((document.getElementById('museumFilter') as HTMLInputElement)?.value != "") {
+      params['museumFilter'] = (document.getElementById('museumFilter') as HTMLInputElement)?.value;
     }
 
     if (this.mode === "search") {
@@ -112,6 +118,12 @@ export class CSearchFilterComponent implements OnInit {
         this.artlitsService.findFiltered(artlistId, params).subscribe(data => {
           this.updateData.emit({ data });
         });
+      });
+    }
+
+    if(this.mode === "artlist-edit"){
+      this.artworkService.getArtworkById(this.searchResult.artworksIds[this.selectedIndex]).subscribe(data => {
+        this.updateData.emit({ data });
       });
     }
   }

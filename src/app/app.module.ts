@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CNavbarComponent } from './components/c-navbar/c-navbar.component';
 import { CArtworkCardComponent } from './components/c-artwork-card/c-artwork-card.component';
 import { CCredentialsBoxComponent } from './components/c-credentials-box/c-credentials-box.component';
@@ -64,7 +64,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     MatProgressBarModule,
     NgxPaginationModule,
     BrowserModule,
-    LeafletModule
+    LeafletModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

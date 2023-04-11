@@ -10,4 +10,5 @@ export class AppEndpoints {
     public static ARTLIST = '/art-list/'
     public static ARTLIST_SEARCH = '/art-list/filtered/'
     public static ARTLIST_OF_USER = '/art-list/user/'
+    public static ARTLIST_TO_EDIT = '/art-list/edit/'
 }
