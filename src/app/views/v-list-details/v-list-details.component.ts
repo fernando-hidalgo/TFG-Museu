@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ArtlistService } from 'src/app/services/artlist.service';
 import * as Leaflet from 'leaflet';
 
@@ -21,19 +21,20 @@ export class VListDetailsComponent implements OnInit {
     zoom: 3,
     center: { lat: 37.3828300, lng: -5.9731700 } //Sevilla
   }
+  artlistId: number
 
   currentUser = 2  //TODO: Debe ser cambiado por datos del usuario actualmente logueado
 
-  constructor(private route: ActivatedRoute, private artlistService: ArtlistService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private artlistService: ArtlistService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(async urlParams => {
       let params = {}
-      let artlistId = urlParams['artlistId']
+      this.artlistId = urlParams['artlistId']
       if (this.currentUser) params['currentUserId'] = this.currentUser
 
-      this.artlistService.getListContent(artlistId, params).subscribe(data => {
-        this.loadData(data)
+      this.artlistService.getListContent(this.artlistId, params).subscribe(data => {
+        this.loadData(data);
         this.setProgressBar(data);
       });
     });
@@ -93,5 +94,9 @@ export class VListDetailsComponent implements OnInit {
   markerClicked($event: any, index: number) {
     //TODO: Hacer visible el Modal que muestra las obras de ese museo
     console.log($event);
+  }
+
+  redirectToEdit(){
+    this.router.navigateByUrl(`/profile/${this.currentUser}/lists/${this.artlistId}/edit`);
   }
 }

@@ -89,5 +89,14 @@ sup {
 }
 
 .map-container {
-    height: 400px;
+  height: 400px;
+}
+
+.edit-button{
+  cursor: pointer;
+  margin-top: 30px;
+  display: block;
+  height: 16px;
+  width: 16px;
+  background: url("../../../assets/sprite.d305a741.svg") no-repeat -190px -380px;
 }

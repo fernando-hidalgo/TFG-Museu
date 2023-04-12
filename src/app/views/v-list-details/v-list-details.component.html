@@ -32,6 +32,8 @@
     </app-c-search-filter>
 </div>
 
+<span class="edit-button" (click)="redirectToEdit()"></span>
+
 <div class="grid">
     <div class="grid__cards">
         <app-c-artwork-card 
@@ -45,7 +47,7 @@
     <pagination-controls class="pagination" (pageChange)="page = $event"></pagination-controls>
 </div>
 
-<div class="list-progress">
+<div *ngIf="data?.artworks.length" class="list-progress">
     <span class="watched">
         Has visto {{totalSeen}} de {{data?.artworks.length}} obras
     </span>
@@ -63,7 +65,7 @@
 </div>
 
 <div class="map-container"
-  leaflet
-  [leafletOptions]="options"
-  (leafletMapReady)="onMapReady($event)">
-</div>
+    leaflet
+    [leafletOptions]="options"
+    (leafletMapReady)="onMapReady($event)">
+</div> <!--TODO: Para ocultar el mapa cuando no haya resultados, colocar el Empty State por encima (Z-Index)-->
