@@ -32,4 +32,8 @@ export class ArtlistService {
         return this.httpClient.put(`${HOST}${AppEndpoints.ARTLIST}${artlistId}`, body);
     }
 
+    public deleteList(artlistId: number) {
+        return this.httpClient.delete(`${HOST}${AppEndpoints.ARTLIST}${artlistId}`);
+    }
+
 }

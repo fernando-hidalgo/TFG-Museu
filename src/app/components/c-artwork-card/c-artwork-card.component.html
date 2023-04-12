@@ -1,6 +1,6 @@
-<div [routerLink]="['/artwork/', data.id]" class="artwork-card">
+<div class="artwork-card">
     <img class="artwork-card__art" [src]="data.picLink" alt="Art">
-    <span class="artwork-card__overlay"></span>
+    <span class="artwork-card__overlay" [routerLink]="['/artwork/', data.id]"></span>
     <span class="artwork-card__overlay-actions">
         <span *ngIf="data.averageRating && editMode == false" class="artwork-card__overlay-actions__rating-average__value">{{data.averageRating}}/5</span>
         <span *ngIf="data.averageRating && editMode == false" class="artwork-card__overlay-actions__rating-average__star"></span>
@@ -10,7 +10,7 @@
             'artwork-card__overlay-actions__not-seen' : !seen
         } "></span>
 
-        <span *ngIf="editMode" class="artwork-card__overlay-actions__list-edit"></span>
+        <span *ngIf="editMode" (click)="selectedArtwork()" class="artwork-card__overlay-actions__list-edit"></span>
 
     </span>
 </div>

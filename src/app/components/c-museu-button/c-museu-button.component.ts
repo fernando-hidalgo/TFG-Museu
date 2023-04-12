@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CMuseuButtonComponent implements OnInit {
   @Input() text
   @Input() disabled
+  @Input() colorMode
 
   constructor() { }
 

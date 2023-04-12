@@ -1,5 +1,9 @@
 <button 
     class="museu-button"
     [ngClass]="disabled? 'disabled' : ''"
+    [ngClass]="{
+        'red-mode': colorMode === 'red',
+        'gray-mode': colorMode === 'gray'
+    }"
     type="button">{{ text }}
 </button>

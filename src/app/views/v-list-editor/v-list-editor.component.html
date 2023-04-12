@@ -1,7 +1,23 @@
 <div class="view-container">
 
     <form [formGroup]="editListForm">
-        <app-c-museu-button [text]="literals.buttonSave" type="submit" (click)="saveListChanges()"></app-c-museu-button>
+        <app-c-museu-button 
+            type="submit"
+            [text]="literals.buttonSave"
+            (click)="saveListChanges()">
+        </app-c-museu-button>
+        
+        <app-c-museu-button 
+            [text]="literals.buttonDelete"
+            colorMode="red" 
+            (click)="deleteList()">
+        </app-c-museu-button> <!--TODO: El router debe estar el botón de modal de confirmación"-->
+
+        <app-c-museu-button 
+            [text]="literals.buttonCancel"
+            colorMode="gray" 
+            routerLink="/profile/{{currentUser}}/lists/{{artlistId}}">
+        </app-c-museu-button>
         
         <div class="inputs-container">
             <div class="inputs-container__align">
@@ -33,7 +49,8 @@
             [data]="artwork"
             [seen]="artwork.seen"
             [editMode]="editMode"
-            [userRating]="">
+            [userRating]=""
+            (deleteArtwork)="deleteArtwork($event)">
         </app-c-artwork-card>
     </div>
 

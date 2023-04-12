@@ -19,3 +19,17 @@
   background-color: #404d59;
   color: #678;
 }
+
+.red-mode{
+  background-color: #ec1200;
+  &:hover {
+    background-color: #c40f00;
+  }
+}
+
+.gray-mode{
+  background-color: #678;
+  &:hover {
+    background-color: #567;
+  }
+}
