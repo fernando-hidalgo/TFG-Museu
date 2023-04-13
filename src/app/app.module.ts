@@ -27,6 +27,7 @@ import { CDialogComponent } from './components/c-dialog/c-dialog.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { CImageUploaderComponent } from './components/c-image-uploader/c-image-uploader.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     CRatingStarsComponent,
     CFooterComponent,
     CDialogComponent,
+    CImageUploaderComponent,
 
     //VIEWS
     VArtworkDetailsComponent,

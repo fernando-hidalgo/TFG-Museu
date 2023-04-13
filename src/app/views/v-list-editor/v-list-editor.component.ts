@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { tap } from 'rxjs';
+import { switchMap, tap } from 'rxjs';
 import { ArtlistService } from 'src/app/services/artlist.service';
 
 @Component({
@@ -20,6 +20,7 @@ export class VListEditorComponent implements OnInit {
     buttonCancel: "Cancelar",
     buttonDelete: "Eliminar"
   }
+  coverImage
 
   currentUser = 2  //TODO: Debe ser cambiado por datos del usuario actualmente logueado
 
@@ -59,6 +60,10 @@ export class VListEditorComponent implements OnInit {
     .subscribe();
   }
 
+  setCoverImage(event){
+    this.coverImage = event.coverImage
+  }
+
   deleteArtwork(event){
     let currentArtworks = this.data.artworks.filter(artwork => artwork.id !== event.artworkId)
     this.artlistService
@@ -71,16 +76,24 @@ export class VListEditorComponent implements OnInit {
 
   saveListChanges(){
     let editListFormValues = this.editListForm.value;
-    let artworksIds = this.data.artworks.map(artwork => artwork.id)
+
     let body = {
       name: editListFormValues.listName,
       text: editListFormValues.listDescription,
-      artworksIds: artworksIds
+      artworksIds: this.data.artworks.map(artwork => artwork.id),
     }
 
-    this.artlistService.updateList(this.artlistId, body).subscribe(() => {
-      this.router.navigateByUrl(`/profile/${this.currentUser}/lists/${this.artlistId}`);
-    });
+    const coverImageToSave = new FormData();
+    coverImageToSave.append('file', this.coverImage);
+
+    this.artlistService.updateList(this.artlistId, body)
+      .pipe(
+        switchMap(() => this.artlistService.saveCover(this.artlistId, coverImageToSave))
+      )
+      .subscribe(() => {
+        this.router.navigateByUrl(`/profile/${this.currentUser}/lists/${this.artlistId}`);
+      }
+    );
 
   }
 

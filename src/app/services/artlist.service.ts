@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { HOST } from "src/constants";
@@ -34,6 +34,10 @@ export class ArtlistService {
 
     public deleteList(artlistId: number) {
         return this.httpClient.delete(`${HOST}${AppEndpoints.ARTLIST}${artlistId}`);
+    }
+
+    public saveCover(artlistId: number, file){
+        return this.httpClient.post(`${HOST}${AppEndpoints.ARTLIST_COVER_IMAGE}${artlistId}`, file);
     }
 
 }
