@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { ArtlistService } from 'src/app/services/artlist.service';
 
 @Component({
   selector: 'app-c-list-card',
@@ -7,10 +9,14 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CListCardComponent implements OnInit {
   @Input() data;
+  cover: string;
 
-  constructor() { }
+  constructor(private artlistService: ArtlistService) { }
 
   ngOnInit(): void {
+    this.artlistService.getCover(this.data.id).subscribe((data) => {
+      this.cover = data['url']
+    })
   }
 
 }

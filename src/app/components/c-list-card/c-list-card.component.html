@@ -1,6 +1,6 @@
 <div [routerLink]="data.id" class="list-card">
     <div class="list-card__cover">
-        <img class="list-card__cover__pic" src="./assets/nighthawks.jpg" alt="Art">
+        <img class="list-card__cover__pic" [src]="cover" alt="Art" onerror=" src='../../../assets/cover-empty.jpg'; ">
     </div>
 
     <div class="list-card__text">

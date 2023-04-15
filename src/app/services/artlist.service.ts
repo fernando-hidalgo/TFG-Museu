@@ -40,4 +40,9 @@ export class ArtlistService {
         return this.httpClient.post(`${HOST}${AppEndpoints.ARTLIST_COVER_IMAGE}${artlistId}`, file);
     }
 
+    public getCover(artlistId: number){
+        return this.httpClient.get(`${HOST}${AppEndpoints.ARTLIST_COVER_IMAGE}${artlistId}`);
+    }
+
+
 }

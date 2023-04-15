@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap, tap } from 'rxjs';
+import { of, switchMap, tap } from 'rxjs';
 import { ArtlistService } from 'src/app/services/artlist.service';
 
 @Component({
@@ -21,12 +21,15 @@ export class VListEditorComponent implements OnInit {
     buttonDelete: "Eliminar"
   }
   coverImage
+  baseRedirect: string
 
   currentUser = 2  //TODO: Debe ser cambiado por datos del usuario actualmente logueado
 
   constructor(private route: ActivatedRoute, private router: Router, private artlistService: ArtlistService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.baseRedirect = `/profile/${this.currentUser}/lists`
+    
     //Initial structure and values
     this.editListForm = this.fb.group({
       listName: '',
@@ -74,7 +77,7 @@ export class VListEditorComponent implements OnInit {
     .subscribe();
   }
 
-  saveListChanges(){
+  saveListChanges() {
     let editListFormValues = this.editListForm.value;
 
     let body = {
@@ -88,19 +91,23 @@ export class VListEditorComponent implements OnInit {
 
     this.artlistService.updateList(this.artlistId, body)
       .pipe(
-        switchMap(() => this.artlistService.saveCover(this.artlistId, coverImageToSave))
+        switchMap(() => {
+          if (this.coverImage) {
+            return this.artlistService.saveCover(this.artlistId, coverImageToSave);
+          } else {
+            return of(null);
+          }
+        })
       )
       .subscribe(() => {
-        this.router.navigateByUrl(`/profile/${this.currentUser}/lists/${this.artlistId}`);
-      }
-    );
-
+        this.router.navigateByUrl(`${this.baseRedirect}/${this.artlistId}`);
+      });
   }
 
   deleteList(){
     //TODO: Debe abrir un modal de aviso, mover la lógica aqui presente a ese modal
     this.artlistService.deleteList(this.artlistId).subscribe(() => {
-      this.router.navigateByUrl(`/profile/${this.currentUser}/lists`);
+      this.router.navigateByUrl(this.baseRedirect);
     });
   }
 

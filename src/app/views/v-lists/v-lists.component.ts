@@ -13,13 +13,8 @@ export class VListsComponent implements OnInit {
   constructor(private artlistService: ArtlistService) { }
 
   ngOnInit(): void {
-    this.getUserLists()
-  }
-
-  getUserLists() {
     this.artlistService.getUserLists(this.currentUser).subscribe(data => {
       this.lists = data
-      console.log(this.lists)
     });
   }
 
