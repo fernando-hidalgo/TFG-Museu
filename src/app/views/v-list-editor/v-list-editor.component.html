@@ -16,7 +16,7 @@
         <app-c-museu-button 
             [text]="literals.buttonCancel"
             colorMode="gray" 
-            routerLink="/profile/{{currentUser}}/lists/{{artlistId}}">
+            routerLink="{{baseRedirect}}/{{artlistId}}">
         </app-c-museu-button>
         
         <div class="inputs-container">
@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        <app-c-image-uploader (setCoverImage)="setCoverImage($event)"></app-c-image-uploader>
+        <app-c-image-uploader (setImage)="setCoverImage($event)"></app-c-image-uploader>
     </form>
     
 

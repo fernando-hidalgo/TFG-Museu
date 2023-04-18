@@ -1,9 +1,11 @@
 <button 
     class="museu-button"
-    [ngClass]="disabled? 'disabled' : ''"
-    [ngClass]="{
-        'red-mode': colorMode === 'red',
-        'gray-mode': colorMode === 'gray'
-    }"
-    type="button">{{ text }}
+    [disabled]="disabled"
+    type="button"
+    [ngClass]="[
+        disabled ? 'disabled' : '',
+        colorMode === 'red' ? 'red-mode' : '',
+        colorMode === 'gray' ? 'gray-mode' : ''
+    ]">
+        {{ text }}
 </button>

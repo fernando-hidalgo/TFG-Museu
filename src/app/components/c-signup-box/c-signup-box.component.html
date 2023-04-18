@@ -1,31 +1,73 @@
 <div class="credential-box">
     <h1 class="credential-box__title">Registro</h1>
 
-    <div class="credential-box__content">
+    <form [formGroup]="signupForm" class="credential-box__content">
         <div style="padding-top: 20px;">
             <div>
-                <label class="credential-box__content__label" for="nick-mail">{{ literals.userTitle }}</label><br>
-                <input class="credential-box__content__input" type="text" id="nick-mail" name="nick-mail">
+                <label class="credential-box__content__label" for="nickname">{{ literals.userTitle }}</label><br>
+                <input class="credential-box__content__input" type="text" formControlName="nickname">
+
+                <mat-error *ngIf="nickname.invalid && !nickname.errors?.['taken'] && nickname.touched">
+                    Requerido
+                </mat-error>
+
+                <mat-error *ngIf="nickname.errors?.['taken']">
+                    Nombre pillado
+                </mat-error>
             </div><br>
 
             <div>
-                <label class="credential-box__content__label" for="nick-mail">{{ literals.mailTitle }}</label><br>
-                <input class="credential-box__content__input" type="text" id="nick-mail" name="nick-mail">
+                <label class="credential-box__content__label" for="email">{{ literals.mailTitle }}</label><br>
+                <input class="credential-box__content__input" type="text" formControlName="email">
+
+                <mat-error *ngIf="email.invalid && !email.errors?.['email'] && !email.errors?.['taken'] && email.touched">
+                    Requerido
+                </mat-error>
+
+                <mat-error *ngIf="email.errors?.['email'] && email.touched">
+                    No es un mail
+                </mat-error>
+
+                <mat-error *ngIf="email.errors?.['taken'] && email.touched">
+                    Email en uso
+                </mat-error>
             </div><br>
 
             <div>
+                <mat-hint> 
+                    Debe contener mínimo <b>8 caracteres</b>, y al menos un <u>símbolo</u>, una <u>letra mayúscula</u>, una <u>letra minúscula</u> y sin <u>espacios</u>
+                </mat-hint><br>
+
                 <label class="credential-box__content__label" for="password">{{ literals.passwordTitle }}</label><br>
-                <input class="credential-box__content__input" id="password" name="password">
+                <input class="credential-box__content__input" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.*\s).{8,}$" formControlName="password"> <!--a1D-dwdkok-->
+
+                <mat-error *ngIf="password.invalid && !password.errors?.['pattern'] && password.touched">
+                    Requerido
+                </mat-error>
+
+                <mat-error *ngIf="password.errors?.['pattern'] && password.touched">
+                    No se ajusta a la expresion
+                </mat-error>
             </div><br>
 
             <div>
-                <label class="credential-box__content__label" for="password">{{ literals.repeatPasswordTitle }}</label><br>
-                <input class="credential-box__content__input" id="password" name="password">
+                <label class="credential-box__content__label" for="repeat-password">{{ literals.repeatPasswordTitle }}</label><br>
+                <input class="credential-box__content__input" formControlName="repeatPassword">
+
+                <mat-error *ngIf="repeatPassword.errors?.['mismatch'] && repeatPassword.touched">
+                    No son iguales
+                </mat-error>
             </div><br>
         </div>
 
+        <app-c-image-uploader (setImage)="setProfileImage($event)"></app-c-image-uploader>
+
         <div class="button-container">
-            <app-c-museu-button [text]="literals.button"></app-c-museu-button>
+            <app-c-museu-button 
+                [text]="literals.button" 
+                [disabled]="signupForm.invalid" 
+                (click)="signupUser()">
+            </app-c-museu-button>
         </div>
     <div>
 </div>

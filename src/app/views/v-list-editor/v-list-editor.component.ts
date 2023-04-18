@@ -64,7 +64,7 @@ export class VListEditorComponent implements OnInit {
   }
 
   setCoverImage(event){
-    this.coverImage = event.coverImage
+    this.coverImage = event.image
   }
 
   deleteArtwork(event){

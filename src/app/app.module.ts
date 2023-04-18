@@ -26,6 +26,7 @@ import { CFooterComponent } from './components/c-footer/c-footer.component';
 import { CDialogComponent } from './components/c-dialog/c-dialog.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatInputModule} from '@angular/material/input';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { CImageUploaderComponent } from './components/c-image-uploader/c-image-uploader.component';
 
@@ -67,7 +68,8 @@ import { CImageUploaderComponent } from './components/c-image-uploader/c-image-u
     NgxPaginationModule,
     BrowserModule,
     LeafletModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

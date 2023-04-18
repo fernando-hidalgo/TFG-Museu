@@ -15,9 +15,12 @@
 }
 
 .disabled {
-  pointer-events: none;
   background-color: #404d59;
   color: #678;
+
+  &:hover {
+    background-color: #404d59;
+  }
 }
 
 .red-mode{
