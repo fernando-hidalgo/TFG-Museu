@@ -13,5 +13,8 @@ export class AppEndpoints {
     public static ARTLIST_TO_EDIT = '/art-list/edit/'
     public static ARTLIST_COVER_IMAGE = '/art-list/cover/'
 
+    public static CREATE_REGULAR_USER = '/user/createRegularUser'
     public static USER_BY_FIELD = '/user/fields'
+
+    public static LOGIN = '/auth/login'
 }

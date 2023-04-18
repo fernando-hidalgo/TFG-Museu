@@ -39,7 +39,12 @@
                 </mat-hint><br>
 
                 <label class="credential-box__content__label" for="password">{{ literals.passwordTitle }}</label><br>
-                <input class="credential-box__content__input" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.*\s).{8,}$" formControlName="password"> <!--a1D-dwdkok-->
+                <input 
+                    class="credential-box__content__input"
+                    type="password"
+                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.*\s).{8,}$"
+                    formControlName="password"
+                > <!--a1D-dwdkok-->
 
                 <mat-error *ngIf="password.invalid && !password.errors?.['pattern'] && password.touched">
                     Requerido
@@ -52,7 +57,14 @@
 
             <div>
                 <label class="credential-box__content__label" for="repeat-password">{{ literals.repeatPasswordTitle }}</label><br>
-                <input class="credential-box__content__input" formControlName="repeatPassword">
+                <input 
+                    class="credential-box__content__input"
+                    type="password"
+                    onpaste="return false;"
+                    ondrop="return false;"
+                    autocomplete="off" 
+                    formControlName="repeatPassword"
+                >
 
                 <mat-error *ngIf="repeatPassword.errors?.['mismatch'] && repeatPassword.touched">
                     No son iguales

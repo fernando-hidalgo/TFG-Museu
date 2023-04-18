@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, take } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, switchMap, take } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class CSignupBoxComponent implements OnInit {
   profileImage
   signupForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private userService: UserService) { }
+  constructor(private fb: FormBuilder, private userService: UserService, private authService: AuthService) { }
 
   ngOnInit(): void {
 
@@ -63,13 +64,15 @@ export class CSignupBoxComponent implements OnInit {
   }
 
   signupUser(){
-    let signupFormValues = this.signupForm.value;
+    let { nickname, email, password } = this.signupForm.value;
 
-    let body = {
-      nickname: signupFormValues.nickname,
-      email: signupFormValues.email,
-      password: signupFormValues.password
-    }
+    //TODO: Falta la subida de la imagen de perfil
+
+    this.userService.createUser({ nickname, email, password }).pipe(
+      switchMap(() => this.authService.login({ nick_or_mail: nickname, password }))
+    ).subscribe(token => {
+      console.log(token);
+    });
   }
 
   get nickname(){

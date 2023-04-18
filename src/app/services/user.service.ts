@@ -15,4 +15,8 @@ export class UserService {
     public getUserByFields(params): Observable<Boolean> {
         return this.httpClient.get(`${HOST}${AppEndpoints.USER_BY_FIELD}`, {params}) as Observable<Boolean>;
     }
+
+    public createUser(body): Observable<Object> {
+        return this.httpClient.post(`${HOST}${AppEndpoints.CREATE_REGULAR_USER}`, body);
+    }
 }
