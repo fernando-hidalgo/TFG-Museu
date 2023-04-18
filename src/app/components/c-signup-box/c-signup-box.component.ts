@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, switchMap, take } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -27,7 +26,7 @@ export class CSignupBoxComponent implements OnInit {
         asyncValidators: [
           checkAvailability(this.userService, 'nickname')
         ],
-        updateOn: 'blur' // or 'change' or 'submit'
+        updateOn: 'blur'
       }],
       email: ['', {
         validators: [
@@ -37,7 +36,7 @@ export class CSignupBoxComponent implements OnInit {
         asyncValidators: [
           checkAvailability(this.userService, 'email')
         ],
-        updateOn: 'blur' // or 'change' or 'submit'
+        updateOn: 'blur' // or 'blur' or 'submit'
       }],
       password: ['', [
         Validators.required,
@@ -71,7 +70,7 @@ export class CSignupBoxComponent implements OnInit {
     this.userService.createUser({ nickname, email, password }).pipe(
       switchMap(() => this.authService.login({ nick_or_mail: nickname, password }))
     ).subscribe(token => {
-      console.log(token);
+      console.log(token); //TODO: Redirigir a la vista de HOME
     });
   }
 

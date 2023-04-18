@@ -4,7 +4,7 @@
     <form [formGroup]="signupForm" class="credential-box__content">
         <div style="padding-top: 20px;">
             <div>
-                <label class="credential-box__content__label" for="nickname">{{ literals.userTitle }}</label><br>
+                <label class="credential-box__content__label">{{ literals.userTitle }}</label><br>
                 <input class="credential-box__content__input" type="text" formControlName="nickname">
 
                 <mat-error *ngIf="nickname.invalid && !nickname.errors?.['taken'] && nickname.touched">
@@ -17,7 +17,7 @@
             </div><br>
 
             <div>
-                <label class="credential-box__content__label" for="email">{{ literals.mailTitle }}</label><br>
+                <label class="credential-box__content__label">{{ literals.mailTitle }}</label><br>
                 <input class="credential-box__content__input" type="text" formControlName="email">
 
                 <mat-error *ngIf="email.invalid && !email.errors?.['email'] && !email.errors?.['taken'] && email.touched">
@@ -38,7 +38,7 @@
                     Debe contener mínimo <b>8 caracteres</b>, y al menos un <u>símbolo</u>, una <u>letra mayúscula</u>, una <u>letra minúscula</u> y sin <u>espacios</u>
                 </mat-hint><br>
 
-                <label class="credential-box__content__label" for="password">{{ literals.passwordTitle }}</label><br>
+                <label class="credential-box__content__label">{{ literals.passwordTitle }}</label><br>
                 <input 
                     class="credential-box__content__input"
                     type="password"
@@ -56,7 +56,7 @@
             </div><br>
 
             <div>
-                <label class="credential-box__content__label" for="repeat-password">{{ literals.repeatPasswordTitle }}</label><br>
+                <label class="credential-box__content__label">{{ literals.repeatPasswordTitle }}</label><br>
                 <input 
                     class="credential-box__content__input"
                     type="password"

@@ -1,4 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { map } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-c-credentials-box',
@@ -7,10 +11,43 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CCredentialsBoxComponent implements OnInit {
   @Input() literals;
+  loginForm: FormGroup;
 
-  constructor() { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private userService: UserService) { }
 
   ngOnInit(): void {
+    this.loginForm = this.fb.group({
+      nick_or_mail: ['', {
+        validators: [
+          Validators.required
+        ],
+        updateOn: 'change' // or 'blur' or 'submit'
+      }],
+      password: ['', {
+        validators: [
+          Validators.required
+        ],
+        updateOn: 'change' // or 'blur' or 'submit'
+      }],
+    });
+  }
+
+  loginUser(){
+    let { nick_or_mail, password } = this.loginForm.value;
+
+    this.userService.checkUserAccountExists({nick_or_mail, password}).subscribe(correctCredentials => {
+      correctCredentials? null : this.loginForm.get('password').setErrors({wrongCredentials: true})
+      this.authService.login({nick_or_mail, password}).subscribe(token => {
+        console.log(token) //TODO: Redirigir a la vista de HOME
+      });
+    });
+  }
+
+  get nick_or_mail(){
+    return this.loginForm.get('nick_or_mail')
+  }
+  get password(){
+    return this.loginForm.get('password')
   }
 
 }
