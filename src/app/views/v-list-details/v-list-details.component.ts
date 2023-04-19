@@ -24,15 +24,25 @@ export class VListDetailsComponent implements OnInit {
   }
   artlistId: number
   currentUser: number
+  ownerId: number
+  canEdit: boolean
 
   constructor(private route: ActivatedRoute, private router: Router, private artlistService: ArtlistService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.currentUser = this.authService.userMe().authId
+    this.currentUser = this.authService.userMe()?.authId
     
     this.route.params.subscribe(async urlParams => {
       let params = {}
       this.artlistId = urlParams['artlistId']
+      this.ownerId = urlParams['userId']
+
+      if(this.ownerId = this.currentUser){
+        this.canEdit = true
+      } else {
+        this.canEdit = false
+      }
+      
       if (this.currentUser) params['currentUserId'] = this.currentUser
 
       this.artlistService.getListContent(this.artlistId, params).subscribe(data => {

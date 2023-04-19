@@ -28,7 +28,7 @@ export class VArtworkDetailsComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.currentUser = this.authService.userMe().authId
+    this.currentUser = this.authService.userMe()?.authId
 
     this.route.params.subscribe(async params => {
       let artworkId = params['artworkId']

@@ -16,7 +16,7 @@ export class VProfileComponent implements OnInit {
   constructor(private route: ActivatedRoute, private artworkService: ArtworkService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.currentUser = this.authService.userMe().authId
+    this.currentUser = this.authService.userMe()?.authId
     
     this.route.params.subscribe(async urlParams => {
       let profileId = urlParams['userId']

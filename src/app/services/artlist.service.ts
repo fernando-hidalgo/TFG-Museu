@@ -12,12 +12,16 @@ export class ArtlistService {
 
     constructor(private httpClient: HttpClient) { }
 
+    public getListById(artlistId: number): Observable<boolean> {
+        return this.httpClient.get(`${HOST}${AppEndpoints.ARTLIST}${artlistId}`) as Observable<boolean>;
+    }
+
     public getUserLists(userId: number): Observable<Object> {
         return this.httpClient.get(`${HOST}${AppEndpoints.ARTLIST_OF_USER}${userId}`);
     }
 
     public getListContent(artlistId: number, params): Observable<Object> {
-        return this.httpClient.get(`${HOST}${AppEndpoints.ARTLIST}${artlistId}`, {params});
+        return this.httpClient.get(`${HOST}${AppEndpoints.ARTLIST_DETAILS}${artlistId}`, {params});
     }
 
     public getListToEdit(artlistId: number, body?): Observable<Object> {

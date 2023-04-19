@@ -13,7 +13,7 @@ export class CReviewCardComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.isMe = this.authService.userMe().authId
+    this.isMe = this.authService.userMe()?.authId
     
   }
 

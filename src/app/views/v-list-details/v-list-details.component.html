@@ -32,7 +32,7 @@
     </app-c-search-filter>
 </div>
 
-<span class="edit-button" (click)="redirectToEdit()"></span>
+<span *ngIf="canEdit" class="edit-button" (click)="redirectToEdit()"></span>
 
 <div class="grid">
     <div class="grid__cards">
@@ -47,7 +47,7 @@
     <pagination-controls class="pagination" (pageChange)="page = $event"></pagination-controls>
 </div>
 
-<div *ngIf="data?.artworks.length" class="list-progress">
+<div *ngIf="data?.artworks.length && currentUser" class="list-progress">
     <span class="watched">
         Has visto {{totalSeen}} de {{data?.artworks.length}} obras
     </span>

@@ -34,7 +34,7 @@ export class VListEditorComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.currentUser = this.authService.userMe().authId
+    this.currentUser = this.authService.userMe()?.authId
 
     this.baseRedirect = `/profile/${this.currentUser}/lists`
     

@@ -32,7 +32,7 @@ export class CSearchFilterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.currentUser = this.authService.userMe().authId
+    this.currentUser = this.authService.userMe()?.authId
     this.setPlaceholder()
   }
 

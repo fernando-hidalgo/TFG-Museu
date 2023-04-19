@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs';
 import { ArtlistService } from 'src/app/services/artlist.service';
-import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-v-lists',
@@ -9,15 +10,14 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class VListsComponent implements OnInit {
   lists
-  currentUser: number
 
-  constructor(private artlistService: ArtlistService, private authService: AuthService) { }
+  constructor(private artlistService: ArtlistService, private route: ActivatedRoute,) { }
 
   ngOnInit(): void {
-    this.currentUser = this.authService.userMe().authId
-
-    this.artlistService.getUserLists(this.currentUser).subscribe(data => {
-      this.lists = data
+    this.route.params.pipe(
+      switchMap(urlParams => this.artlistService.getUserLists(urlParams['userId']))
+    ).subscribe(data => {
+      this.lists = data;
     });
   }
 

@@ -8,11 +8,13 @@ export class AppEndpoints {
     public static RATING_OF_ARTWORK = '/rating/artwork/'
 
     public static ARTLIST = '/art-list/'
+    public static ARTLIST_DETAILS = '/art-list/details/'
     public static ARTLIST_SEARCH = '/art-list/filtered/'
     public static ARTLIST_OF_USER = '/art-list/user/'
     public static ARTLIST_TO_EDIT = '/art-list/edit/'
     public static ARTLIST_COVER_IMAGE = '/art-list/cover/'
 
+    public static USER = '/user/'
     public static CREATE_REGULAR_USER = '/user/create-regular-user'
     public static USER_BY_FIELD = '/user/fields'
     public static USER_ACCOUNT_EXISTS = '/user/acount-exists'

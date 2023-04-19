@@ -83,7 +83,7 @@ export class CRatingStarsComponent implements OnInit {
       value: rate,
       text: this.curretUserRating?.text || '',
       artwork_id: this.artworkId,
-      user_id: this.authService.userMe().authId
+      user_id: this.authService.userMe()?.authId
     }
 
     this.ratingService.createRating(body).subscribe(newRating => {

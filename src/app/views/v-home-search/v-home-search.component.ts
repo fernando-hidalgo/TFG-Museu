@@ -16,7 +16,7 @@ export class VHomeSearchComponent implements OnInit {
   constructor(private artworkService: ArtworkService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.currentUser = this.authService.userMe().authId
+    this.currentUser = this.authService.userMe()?.authId
     this.getAllArtworks()
   }
 

@@ -12,6 +12,10 @@ export class UserService {
 
     constructor(private httpClient: HttpClient) { }
 
+    public getUserById(id): Observable<boolean> {
+        return this.httpClient.get(`${HOST}${AppEndpoints.USER}${id}`) as Observable<boolean>;
+    }
+
     public getUserByFields(params): Observable<Boolean> {
         return this.httpClient.get(`${HOST}${AppEndpoints.USER_BY_FIELD}`, {params}) as Observable<Boolean>;
     }
