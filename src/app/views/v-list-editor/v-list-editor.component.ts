@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of, switchMap, tap } from 'rxjs';
 import { ArtlistService } from 'src/app/services/artlist.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-v-list-editor',
@@ -22,12 +23,19 @@ export class VListEditorComponent implements OnInit {
   }
   coverImage
   baseRedirect: string
+  currentUser: number
 
-  currentUser = 2  //TODO: Debe ser cambiado por datos del usuario actualmente logueado
-
-  constructor(private route: ActivatedRoute, private router: Router, private artlistService: ArtlistService, private fb: FormBuilder) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private artlistService: ArtlistService,
+    private fb: FormBuilder,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
+    this.currentUser = this.authService.userMe().authId
+
     this.baseRedirect = `/profile/${this.currentUser}/lists`
     
     //Initial structure and values

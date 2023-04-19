@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtworkService } from 'src/app/services/artwork.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-v-home-search',
@@ -10,11 +11,12 @@ import { ArtworkService } from 'src/app/services/artwork.service';
 export class VHomeSearchComponent implements OnInit {
   data: any;
   page: number = 1;
-  currentUser = 2  //TODO: Debe ser cambiado por datos del usuario actualmente logueado
+  currentUser: number
 
-  constructor(private artworkService: ArtworkService) { }
+  constructor(private artworkService: ArtworkService, private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.currentUser = this.authService.userMe().authId
     this.getAllArtworks()
   }
 

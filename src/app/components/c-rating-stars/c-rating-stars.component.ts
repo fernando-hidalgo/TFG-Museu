@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 import { RatingService } from 'src/app/services/rating.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class CRatingStarsComponent implements OnInit {
   @Input() artworkId
   @Output("updateRatings") updateRatings: EventEmitter<any> = new EventEmitter();
 
-  constructor(private ratingService: RatingService) { }
+  constructor(private ratingService: RatingService, private authService: AuthService) { }
 
   disabled: boolean = false;
 
@@ -81,8 +82,8 @@ export class CRatingStarsComponent implements OnInit {
     let body = {
       value: rate,
       text: this.curretUserRating?.text || '',
-      artwork: this.artworkId,
-      user: 2 //TODO: Debe ser cambiado por el id del usuario actualmente logueado
+      artwork_id: this.artworkId,
+      user_id: this.authService.userMe().authId
     }
 
     this.ratingService.createRating(body).subscribe(newRating => {

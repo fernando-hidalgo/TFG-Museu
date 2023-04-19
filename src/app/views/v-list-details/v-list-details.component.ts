@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArtlistService } from 'src/app/services/artlist.service';
 import * as Leaflet from 'leaflet';
+import { AuthService } from 'src/app/services/auth.service';
 
 Leaflet.Icon.Default.imagePath = 'assets/';
 @Component({
@@ -22,12 +23,13 @@ export class VListDetailsComponent implements OnInit {
     center: { lat: 37.3828300, lng: -5.9731700 } //Sevilla
   }
   artlistId: number
+  currentUser: number
 
-  currentUser = 2  //TODO: Debe ser cambiado por datos del usuario actualmente logueado
-
-  constructor(private route: ActivatedRoute, private router: Router, private artlistService: ArtlistService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private artlistService: ArtlistService, private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.currentUser = this.authService.userMe().authId
+    
     this.route.params.subscribe(async urlParams => {
       let params = {}
       this.artlistId = urlParams['artlistId']

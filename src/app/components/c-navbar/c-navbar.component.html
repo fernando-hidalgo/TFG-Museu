@@ -25,11 +25,11 @@
             <span class="navbar__options__profile__nickname" >MISCO_JONES <i class="arrow down"></i> </span>
             <div class="dropdown__content">
                 <hr>
-                <a href="/profile/2">Mis Obras</a>
-                <a href="/profile/2/lists">Mis Listas</a>
+                <a routerLink="/profile/{{currentUser}}">Mis Obras</a>
+                <a routerLink="/profile/{{currentUser}}/lists">Mis Listas</a>
                 <hr>
                 <a href="#">Ajustes</a>
-                <a href="/login">Cerrar Sesión</a>
+                <a routerLink="/login" (click)="closeSession()">Cerrar Sesión</a>
             </div>
         </a>
     </div>

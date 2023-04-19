@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { firstValueFrom, Subscription } from 'rxjs';
 import { ArtworkService } from 'src/app/services/artwork.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { RatingService } from 'src/app/services/rating.service';
 
 @Component({
@@ -13,16 +14,22 @@ export class VArtworkDetailsComponent implements OnInit {
   literals = {
     button: 'Escribir reseña'
   }
-  currentUser = 2  //TODO: Debe ser cambiado por datos del usuario actualmente logueado
-
+  currentUser: number
   artwork;
   ratings;
   curretUserRating;
-  disableReview;
+  disableReview: boolean;
 
-  constructor(private route: ActivatedRoute, private artworkService: ArtworkService, private ratingService: RatingService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private artworkService: ArtworkService,
+    private ratingService: RatingService,
+    private authService: AuthService
+  ) { }
 
   async ngOnInit() {
+    this.currentUser = this.authService.userMe().authId
+
     this.route.params.subscribe(async params => {
       let artworkId = params['artworkId']
 

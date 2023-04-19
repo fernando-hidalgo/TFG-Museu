@@ -29,6 +29,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatInputModule} from '@angular/material/input';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { CImageUploaderComponent } from './components/c-image-uploader/c-image-uploader.component';
+import { interceptorProvider } from './interceptors/common.interceptor';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,7 @@ import { CImageUploaderComponent } from './components/c-image-uploader/c-image-u
     ReactiveFormsModule,
     MatInputModule
   ],
-  providers: [],
+  providers: [interceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

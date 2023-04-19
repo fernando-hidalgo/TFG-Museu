@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArtlistService } from 'src/app/services/artlist.service';
 import { ArtworkService } from 'src/app/services/artwork.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-c-search-filter',
@@ -16,17 +17,22 @@ export class CSearchFilterComponent implements OnInit {
   @Output("updateData") updateData: EventEmitter<any> = new EventEmitter();
 
   timeout = null;
-  showOptions = false;
-  optionsX = 0
-  optionsY = 0
-  placeholder;
-  selectedIndex;
+  showOptions: boolean = false;
+  optionsX: number = 0
+  optionsY: number = 0
+  placeholder: string;
+  selectedIndex: number;
+  currentUser: number
 
-  currentUser = 2  //TODO: Debe ser cambiado por datos del usuario actualmente logueado
-
-  constructor(private route: ActivatedRoute, private artworkService: ArtworkService, private artlitsService: ArtlistService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private artworkService: ArtworkService,
+    private artlitsService: ArtlistService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
+    this.currentUser = this.authService.userMe().authId
     this.setPlaceholder()
   }
 

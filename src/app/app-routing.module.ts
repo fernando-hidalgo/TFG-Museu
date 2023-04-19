@@ -7,11 +7,12 @@ import { VListEditorComponent } from './views/v-list-editor/v-list-editor.compon
 import { VListsComponent } from './views/v-lists/v-lists.component';
 import { VLoginSignupComponent } from './views/v-login-signup/v-login-signup.component';
 import { VProfileComponent } from './views/v-profile/v-profile.component';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
   {path:'', component: VHomeSearchComponent},
   {path:'search', component: VHomeSearchComponent},
-  {path:'login', component: VLoginSignupComponent},
+  {path:'login', component: VLoginSignupComponent, canActivate: [LoginGuard]},
   {path:'artwork/:artworkId', component: VArtworkDetailsComponent},
   {path:'profile/:userId', component: VProfileComponent},
   {path:'profile/:userId/lists', component: VListsComponent},

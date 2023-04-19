@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArtworkService } from 'src/app/services/artwork.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-v-profile',
@@ -8,13 +9,15 @@ import { ArtworkService } from 'src/app/services/artwork.service';
   styleUrls: ['./v-profile.component.scss']
 })
 export class VProfileComponent implements OnInit {
-  currentUser = 2  //TODO: Debe ser cambiado por datos del usuario actualmente logueado
+  currentUser: number
   page: number = 1;
   data;
 
-  constructor(private route: ActivatedRoute, private artworkService: ArtworkService) { }
+  constructor(private route: ActivatedRoute, private artworkService: ArtworkService, private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.currentUser = this.authService.userMe().authId
+    
     this.route.params.subscribe(async urlParams => {
       let profileId = urlParams['userId']
       let params = {}

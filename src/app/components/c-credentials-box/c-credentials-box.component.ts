@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { filter, map, switchMap, tap } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
@@ -13,7 +14,7 @@ export class CCredentialsBoxComponent implements OnInit {
   @Input() literals;
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private userService: UserService) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -41,8 +42,9 @@ export class CCredentialsBoxComponent implements OnInit {
       }),
       filter(correctCredentials => !!correctCredentials),
       switchMap(() => this.authService.login({nick_or_mail, password}))
-    ).subscribe(token => {
-      console.log(token) //TODO: Redirigir a la vista de HOME
+    ).subscribe(logged => {
+      this.authService.setToken(logged['token'])
+      this.router.navigate(['/search'])
     });
   }
 

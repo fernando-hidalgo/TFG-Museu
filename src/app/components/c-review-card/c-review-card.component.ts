@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-c-review-card',
@@ -7,10 +8,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CReviewCardComponent implements OnInit {
   @Input() ratingData
+  isMe: boolean
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.isMe = this.authService.userMe().authId
+    
   }
 
 }

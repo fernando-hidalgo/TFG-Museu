@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
@@ -14,7 +15,7 @@ export class CSignupBoxComponent implements OnInit {
   profileImage
   signupForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private userService: UserService, private authService: AuthService) { }
+  constructor(private fb: FormBuilder, private userService: UserService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -69,8 +70,9 @@ export class CSignupBoxComponent implements OnInit {
 
     this.userService.createUser({ nickname, email, password }).pipe(
       switchMap(() => this.authService.login({ nick_or_mail: nickname, password }))
-    ).subscribe(token => {
-      console.log(token); //TODO: Redirigir a la vista de HOME
+    ).subscribe(logged => {
+      this.authService.setToken(logged['token'])
+      this.router.navigate(['/search'])
     });
   }
 
