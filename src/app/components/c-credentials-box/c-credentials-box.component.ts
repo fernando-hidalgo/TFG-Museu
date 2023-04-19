@@ -37,7 +37,7 @@ export class CCredentialsBoxComponent implements OnInit {
 
     this.userService.checkUserAccountExists({nick_or_mail, password}).pipe(
       tap(correctCredentials => {
-        if (!correctCredentials) this.loginForm.get('password').setErrors({wrongCredentials: true});
+        if (!correctCredentials) this.loginForm.setErrors({wrongCredentials: true});
       }),
       filter(correctCredentials => !!correctCredentials),
       switchMap(() => this.authService.login({nick_or_mail, password}))

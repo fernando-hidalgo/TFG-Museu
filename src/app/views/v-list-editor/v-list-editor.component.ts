@@ -100,15 +100,21 @@ export class VListEditorComponent implements OnInit {
         })
       )
       .subscribe(() => {
-        this.router.navigateByUrl(`${this.baseRedirect}/${this.artlistId}`);
+        this.redirectTo(`${this.baseRedirect}/${this.artlistId}`)
       });
   }
 
   deleteList(){
     //TODO: Debe abrir un modal de aviso, mover la lógica aqui presente a ese modal
     this.artlistService.deleteList(this.artlistId).subscribe(() => {
-      this.router.navigateByUrl(this.baseRedirect);
+      this.redirectTo(this.baseRedirect)
     });
+  }
+
+  redirectTo(uri:string){
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+      this.router.navigate([uri])
+    );
   }
 
 }

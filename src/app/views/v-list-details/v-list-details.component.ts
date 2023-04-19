@@ -97,6 +97,8 @@ export class VListDetailsComponent implements OnInit {
   }
 
   redirectToEdit(){
-    this.router.navigateByUrl(`/profile/${this.currentUser}/lists/${this.artlistId}/edit`);
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+      this.router.navigate([`/profile/${this.currentUser}/lists/${this.artlistId}/edit`])
+    );
   }
 }
