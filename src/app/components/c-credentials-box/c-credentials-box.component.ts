@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { map } from 'rxjs';
+import { filter, map, switchMap, tap } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -35,11 +35,14 @@ export class CCredentialsBoxComponent implements OnInit {
   loginUser(){
     let { nick_or_mail, password } = this.loginForm.value;
 
-    this.userService.checkUserAccountExists({nick_or_mail, password}).subscribe(correctCredentials => {
-      correctCredentials? null : this.loginForm.get('password').setErrors({wrongCredentials: true})
-      this.authService.login({nick_or_mail, password}).subscribe(token => {
-        console.log(token) //TODO: Redirigir a la vista de HOME
-      });
+    this.userService.checkUserAccountExists({nick_or_mail, password}).pipe(
+      tap(correctCredentials => {
+        if (!correctCredentials) this.loginForm.get('password').setErrors({wrongCredentials: true});
+      }),
+      filter(correctCredentials => !!correctCredentials),
+      switchMap(() => this.authService.login({nick_or_mail, password}))
+    ).subscribe(token => {
+      console.log(token) //TODO: Redirigir a la vista de HOME
     });
   }
 
