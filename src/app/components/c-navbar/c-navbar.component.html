@@ -20,17 +20,22 @@
             >BUSCADOR
         </a>
 
-        <a class="navbar__options__profile dropdown">
+        <div *ngIf="getMe()" class="navbar__options__profile dropdown">
             <img class="navbar__options__profile__image shadowed" src="./assets/temp_profile.jpeg" alt="Avatar">
-            <span class="navbar__options__profile__nickname" >MISCO_JONES <i class="arrow down"></i> </span>
+            <span class="navbar__options__profile__nickname" > {{getMe()?.nickname}} <i class="arrow down"></i> </span>
             <div class="dropdown__content">
                 <hr>
-                <a routerLink="/profile/{{currentUser}}">Mis Obras</a>
-                <a routerLink="/profile/{{currentUser}}/lists">Mis Listas</a>
+                <a routerLink="/profile/{{getMe()?.authId}}">Mis Obras</a>
+                <a routerLink="/profile/{{getMe()?.authId}}/lists">Mis Listas</a>
                 <hr>
                 <a href="#">Ajustes</a>
                 <a routerLink="/login" (click)="closeSession()">Cerrar Sesión</a>
             </div>
-        </a>
+        </div>
+
+        <div *ngIf="!getMe()" routerLink="/login" class="navbar__options__profile">
+            <img class="navbar__options__profile__image shadowed" src="./assets/temp_profile.jpeg" alt="Avatar">
+            <span class="navbar__options__profile__nickname" > Iniciar Sesión </span>
+        </div>
     </div>
 </nav> 

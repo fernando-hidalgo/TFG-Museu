@@ -11,16 +11,17 @@ import { LoginGuard } from './guards/login.guard';
 import { ProfileGuard } from './guards/profile.guard';
 import { ListGuard } from './guards/list.guard';
 import { ListEditGuard } from './guards/list-edit.guard';
+import { ArtworksGuard } from './guards/artworks.guard';
 
 const routes: Routes = [
   {path:'', component: VHomeSearchComponent},
   {path:'search', component: VHomeSearchComponent},
   {path:'login', component: VLoginSignupComponent, canActivate: [LoginGuard]},
-  {path:'artwork/:artworkId', component: VArtworkDetailsComponent},
+  {path:'artwork/:artworkId', component: VArtworkDetailsComponent, canActivate: [ArtworksGuard]},
   {path:'profile/:userId', component: VProfileComponent, canActivate: [ProfileGuard]},
   {path:'profile/:userId/lists', component: VListsComponent, canActivate: [ProfileGuard]},
   {path:'profile/:userId/lists/:artlistId', component: VListDetailsComponent, canActivate: [ProfileGuard, ListGuard]},
-  {path:'profile/:userId/lists/:artlistId/edit', component: VListEditorComponent, canActivate: [ProfileGuard, ListGuard]}
+  {path:'profile/:userId/lists/:artlistId/edit', component: VListEditorComponent, canActivate: [ProfileGuard, ListGuard, ListEditGuard]}
 ];
 
 @NgModule({

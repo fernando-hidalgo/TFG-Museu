@@ -7,16 +7,19 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./c-navbar.component.scss']
 })
 export class CNavbarComponent implements OnInit {
-  currentUser: number
 
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.currentUser = this.authService.userMe()?.authId
+    this.getMe()
   }
 
   closeSession(){
     this.authService.deleteToken()
+  }
+
+  getMe() {
+    return this.authService.userMe()
   }
 
 }
