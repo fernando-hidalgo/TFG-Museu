@@ -20,4 +20,5 @@ export class AppEndpoints {
     public static USER_ACCOUNT_EXISTS = '/user/acount-exists'
 
     public static LOGIN = '/auth/login'
+    public static REFRESH = '/auth/refresh'
 }

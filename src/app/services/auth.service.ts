@@ -16,6 +16,10 @@ export class AuthService {
         return this.httpClient.post(`${HOST}${AppEndpoints.LOGIN}`, body);
     }
 
+    public refresh(body): Observable<Object> {
+        return this.httpClient.post(`${HOST}${AppEndpoints.REFRESH}`, body);
+    }
+
     setToken(token: string): void {
         localStorage.setItem('token', token);
     }
