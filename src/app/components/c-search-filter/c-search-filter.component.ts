@@ -40,7 +40,7 @@ export class CSearchFilterComponent implements OnInit {
     const typeToPlaceholder = {
       nameFilter: 'Nombre...',
       artistFilter: 'Artista...',
-      styleFilter: 'Estilo...',
+      styleFilter: 'Técnica...',
       museumFilter: 'Museo...'
     };
     

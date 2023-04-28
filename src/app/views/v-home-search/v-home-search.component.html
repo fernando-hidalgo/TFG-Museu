@@ -1,7 +1,7 @@
 <div class="filters"> <!--TODO: Botón Reset para todos los filtros a la vez-->
     <app-c-search-filter 
         [searchResult]="data"
-        [filter]="data?.nameFilter"
+        [filter]="data?.nameFilter.sort()"
         mode="search"
         type="nameFilter"
         (updateData)="updateData($event)"> <!--TODO: Sacar mode a una constante-->
@@ -9,7 +9,7 @@
 
     <app-c-search-filter 
         [searchResult]="data"
-        [filter]="data?.artistFilter"
+        [filter]="data?.artistFilter.sort()"
         mode="search"
         type="artistFilter"
         (updateData)="updateData($event)">
@@ -17,7 +17,7 @@
     
     <app-c-search-filter 
         [searchResult]="data"
-        [filter]="data?.styleFilter"
+        [filter]="data?.styleFilter.sort()"
         mode="search"
         type="styleFilter"
         (updateData)="updateData($event)">
@@ -25,7 +25,7 @@
     
     <app-c-search-filter 
         [searchResult]="data"
-        [filter]="data?.museumFilter"
+        [filter]="data?.museumFilter.sort()"
         mode="search"
         type="museumFilter"
         (updateData)="updateData($event)">
