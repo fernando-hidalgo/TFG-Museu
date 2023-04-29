@@ -27,7 +27,7 @@
                 <label class="label" for="listAddArtwork">Añadir obra</label>
                 <app-c-search-filter 
                     [searchResult]="data"
-                    [filter]="data?.nameFilter"
+                    [editListOptions]="data?.editListOptions"
                     mode="artlist-edit"
                     type="nameFilter"
                     (updateData)="updateData($event)"> <!--TODO: Sacar mode a una constante-->

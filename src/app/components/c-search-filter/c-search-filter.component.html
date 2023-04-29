@@ -3,23 +3,23 @@
         class="filter__input text" 
         [placeholder]="placeholder"
         (keyup)="triggerFilterOptions($event)" 
-        type="text" 
         [id]="type"
-        name="filter"
         autocomplete="off"
         (focus)="onFocus()"
         (blur)="onBlur()"
     >
 
     <div *ngIf=" showOptions " class="filter__dropdown" id="{{type}}-dropdown" (mousemove)="dropdownBounds($event)">
-        <div *ngIf=" filter?.length > 0 " class="filter__dropdown__results">
-            <span *ngFor="let option of filter; index as i"
-                class="filter__dropdown__results__option"
-                (click)="filterSetOption(option, i)">
-                    {{option}}
+        <div class="filter__dropdown__results" *ngIf="(filter?.length > 0 && mode != 'artlist-edit') || (editListOptions?.length > 0 && mode == 'artlist-edit')">
+            <span *ngFor="let option of (mode != 'artlist-edit' ? filter : editListOptions)"
+                    class="filter__dropdown__results__option"
+                    (click)="filterSetOption(option.name || option, option.id || null)">
+                {{option.name || option}}
             </span>
         </div>
+    </div>
 
+    <div>
         <span *ngIf=" filter?.length === 0 "
             class="filter__dropdown__results__option empty-option">
                 Sin resultados

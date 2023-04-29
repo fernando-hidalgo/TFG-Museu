@@ -22,12 +22,14 @@ export class ListGuard implements CanActivate {
     return this.userService.getUserById(userId).pipe(
       switchMap(userExists => {
         if (!userExists) {
+          this.router.navigate(['/search']); //TODO: Vista de error
           return of(false);
         }
 
         return this.artlistService.getListById(listId).pipe(
           map(listExists => {
             if (!listExists) {
+              this.router.navigate(['/search']); //TODO: Vista de error
               return false;
             }
 

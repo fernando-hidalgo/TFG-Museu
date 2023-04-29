@@ -14,6 +14,7 @@ export class CSearchFilterComponent implements OnInit {
   @Input() filter;
   @Input() type;
   @Input() mode;
+  @Input() editListOptions;
   @Output("updateData") updateData: EventEmitter<any> = new EventEmitter();
 
   timeout = null;
@@ -21,7 +22,7 @@ export class CSearchFilterComponent implements OnInit {
   optionsX: number = 0
   optionsY: number = 0
   placeholder: string;
-  selectedIndex: number;
+  selectedId: number;
   currentUser: number
 
   constructor(
@@ -56,18 +57,20 @@ export class CSearchFilterComponent implements OnInit {
 
   filterLimitOptions(text){
     //Copia de los datos, para aplicarles cambios sin perder el original
-    let filterAllOptions: string[] = this.searchResult[this.type];
-    this.filter = filterAllOptions.filter(str => str.toLowerCase().includes(text.toLowerCase()));
+    this.mode == "artlist-edit" ?
+      this.editListOptions = this.searchResult.editListOptions.filter(obj => obj.name.toLowerCase().includes(text.toLowerCase()))
+    :
+      this.filter = this.searchResult[this.type].filter(str => str.toLowerCase().includes(text.toLowerCase()));
   }
 
-  filterSetOption(option, index){
+  filterSetOption(option, id){
     if(this.mode === "artlist-edit"){
       (document.getElementById(this.type) as HTMLInputElement).value = '';
     } else {
       (document.getElementById(this.type) as HTMLInputElement).value = option;
       document.getElementById(this.type).style.pointerEvents = 'none';
     }
-    this.selectedIndex = index;
+    this.selectedId = id;
     this.findFiltered()
   }
 
@@ -128,7 +131,7 @@ export class CSearchFilterComponent implements OnInit {
     }
 
     if(this.mode === "artlist-edit"){
-      this.artworkService.getArtworkById(this.searchResult.artworksIds[this.selectedIndex]).subscribe(data => {
+      this.artworkService.getArtworkById(this.selectedId).subscribe(data => {
         this.updateData.emit({ data });
       });
     }
