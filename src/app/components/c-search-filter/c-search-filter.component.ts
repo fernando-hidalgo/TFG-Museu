@@ -64,12 +64,10 @@ export class CSearchFilterComponent implements OnInit {
   }
 
   filterSetOption(option, id){
-    if(this.mode === "artlist-edit"){
-      (document.getElementById(this.type) as HTMLInputElement).value = '';
-    } else {
-      (document.getElementById(this.type) as HTMLInputElement).value = option;
-      document.getElementById(this.type).style.pointerEvents = 'none';
-    }
+    const inputElement = document.getElementById(this.type) as HTMLInputElement;
+    inputElement.value = this.mode === "artlist-edit" ? "" : option;
+    inputElement.style.pointerEvents = this.mode === "artlist-edit" ? "auto" : "none";
+
     this.selectedId = id;
     this.findFiltered()
   }
@@ -77,20 +75,10 @@ export class CSearchFilterComponent implements OnInit {
   findFiltered() {
     let params = {}
 
-    if ((document.getElementById('nameFilter') as HTMLInputElement)?.value != "") {
-      params['nameFilter'] = (document.getElementById('nameFilter') as HTMLInputElement)?.value;
-    }
-
-    if ((document.getElementById('artistFilter') as HTMLInputElement)?.value != "") {
-      params['artistFilter'] = (document.getElementById('artistFilter') as HTMLInputElement)?.value;
-    }
-
-    if ((document.getElementById('styleFilter') as HTMLInputElement)?.value != "") {
-      params['styleFilter'] = (document.getElementById('styleFilter') as HTMLInputElement)?.value;
-    }
-
-    if ((document.getElementById('museumFilter') as HTMLInputElement)?.value != "") {
-      params['museumFilter'] = (document.getElementById('museumFilter') as HTMLInputElement)?.value;
+    const filterFields = ['nameFilter', 'artistFilter', 'styleFilter', 'museumFilter'];
+    for (const field of filterFields) {
+      const value = (document.getElementById(field) as HTMLInputElement)?.value.trim();
+      if (value) params[field] = value;
     }
 
     if (this.mode === "search") {
