@@ -17,10 +17,8 @@
                 {{option.name || option}}
             </span>
         </div>
-    </div>
 
-    <div>
-        <span *ngIf=" filter?.length === 0 "
+        <span *ngIf=" filter?.length === 0 || editListOptions?.length === 0"
             class="filter__dropdown__results__option empty-option">
                 Sin resultados
         </span>
