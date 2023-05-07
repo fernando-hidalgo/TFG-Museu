@@ -5,7 +5,7 @@
 }
 
 .navbar{
-    z-index: 1;
+    z-index: 999;
     height: 7%;
     display: flex;
     justify-content: space-between;
@@ -89,7 +89,6 @@
         position: absolute;
         background-color: #8899a9;
         width: 100%;
-        z-index: 1;
         top: 100%;
         left: 0;
 

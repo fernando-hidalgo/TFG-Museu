@@ -4,12 +4,25 @@
     <form [formGroup]="signupForm" class="credential-box__content">
         <div>
             <div class="input-section">
+                <div class="password-requirements">
+                    El nickname debe contener mínimo <b>5 caracteres</b>,  máximo <b>10 caracteres</b>, sin <u>espacios</u>
+                </div>
+
                 <label class="credential-box__content__label">{{ literals.userTitle }}*</label><br>
-                <input class="credential-box__content__input" type="text" formControlName="nickname">
+                <input 
+                    class="credential-box__content__input"
+                    pattern="^(?!.*\s).{5,10}$"
+                    type="text" 
+                    formControlName="nickname"
+                >
 
                 <div class="multiple-errors">
-                    <mat-error *ngIf="nickname.invalid && !nickname.errors?.['taken'] && nickname.touched">
+                    <mat-error *ngIf="nickname.invalid && !nickname.errors?.['taken'] && !nickname.errors?.['pattern'] && nickname.touched">
                         Requerido
+                    </mat-error>
+
+                    <mat-error *ngIf="nickname.errors?.['pattern']">
+                        No cumple los requisitos
                     </mat-error>
     
                     <mat-error *ngIf="nickname.errors?.['taken']">
@@ -39,7 +52,7 @@
 
             <div class="input-section">
                 <div class="password-requirements">
-                    La contraseña debe contener mínimo <b>8 caracteres</b>, y al menos un <u>símbolo</u>, una <u>letra mayúscula</u>, una <u>letra minúscula</u> y sin <u>espacios</u>
+                    La contraseña debe contener mínimo <b>8 caracteres</b>, y al menos un <u>símbolo</u>, una <u>letra mayúscula</u>, una <u>letra minúscula</u>, sin <u>espacios</u>
                 </div>
                   
 
@@ -57,7 +70,7 @@
                     </mat-error>
 
                     <mat-error *ngIf="password.errors?.['pattern'] && password.touched">
-                        No se ajusta a la expresion
+                        No cumple los requisitos
                     </mat-error>
                 </div>
             </div>
