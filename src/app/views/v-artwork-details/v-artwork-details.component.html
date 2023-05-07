@@ -1,6 +1,10 @@
-<img class="artwork-details__banner" [src]="artwork?.picLink" alt="Avatar">
-<app-c-museu-button *ngIf="currentUser" text="+"></app-c-museu-button>
 <div class="align">
+    <div class="artwork-tolist-container">
+        <img class="artwork-details__banner" [src]="artwork?.picLink" alt="Avatar">
+        <app-c-museu-button *ngIf="currentUser" text="Añadir a Lista"></app-c-museu-button>
+    </div>
+    
+
     <div class="artwork-details__content">
         <div class="artwork-details__content__title">
             <h1 class="artwork-details__content__title__name">{{artwork?.name}}</h1>
@@ -12,7 +16,7 @@
     
     <div class="artwork-details__rating-box">
         <div *ngIf="currentUser" class="artwork-details__rating-box__stars">
-            <span>Valoración</span>
+            <span class="artwork-details__rating-box__title">Valoración</span>
             <app-c-rating-stars 
                 *ngIf="curretUserRating || curretUserRating == '' "
                 [curretUserRating]="curretUserRating"
@@ -24,49 +28,40 @@
                 [text]="literals.button">
             </app-c-museu-button>
         </div>
-        <hr *ngIf="currentUser" class="separator">
-        <span class="artwork-details__rating-box__museum">
-            Museo: {{artwork?.museum}}
-        </span>
-        <hr class="separator">
-        <span class="artwork-details__rating-box__colection">
-            Colección: {{artwork?.colection}}
-        </span>
-        <hr class="separator">
-        <span class="artwork-details__rating-box__display">
-            Expuesto: {{artwork?.display ? 'Si' : 'No'}}
-        </span>
-        <hr class="separator">
-        <span class="artwork-details__rating-box__room">
-            Sala: {{artwork?.room}}
-        </span>
+        <span class="artwork-details__rating-box__info" style="border-top: 1px solid;"> Museo: {{artwork?.museum}} </span>
+        <span class="artwork-details__rating-box__info"> Colección: {{artwork?.colection}} </span>
+        <span class="artwork-details__rating-box__info"> Expuesto: {{artwork?.display ? 'Si' : 'No'}} </span>
+        <span class="artwork-details__rating-box__info"> Sala: {{artwork?.room}}</span>
     </div>
 </div>
 
-<span class="rating-header">
-    <span class="rating-header__title">Reseñas</span>
-    <span class="rating-header__average-stars" [ngClass]="{
-        'half': artwork?.averageRating == 0.5,
-
-        'one-full': artwork?.averageRating > 0.5 && artwork?.averageRating <= 1,
-        'one-half': artwork?.averageRating > 1 && artwork?.averageRating <= 1.5 ,
-
-        'two-full': artwork?.averageRating > 1.5 && artwork?.averageRating <= 2,
-        'two-half': artwork?.averageRating > 2 && artwork?.averageRating <= 2.5,
-
-        'three-full': artwork?.averageRating > 2.5 && artwork?.averageRating <= 3,
-        'three-half': artwork?.averageRating > 3 && artwork?.averageRating <= 3.5,
-
-        'four-full': artwork?.averageRating > 3.5 && artwork?.averageRating <= 4,
-        'four-half': artwork?.averageRating > 4 && artwork?.averageRating <= 4.5,
-
-        'five-full': artwork?.averageRating > 4.5  && artwork?.averageRating <= 5
-    }"></span>
-    <span class="rating-header__amount">(Media de {{ratings?.length}} reseñas)</span>
-</span>
-
-<hr class="separator for-rating-header">
-
-<div class="rating-section">
-    <app-c-review-card *ngFor="let rating of ratings" [ratingData]="rating"></app-c-review-card>
+<div class="rating-container">
+    <span class="rating-header">
+        <span class="rating-header__title">Reseñas</span>
+        <span class="rating-header__average-stars" [ngClass]="{
+            'half': artwork?.averageRating == 0.5,
+    
+            'one-full': artwork?.averageRating > 0.5 && artwork?.averageRating <= 1,
+            'one-half': artwork?.averageRating > 1 && artwork?.averageRating <= 1.5 ,
+    
+            'two-full': artwork?.averageRating > 1.5 && artwork?.averageRating <= 2,
+            'two-half': artwork?.averageRating > 2 && artwork?.averageRating <= 2.5,
+    
+            'three-full': artwork?.averageRating > 2.5 && artwork?.averageRating <= 3,
+            'three-half': artwork?.averageRating > 3 && artwork?.averageRating <= 3.5,
+    
+            'four-full': artwork?.averageRating > 3.5 && artwork?.averageRating <= 4,
+            'four-half': artwork?.averageRating > 4 && artwork?.averageRating <= 4.5,
+    
+            'five-full': artwork?.averageRating > 4.5  && artwork?.averageRating <= 5
+        }"></span>
+        <span class="rating-header__amount">(Media de {{ratings?.length}} reseñas)</span>
+    </span>
+    
+    <hr class="for-rating-header">
+    
+    <div class="rating-section">
+        <app-c-review-card *ngFor="let rating of ratings" [ratingData]="rating"></app-c-review-card>
+    </div>
 </div>
+

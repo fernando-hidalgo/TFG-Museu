@@ -24,7 +24,7 @@
                 'four-half': ratingData.value == '4.5'
             }"></span>
         </div>
-        <div class="text-container">
+        <div *ngIf="ratingData.text" class="text-container">
             <span class="text">
                 {{ratingData.text}}
             </span>

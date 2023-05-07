@@ -5,21 +5,22 @@
 }
 
 // Art Details View
+.artwork-tolist-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
 .artwork-details{
   &__banner{
-    height: 300px;
-    width: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 52.75px;
     @include assignValue(left right, 0);
-    box-shadow: 0px 10px 20px 14px rgb(0 0 0 / 50%);
+    height: 300px;
+    object-fit: cover;
+    box-shadow: 17px 20px 20px 5px rgba(0, 0, 0, 0.5);
   }
 
   &__content{
-    top: 325px;
-    height: 400px;
-    width: 50%;
     position: relative;
     color: white;
 
@@ -27,10 +28,7 @@
       font-family: Graphik Web Semibold Regular;
       display: flex;
       align-items: center;
-
-      &__name{
-        padding-right: 28px;
-      }
+      gap: 1rem;
 
       &__artist-date{
         font-size: 20px;
@@ -41,19 +39,24 @@
 
     &__description{
       font-family: Graphik Web Regular Regular;
-      width: 40ch;
+      width: 45rem;
     }
   }
 
   &__rating-box{
     font-family: Graphik Web Regular Regular;
     color: white;
-    top: 350px;
     position: relative;
-    width: 270px;
-    height: 290px;
     background-color: #445565;
+    height: 100%;
+    padding: 1rem;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+
+      &__title{
+        font-size: 20px;
+      }
 
       &__stars{
         display: flex;
@@ -61,7 +64,8 @@
         flex-direction: column;
         align-items: center;
         justify-content: flex-end;
-        gap: 7px;
+        gap: 1rem;
+        margin-bottom: 1rem;
       }
 
       &__top{
@@ -98,64 +102,44 @@
           }
         }
       }
-      
-      &__stars{
-        margin-left: 15px;
-      }
 
-      &__museum{
-        margin-left: 15px;
-      }
-
-      &__colection{
-        margin-left: 15px;
-      }
-
-      &__display{
-        margin-left: 15px;
-      }
-
-      &__room{
-        margin-left: 15px;
-      }
+    &__info{
+      border-bottom: 1px solid;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
   }
 }
   
 .align{
   display: flex;
-  justify-content: space-around;;
-}
-  
-.separator{
-  margin: 12px 0 12px 0;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 2rem;
+  margin-bottom: 5rem;
+  gap: 5rem;
 }
   
 .for-rating-header{
-  top: 260px;
   position: relative;
   width: 90%;
   margin-left: 4%;
   border: 1px solid #456;
-  margin-bottom: 15px;
+  margin-bottom: -1px;
 }
   
 .rating-header{
   font-family: Graphik Web Regular Regular;
   color: white;
-  top: 270px;
   position: relative;
   margin-left: 4%;
   display: flex;
+  gap: 0.4rem;
   align-items: center;
 
-  &__title {
-    margin-right: 10px;
-  }
-
   &__amount{
-    margin-top: 4px;
+    margin-top: 3px;
     font-size: 10px;
-    margin-left: 5px;
   }
 
   &__average-stars{
@@ -165,6 +149,20 @@
   }
 }
 
+.rating-container{
+  margin-bottom: 1rem;
+}
+
+.rating-section{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 50%;
+  width: 90%;
+  margin-left: 4%;
+}
+
+//STARS
 .one-full{
   background-position: -450px -50px;
   width: 13px;
@@ -214,13 +212,46 @@
   background-position: -463px -50px;
   width: 65px;
 }
-  
-.rating-section{
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  top: 240px;
-  height: 10px;
-  width: 90%;
-  margin-left: 4%;
+
+@media screen and (max-width: 768px) {
+  .align{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 1rem;
+    margin-bottom: 0rem;
+    gap: 7%;
+  }
+
+  .rating-header{
+    &__amount{
+      margin-top: 3px;
+      font-size: 12px;
+    }
+  }
+
+  .artwork-details{
+    &__content{
+      &__description{
+        font-family: Graphik Web Regular Regular;
+        width: 100%;
+      }
+
+      &__title{
+        gap: 0rem;
+        align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: 2rem;
+
+        &__name{
+          margin-bottom: 2%;
+        }
+      }
+    }
+
+    &__rating-box{
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
+  }
 }

@@ -37,12 +37,17 @@
 }
 
 .text-container {
-  margin-top: 10px;
+  margin-top: 0.5rem;
 }
 
 .text {
   color: white;
   font-family: Graphik Web Regular Regular;
+  display: inline-block;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 .average-stars {

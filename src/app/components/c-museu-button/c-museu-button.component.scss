@@ -36,3 +36,9 @@
     background-color: #567;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .museu-button {
+    font-size: 15px;
+  }
+}
