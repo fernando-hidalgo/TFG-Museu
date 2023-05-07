@@ -11,9 +11,18 @@ html {
     background-origin: padding-box;
     background-clip: border-box;
     padding: 30px 0;
+    overflow-y: clip;
 }
 
 body{
     display: flex;
     flex-direction: column;
+}
+
+.inner-scrollbar{
+    margin-top: 1.8vh;
+    height: 93vh;
+    overflow: auto;
+    position: relative;
+    right: -0.5vw;
 }

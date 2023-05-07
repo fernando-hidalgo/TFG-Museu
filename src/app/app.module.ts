@@ -30,6 +30,8 @@ import {MatInputModule} from '@angular/material/input';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { CImageUploaderComponent } from './components/c-image-uploader/c-image-uploader.component';
 import { interceptorProvider } from './interceptors/common.interceptor';
+import { SimplebarAngularModule } from 'simplebar-angular';
+
 
 @NgModule({
   declarations: [
@@ -70,7 +72,8 @@ import { interceptorProvider } from './interceptors/common.interceptor';
     BrowserModule,
     LeafletModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    SimplebarAngularModule
   ],
   providers: [interceptorProvider],
   bootstrap: [AppComponent]

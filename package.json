@@ -25,6 +25,7 @@
     "leaflet": "^1.9.3",
     "ngx-pagination": "^6.0.3",
     "rxjs": "~7.5.0",
+    "simplebar-angular": "^3.2.4",
     "tslib": "^2.3.0",
     "url-exists": "^1.0.3",
     "zone.js": "~0.11.4"
