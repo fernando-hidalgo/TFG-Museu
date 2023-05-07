@@ -8,7 +8,7 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-c-credentials-box',
   templateUrl: './c-credentials-box.component.html',
-  styleUrls: ['./c-credentials-box.component.scss']
+  styleUrls: ['../common-login.scss']
 })
 export class CCredentialsBoxComponent implements OnInit {
   @Input() literals;

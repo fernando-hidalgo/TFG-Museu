@@ -1,7 +1,14 @@
 // Login View
-.login-view{
-    margin-top: 3%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+.login-view {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10%;
+}
+
+@media screen and (max-width: 768px) {
+  .login-view {
+    flex-direction: column;
+    gap: 0rem;
+  }
 }

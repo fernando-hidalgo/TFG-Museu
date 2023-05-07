@@ -2,61 +2,68 @@
     <h1 class="credential-box__title">Registro</h1>
 
     <form [formGroup]="signupForm" class="credential-box__content">
-        <div style="padding-top: 20px;">
-            <div>
-                <label class="credential-box__content__label">{{ literals.userTitle }}</label><br>
+        <div>
+            <div class="input-section">
+                <label class="credential-box__content__label">{{ literals.userTitle }}*</label><br>
                 <input class="credential-box__content__input" type="text" formControlName="nickname">
 
-                <mat-error *ngIf="nickname.invalid && !nickname.errors?.['taken'] && nickname.touched">
-                    Requerido
-                </mat-error>
+                <div class="multiple-errors">
+                    <mat-error *ngIf="nickname.invalid && !nickname.errors?.['taken'] && nickname.touched">
+                        Requerido
+                    </mat-error>
+    
+                    <mat-error *ngIf="nickname.errors?.['taken']">
+                        Nickname en uso
+                    </mat-error>
+                </div>
+            </div>
 
-                <mat-error *ngIf="nickname.errors?.['taken']">
-                    Nombre pillado
-                </mat-error>
-            </div><br>
-
-            <div>
-                <label class="credential-box__content__label">{{ literals.mailTitle }}</label><br>
+            <div class="input-section">
+                <label class="credential-box__content__label">{{ literals.mailTitle }}*</label><br>
                 <input class="credential-box__content__input" type="text" formControlName="email">
 
-                <mat-error *ngIf="email.invalid && !email.errors?.['email'] && !email.errors?.['taken'] && email.touched">
-                    Requerido
-                </mat-error>
+                <div class="multiple-errors">
+                    <mat-error *ngIf="email.invalid && !email.errors?.['email'] && !email.errors?.['taken'] && email.touched">
+                        Requerido
+                    </mat-error>
+                
+                    <mat-error *ngIf="email.errors?.['email'] && email.touched">
+                        No es un email
+                    </mat-error>
+                
+                    <mat-error *ngIf="email.errors?.['taken'] && email.touched">
+                        Email en uso
+                    </mat-error>
+                </div>
+            </div>
 
-                <mat-error *ngIf="email.errors?.['email'] && email.touched">
-                    No es un mail
-                </mat-error>
+            <div class="input-section">
+                <div class="password-requirements">
+                    La contraseña debe contener mínimo <b>8 caracteres</b>, y al menos un <u>símbolo</u>, una <u>letra mayúscula</u>, una <u>letra minúscula</u> y sin <u>espacios</u>
+                </div>
+                  
 
-                <mat-error *ngIf="email.errors?.['taken'] && email.touched">
-                    Email en uso
-                </mat-error>
-            </div><br>
-
-            <div>
-                <mat-hint> 
-                    Debe contener mínimo <b>8 caracteres</b>, y al menos un <u>símbolo</u>, una <u>letra mayúscula</u>, una <u>letra minúscula</u> y sin <u>espacios</u>
-                </mat-hint><br>
-
-                <label class="credential-box__content__label">{{ literals.passwordTitle }}</label><br>
+                <label class="credential-box__content__label">{{ literals.passwordTitle }}*</label><br>
                 <input 
                     class="credential-box__content__input"
                     type="password"
                     pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.*\s).{8,}$"
                     formControlName="password"
-                > <!--a1D-dwdkok-->
+                >
 
-                <mat-error *ngIf="password.invalid && !password.errors?.['pattern'] && password.touched">
-                    Requerido
-                </mat-error>
+                <div class="multiple-errors">
+                    <mat-error *ngIf="password.invalid && !password.errors?.['pattern'] && password.touched">
+                        Requerido
+                    </mat-error>
 
-                <mat-error *ngIf="password.errors?.['pattern'] && password.touched">
-                    No se ajusta a la expresion
-                </mat-error>
-            </div><br>
+                    <mat-error *ngIf="password.errors?.['pattern'] && password.touched">
+                        No se ajusta a la expresion
+                    </mat-error>
+                </div>
+            </div>
 
-            <div>
-                <label class="credential-box__content__label">{{ literals.repeatPasswordTitle }}</label><br>
+            <div class="input-section">
+                <label class="credential-box__content__label">{{ literals.repeatPasswordTitle }}*</label><br>
                 <input 
                     class="credential-box__content__input"
                     type="password"
@@ -66,15 +73,15 @@
                     formControlName="repeatPassword"
                 >
 
-                <mat-error *ngIf="repeatPassword.errors?.['mismatch'] && repeatPassword.touched">
-                    No son iguales
+                <mat-error [ngClass]="repeatPassword.errors?.['mismatch'] && repeatPassword.touched ? '' : 'show-error'">
+                    Los campos no coinciden
                 </mat-error>
-            </div><br>
+            </div>
         </div>
 
         <app-c-image-uploader (setImage)="setProfileImage($event)"></app-c-image-uploader>
 
-        <div class="button-container">
+        <div class="button-container signup-button">
             <app-c-museu-button 
                 [text]="literals.button" 
                 [disabled]="signupForm.invalid" 
