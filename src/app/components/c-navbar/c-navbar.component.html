@@ -1,25 +1,8 @@
 <nav class="navbar">
     <div class="navbar__logo">
-        <a 
-            class="navbar__logo__img"
-            routerLink="" 
-            routerLinkActive 
-            [routerLinkActiveOptions]="{exact: true}"
-            #home="routerLinkActive" 
-            >Museu
-        </a>
+        <a class="navbar__logo__img" routerLink="">Museu</a>
     </div>
     <div class="navbar__options">
-        <a 
-            class="navbar__options__search" 
-            routerLink="/search" 
-            routerLinkActive
-            [routerLinkActiveOptions]="{exact: true}"
-            #search="routerLinkActive"
-            [ngClass]="{'active': home.isActive || search.isActive }"
-            >BUSCADOR
-        </a>
-
         <div *ngIf="getMe()" class="navbar__options__profile dropdown">
             <img class="navbar__options__profile__image shadowed" src="./assets/temp_profile.jpeg" alt="Avatar">
             <span class="navbar__options__profile__nickname" > {{getMe()?.nickname}} <i class="arrow down"></i> </span>
