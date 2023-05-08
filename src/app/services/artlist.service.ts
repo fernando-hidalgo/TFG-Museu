@@ -16,7 +16,7 @@ export class ArtlistService {
         return this.httpClient.get(`${HOST}${AppEndpoints.ARTLIST}${artlistId}`) as Observable<boolean>;
     }
 
-    public getUserLists(userId: number): Observable<Object> {
+    public getUserLists(userId: number): Observable<any> {
         return this.httpClient.get(`${HOST}${AppEndpoints.ARTLIST_OF_USER}${userId}`);
     }
 
@@ -34,6 +34,10 @@ export class ArtlistService {
 
     public updateList(artlistId: number, body) {
         return this.httpClient.put(`${HOST}${AppEndpoints.ARTLIST}${artlistId}`, body);
+    }
+
+    public addToListModal(artworkId: number, body) {
+        return this.httpClient.put(`${HOST}${AppEndpoints.ADD_TO_LIST_MODAL}${artworkId}`, body);
     }
 
     public deleteList(artlistId: number) {

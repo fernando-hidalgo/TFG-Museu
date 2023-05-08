@@ -2,7 +2,7 @@
     font-family: Graphik Web Regular Regular;
     color: white;
     display: flex;
-    gap: 1.5rem;
+    gap: 22.5rem;
     margin-top: -1rem;
     height: 2rem;
 }
@@ -22,6 +22,7 @@
     justify-content: flex-end;
 }
 
+// WRITE_REVIEW DIALOG
 .input {
     font-family: Graphik Web Regular Regular;
     font-size: medium;
@@ -54,13 +55,97 @@
     justify-content: center;
 }
 
+// ADD_TO_LIST DIALOG
+.add-list-header {
+    font-family: Graphik Web Regular Regular;
+    color: white;
+    display: flex;
+    gap: 26rem;
+    margin-top: -1rem;
+    height: 2rem;
+}
+
+.list-search {
+    display: flex;
+    flex-direction: column;
+    background-color: #678;
+    margin-top: 1rem;
+
+    &__results {
+        font-family: Graphik Web Regular Regular;
+      display: flex;
+      flex-direction: column;
+      max-height: 170px;
+      overflow: auto;
+
+      /* Firefox */
+      & {
+        scrollbar-width: auto;
+        scrollbar-color: #929aa1 #4d5966;
+      }
+
+      /* Chrome, Edge, and Safari */
+      &::-webkit-scrollbar {
+        width: 15px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: #4d5966;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: #929aa1;
+      }
+
+      &__option {
+        color: #fff;
+        padding: 5px 8px 5px 10px;
+        text-shadow: 0 -1px 0 rgb(0 0 0 / 20%);
+        line-height: 1.5;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #00b020;
+          text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+}
+
+.empty-option {
+    font-family: Graphik Web Regular Regular;
+    color: white;
+    background-color: #ff8000;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+    font-size: 0.8rem;
+}
+
+.amount-selected{
+    font-family: Graphik Web Regular Regular;
+    color: white;
+    font-size: 0.8rem;
+}
+
+.breathe-amount{
+    gap: 20rem;
+}
+
 @media screen and (max-width: 768px) {
     .header{
         gap: 8.5rem;
     }
 
+    .add-list-header{
+        gap: 4.5rem;
+    }
+
     .textarea {
         width: 100%;
         min-height: 15rem;
+    }
+
+    .breathe-amount{
+        gap: 2rem;
     }
 }

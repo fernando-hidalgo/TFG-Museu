@@ -37,11 +37,7 @@ export class VListDetailsComponent implements OnInit {
       this.artlistId = urlParams['artlistId']
       this.ownerId = urlParams['userId']
 
-      if(this.ownerId = this.currentUser){
-        this.canEdit = true
-      } else {
-        this.canEdit = false
-      }
+      this.canEdit = this.ownerId === this.currentUser;
       
       if (this.currentUser) params['currentUserId'] = this.currentUser
 

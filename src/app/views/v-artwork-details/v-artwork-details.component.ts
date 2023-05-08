@@ -14,7 +14,8 @@ import { RatingService } from 'src/app/services/rating.service';
 })
 export class VArtworkDetailsComponent implements OnInit {
   literals = {
-    button: 'Escribir reseña'
+    writeReviewButton: 'Escribir reseña',
+    editReviewButton: 'Editar reseña'
   }
   currentUser: number
   artwork;
@@ -56,10 +57,12 @@ export class VArtworkDetailsComponent implements OnInit {
   updateRatings(data){
     if(data.mode === 'delete'){
       this.ratings = this.ratings.filter(r => r.id !== data.ratingId);
+      this.curretUserRating = ''
       this.updateArtworkAverageRating();
       this.disableReview = true
     } else {
       this.getRatingById(data.ratingId).subscribe(newRating => {
+        this.curretUserRating = newRating
         this.ratings.push(newRating);
         this.orderRatings(newRating);
         this.disableReview = false;
@@ -119,6 +122,17 @@ export class VArtworkDetailsComponent implements OnInit {
         this.curretUserRating = result
         this.ratings[0] = result //El primer rating siempre es del usuario logueado
       }
+    });
+  }
+
+  openAddToListDialog() {
+    this.dialog.open(CDialogComponent,{
+      data:{
+        type: "list",
+        userId: this.currentUser,
+        artworkId: this.artwork.id
+      },
+      autoFocus: false
     });
   }
 }

@@ -13,6 +13,7 @@ export class AppEndpoints {
     public static ARTLIST_OF_USER = '/art-list/user/'
     public static ARTLIST_TO_EDIT = '/art-list/edit/'
     public static ARTLIST_COVER_IMAGE = '/art-list/cover/'
+    public static ADD_TO_LIST_MODAL = '/art-list/add-list-modal/'
 
     public static USER = '/user/'
     public static CREATE_REGULAR_USER = '/user/create-regular-user'
