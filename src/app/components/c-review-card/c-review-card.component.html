@@ -25,9 +25,7 @@
             }"></span>
         </div>
         <div *ngIf="ratingData.text" class="text-container">
-            <span class="text">
-                {{ratingData.text}}
-            </span>
+            <span class="text" [innerHTML]="text"></span>
         </div>
     </div>
 </div>

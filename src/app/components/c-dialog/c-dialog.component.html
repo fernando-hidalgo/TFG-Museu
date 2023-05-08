@@ -1,1 +1,24 @@
-<p>c-dialog works!</p>
+<div *ngIf="type == 'review'" class="review-dialog">
+    <div class="header">
+        <h2 mat-dialog-title>Tu reseña</h2>
+        <mat-icon mat-dialog-close class="close-review-dialog">close</mat-icon>
+    </div>
+    
+    <mat-dialog-content class="input-section">
+        <form [formGroup]="writeReviewForm">
+            <textarea 
+                class="input textarea"
+                rows="4"
+                cols="50"
+                placeholder="Escribe aquí..."
+                id="reviewArea" 
+                name="reviewArea"
+                formControlName="reviewArea">
+            </textarea>
+        </form>
+    </mat-dialog-content>
+    
+    <mat-dialog-actions class="button-container">
+        <app-c-museu-button text="Guardar" (click)="saveReview()"></app-c-museu-button>
+    </mat-dialog-actions>
+</div>

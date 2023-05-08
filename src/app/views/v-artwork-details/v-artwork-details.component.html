@@ -22,6 +22,7 @@
                 (updateRatings)="updateRatings($event)">
             </app-c-rating-stars>
             <app-c-museu-button
+                (click)="openReviewDialog()"
                 [disabled]="disableReview"
                 [text]="literals.button">
             </app-c-museu-button>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { firstValueFrom, Subscription } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
+import { CDialogComponent } from 'src/app/components/c-dialog/c-dialog.component';
 import { ArtworkService } from 'src/app/services/artwork.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { RatingService } from 'src/app/services/rating.service';
@@ -24,7 +26,8 @@ export class VArtworkDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private artworkService: ArtworkService,
     private ratingService: RatingService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dialog: MatDialog
   ) { }
 
   async ngOnInit() {
@@ -100,5 +103,22 @@ export class VArtworkDetailsComponent implements OnInit {
 
   getRatingById(id){
     return this.ratingService.getRatingById(id);
+  }
+
+  openReviewDialog() {
+    const dialogRef = this.dialog.open(CDialogComponent,{
+      data:{
+        type: "review",
+        rating: this.curretUserRating,
+      },
+      autoFocus: false
+    });
+
+    dialogRef.afterClosed().subscribe((result: string) => {
+      if (result) {
+        this.curretUserRating = result
+        this.ratings[0] = result //El primer rating siempre es del usuario logueado
+      }
+    });
   }
 }

@@ -8,13 +8,14 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class CReviewCardComponent implements OnInit {
   @Input() ratingData
+  text: string
   isMe: boolean
 
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.text = this.ratingData.text.replace(/\n/g, '<br>')
     this.isMe = this.authService.userMe()?.authId
-    
   }
 
 }

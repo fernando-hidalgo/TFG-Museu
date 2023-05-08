@@ -27,6 +27,7 @@ import { CDialogComponent } from './components/c-dialog/c-dialog.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatInputModule} from '@angular/material/input';
+import {MatDialogModule} from '@angular/material/dialog';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { CImageUploaderComponent } from './components/c-image-uploader/c-image-uploader.component';
 import { interceptorProvider } from './interceptors/common.interceptor';
@@ -73,6 +74,7 @@ import { SimplebarAngularModule } from 'simplebar-angular';
     LeafletModule,
     ReactiveFormsModule,
     MatInputModule,
+    MatDialogModule,
     SimplebarAngularModule
   ],
   providers: [interceptorProvider],
