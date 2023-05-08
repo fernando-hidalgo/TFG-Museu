@@ -27,12 +27,16 @@
     &__title{
       font-family: Graphik Web Semibold Regular;
       display: flex;
-      align-items: center;
-      gap: 1rem;
+      flex-direction: column;
+      margin-top: -1.5rem;
+
+      &__name{
+        width: 28ch;
+      }
 
       &__artist-date{
         font-size: 20px;
-        margin-top: 5px;
+        margin-top: -15px;
         text-decoration: underline;
       }
     }
@@ -59,13 +63,12 @@
       }
 
       &__stars{
+        @include assignValue(gap margin-bottom, 1rem);
         display: flex;
         height: 35%;
         flex-direction: column;
         align-items: center;
         justify-content: flex-end;
-        gap: 1rem;
-        margin-bottom: 1rem;
       }
 
       &__top{
@@ -104,20 +107,19 @@
       }
 
     &__info{
+      @include assignValue(padding-top padding-bottom, 0.5rem);
       border-bottom: 1px solid;
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
     }
   }
 }
   
 .align{
+  gap: 3vw;
+  margin-bottom: 2rem;
   display: flex;
   justify-content: center;
   flex-direction: row;
   margin-top: 2rem;
-  margin-bottom: 5rem;
-  gap: 5rem;
 }
   
 .for-rating-header{
@@ -238,13 +240,19 @@
       }
 
       &__title{
-        gap: 0rem;
+        @include assignValue(gap margin-top, 0rem);
         align-items: flex-start;
         flex-direction: column;
         margin-bottom: 2rem;
 
         &__name{
+
+          width: 100%;
           margin-bottom: 2%;
+        }
+
+        &__artist-date{
+          margin-top: 0rem;
         }
       }
     }

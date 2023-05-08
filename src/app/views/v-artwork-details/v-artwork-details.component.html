@@ -4,14 +4,12 @@
         <app-c-museu-button *ngIf="currentUser" text="Añadir a Lista"></app-c-museu-button>
     </div>
     
-
     <div class="artwork-details__content">
         <div class="artwork-details__content__title">
             <h1 class="artwork-details__content__title__name">{{artwork?.name}}</h1>
             <span class="artwork-details__content__title__artist-date">{{artwork?.date}} - {{artwork?.artist}}</span>
         </div>
-        <p class="artwork-details__content__description" [innerHTML]="artwork?.description">
-        </p>
+        <p class="artwork-details__content__description" [innerHTML]="artwork?.description"></p>
     </div>
     
     <div class="artwork-details__rating-box">
