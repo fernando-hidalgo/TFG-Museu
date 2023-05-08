@@ -1,34 +1,40 @@
 @mixin assignValue($properties, $value) {
     @each $property in $properties {
-        #{$property}: $value
+        #{$property}: $value;
     }
 }
 
-.list-card{
+.list-card {
     display: flex;
-    top: 80px;
-    gap: 25px;
-    position: relative;
-    flex-direction: row;
     align-items: center;
+    width: 99%;
+    gap: 2rem;
+    position: relative;
+    border-top: 1px solid #456;
     border-bottom: 1px solid #456;
     border-color: #2c3440;
-    height: 135px;
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
 
-    &__cover{
+    &__cover {
         width: 250px;
         height: 105px;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-image: linear-gradient(90deg,hsla(0,0%,100%,0) 0,hsla(0,0%,100%,.5) 50%,hsla(0,0%,100%,0));
+        background-image: linear-gradient(
+            90deg,
+            hsla(0, 0%, 100%, 0) 0,
+            hsla(0, 0%, 100%, 0.5) 50%,
+            hsla(0, 0%, 100%, 0)
+        );
         background-repeat: no-repeat;
         background-size: 100% 1px;
         border-radius: 4px;
         box-shadow: inset 0px 0px 15px #def;
         cursor: pointer;
 
-        &__pic{
+        &__pic {
             width: 99%;
             height: 97%;
             border-radius: 3px;
@@ -36,26 +42,54 @@
         }
     }
 
-    &__text{
+    &__text {
         display: flex;
         flex-direction: column;
         gap: 10px;
-    
-        &__title{
+        max-width: 80%;
+
+        &__title {
             cursor: pointer;
+            font-size: 1.1rem;
             font-family: Graphik Web Semibold Regular;
             color: white;
+            display: inline-block;
+            max-width: 100%;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-all;
         }
-    
-        &__amount{
+
+        &__amount {
             font-family: Graphik Web Regular Regular;
             color: #789;
-            font-size: 11px;
+            font-size: 0.8rem;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            hyphens: auto;
         }
-    
-        &__description{
+
+        &__description {
             color: #abc;
             font-family: Graphik Web Regular Regular;
+            display: inline-block;
+            max-width: 99%;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .list-card {
+        &__cover {
+            width: 145px;
+            height: 101px;
+        }
+
+        &__text {
+            max-width: 50%;
         }
     }
 }

@@ -1,6 +1,11 @@
 :host {
     display: flex;
     flex-direction: column;
-    width: 65%;
-    margin-left: 15%;
+    margin-top: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+    :host {
+        margin-top: 1rem;
+    }
 }
