@@ -31,6 +31,7 @@ export class VHomeSearchComponent implements OnInit {
 
   updateData(event){
     this.loadData(event.data)
+    this.page = 1;
   }
 
   loadData(data){

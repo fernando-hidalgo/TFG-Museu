@@ -1,46 +1,74 @@
-<div class="filters"> <!--TODO: Botón Reset para todos los filtros a la vez-->
-    <app-c-search-filter 
-        [searchResult]="data"
-        [filter]="data?.nameFilter"
-        mode="profile"  
-        type="nameFilter"
-        (updateData)="updateData($event)"> <!--TODO: Sacar mode a una constante-->
-    </app-c-search-filter>
+<div class="search-container">
 
-    <app-c-search-filter 
-        [searchResult]="data"
-        [filter]="data?.artistFilter"
-        mode="profile"
-        type="artistFilter"
-        (updateData)="updateData($event)">
-    </app-c-search-filter>
-    
-    <app-c-search-filter 
-        [searchResult]="data"
-        [filter]="data?.styleFilter"
-        mode="profile"
-        type="styleFilter"
-        (updateData)="updateData($event)">
-    </app-c-search-filter>
-    
-    <app-c-search-filter 
-        [searchResult]="data"
-        [filter]="data?.museumFilter"
-        mode="profile"
-        type="museumFilter"
-        (updateData)="updateData($event)">
-    </app-c-search-filter>
-</div>
+    <div class="search-header">
+        <h1>Perfil de {{userNickname}}</h1>
+        <div class="profile-header-buttons">
+            <app-c-museu-button
+                text="Listas"
+                (click)="navigateToLists()">
+            </app-c-museu-button>
 
-<div class="grid">
-    <div class="grid__cards">
-        <app-c-artwork-card 
-            *ngFor="let artwork of data?.artworks | paginate: { itemsPerPage: 13, currentPage: page }"
-            [data]="artwork"
-            [seen]="artwork.seen" 
-            [userRating]="artwork.userRating">
-        </app-c-artwork-card>
+            <app-c-museu-button
+                text="Reiniciar"
+                colorMode="gray"
+                (click)="handleResetFilters()">
+            </app-c-museu-button>
+        </div>
+        
+    </div>
+    
+    <div class="filters">
+        <app-c-search-filter style="z-index: 1004;"
+            [searchResult]="data"
+            [filter]="data?.nameFilter.sort()"
+            id="filter1"
+            mode="profile"
+            type="nameFilter"
+            (updateData)="updateData($event)"> <!--TODO: Sacar mode a una constante-->
+        </app-c-search-filter>
+    
+        <app-c-search-filter style="z-index: 1003;" 
+            [searchResult]="data"
+            [filter]="data?.artistFilter.sort()"
+            mode="profile"
+            id="filter2"
+            type="artistFilter"
+            (updateData)="updateData($event)">
+        </app-c-search-filter>
+        
+        <app-c-search-filter style="z-index: 1002;"
+            [searchResult]="data"
+            [filter]="data?.styleFilter.sort()"
+            mode="profile"
+            id="filter3"
+            type="styleFilter"
+            (updateData)="updateData($event)">
+        </app-c-search-filter>
+        
+        <app-c-search-filter style="z-index: 1001;"
+            [searchResult]="data"
+            [filter]="data?.museumFilter.sort()"
+            mode="profile"
+            id="filter4"
+            type="museumFilter"
+            (updateData)="updateData($event)">
+        </app-c-search-filter>
+    </div>
+    
+    <div class="page">
+        <div class="grid">
+            <div class="grid__cards">
+                <app-c-artwork-card 
+                    *ngFor="let artwork of data?.artworks | paginate: { itemsPerPage: 24, currentPage: page }"
+                    [data]="artwork"
+                    [seen]="artwork.seen"
+                    [userRating]="artwork.userRating">
+                </app-c-artwork-card>
+            </div>
+        </div>
     </div>
 
-    <pagination-controls class="pagination" (pageChange)="page = $event"></pagination-controls>
+    <hr class="pagination-divider">
 </div>
+
+<pagination-controls class="pagination" (pageChange)="page = $event"></pagination-controls>

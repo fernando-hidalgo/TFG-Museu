@@ -16,6 +16,10 @@ export class UserService {
         return this.httpClient.get(`${HOST}${AppEndpoints.USER}${id}`) as Observable<boolean>;
     }
 
+    public getUserNicknameById(id): Observable<any> {
+        return this.httpClient.get(`${HOST}${AppEndpoints.USER_NICKNAME}${id}`) as Observable<boolean>;
+    }
+
     public getUserByFields(params): Observable<Boolean> {
         return this.httpClient.get(`${HOST}${AppEndpoints.USER_BY_FIELD}`, {params}) as Observable<Boolean>;
     }

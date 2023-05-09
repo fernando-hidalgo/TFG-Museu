@@ -1,22 +1,60 @@
+:host{
+  display: flex;
+  justify-content: center;
+}
+
+.search-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 1.5rem;
+}
+
+.search-header{
+  display: flex;
+  gap: 52.5rem;
+  align-items: center;
+  border-bottom: solid 1px #456;
+  height: 2.5rem;
+  font-family: Graphik Web Semibold Regular;
+  color: white;
+
+  h1{
+    font-size: 1.5rem;
+  }
+}
+
+.profile-header-buttons{
+  display: flex;
+  gap: 1rem;
+}
+
+.pagination-divider{
+  top: 45.5rem;
+  position: absolute;
+  width: 80%;
+  border: 1px solid #456;
+}
+
 .filters{
   display: flex;
   flex-direction: row;
   gap: 250px;
-  margin-left: 18%;
+  margin-right: 14rem;
 }
 
 .grid {
-  display: flex;
-  justify-content: center;
-
-  &__cards {
-    margin-top: 5%;
-    display: grid;
-    grid-template-columns: repeat(9, 0px);
-    grid-auto-rows: auto;
-    grid-gap: 0rem 7.5rem;
-    margin-right: 12%;
-  }
+    display: flex;
+    justify-content: center;
+  
+    &__cards{
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(8, 0px);
+      grid-auto-rows: auto;
+      grid-gap: 5.5rem 7.5rem;
+    }
 }
 
 .page {
@@ -27,30 +65,71 @@
 }
 
 .pagination {
+  height: 0rem;
+  margin-top: 45.5rem;
+  position: absolute;
   font-family: Graphik Web Regular Regular;
-  margin-top: 11%;
 }
 
 .pagination ::ng-deep .ngx-pagination {
-  .current {
+  .current{
     background: transparent;
 
-    span {
+    span{
       color: #567;
     }
   }
 
-  a {
+  a{
     color: #9ab;
 
-    &:hover {
+    &:hover{
       background: #303840;
       color: #def;
     }
   }
 
-  .pagination-previous,
-  .pagination-next {
+  .pagination-previous, .pagination-next {
     display: none;
+  }
+}
+
+.for-rating-header{
+  position: relative;
+  width: 90%;
+  margin-left: 4%;
+  border: 1px solid #456;
+  margin-bottom: -1px;
+}
+
+@media (max-width: 768px) {
+  .search-container{
+    margin-top: 1rem;
+  }
+
+  .filters{
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  .pagination {
+    margin-right: 2.5rem;
+    top: 75rem;
+  }
+
+  .grid {
+    margin-right: 5.5rem;
+    &__cards{
+      grid-template-columns: repeat(3, 0px);
+    }
+  }
+
+  .search-header{
+    gap: 3rem;
+    height: 4rem;
+  }
+
+  .pagination-divider{
+    top: 120.5rem;
   }
 }

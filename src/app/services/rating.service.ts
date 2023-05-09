@@ -20,7 +20,6 @@ export class RatingService {
     }
 
     public createRating(body){
-        console.log(body)
         return this.httpClient.post(`${HOST}${AppEndpoints.RATING}`, body);
     }
 
