@@ -130,15 +130,17 @@ export class CSearchFilterComponent implements OnInit {
   }
 
   onBlur(){
+    const drop = document.getElementById(`${this.type}-dropdown`)
+
     //Blur rápido, cuando se clicka FUERA del dropdown
-    if(this.optionsX < 3 || this.optionsX > 290 || this.optionsY < 3 || this.optionsY > 160){
+    if(this.optionsX < 3 || this.optionsX + 5 > drop.offsetWidth || this.optionsX < 3 || this.optionsY + 5 > drop.offsetHeight){
       this.showOptions = false;
     } else {
       //Blur lento, cuando se clicka DENTRO del dropdown (Permite que de tiempo a seleccionar una opción)
       clearTimeout(this.timeout);
       this.timeout = setTimeout(() => {
         this.showOptions = false;
-      }, 100);
+      }, 80);
     }
   }
 

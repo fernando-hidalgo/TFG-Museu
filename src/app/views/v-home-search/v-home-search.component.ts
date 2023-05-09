@@ -36,4 +36,22 @@ export class VHomeSearchComponent implements OnInit {
   loadData(data){
     this.data = data;
   }
+
+  resetFilters(filterToReset: string[]) {
+    filterToReset.forEach((filterName) => {
+      const inputElement = document.getElementById(filterName)?.querySelector('input');
+      
+      if (inputElement) {
+        inputElement.value = '';
+        inputElement.style.pointerEvents = 'auto';
+      }
+    });
+  }
+  
+  handleResetFilters() {
+    const filterToReset = ['filter1', 'filter2', 'filter3', 'filter4'];
+    this.resetFilters(filterToReset);
+    this.getAllArtworks();
+  }
+  
 }
