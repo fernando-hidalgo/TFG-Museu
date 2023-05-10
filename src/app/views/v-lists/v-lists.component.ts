@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { switchMap, tap } from 'rxjs';
 import { ArtlistService } from 'src/app/services/artlist.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-v-lists',
@@ -10,15 +11,34 @@ import { ArtlistService } from 'src/app/services/artlist.service';
 })
 export class VListsComponent implements OnInit {
   lists
+  userId: number;
+  currentUser: number;
+  candEdit: boolean;
+  userNickname: string;
 
-  constructor(private artlistService: ArtlistService, private route: ActivatedRoute,) { }
+  constructor(
+    private artlistService: ArtlistService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.route.params.pipe(
-      switchMap(urlParams => this.artlistService.getUserLists(urlParams['userId']))
+      tap(urlParams => {
+        this.userId = urlParams['userId'];
+        const user = this.authService.userMe()
+        this.currentUser = user?.authId
+        this.userNickname = user?.nickname
+        this.candEdit = (this.currentUser && this.userId == this.currentUser);
+      }),
+      switchMap(() => this.artlistService.getUserLists(this.userId))
     ).subscribe(data => {
       this.lists = data;
     });
   }
 
+  navigateToProfile(){
+    this.router.navigate(['/profile', this.userId]);
+  }
 }

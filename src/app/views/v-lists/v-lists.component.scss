@@ -4,7 +4,34 @@
     margin-top: 2rem;
 }
 
+.profile-header-buttons{
+    display: flex;
+    gap: 1rem;
+  }
+
+.search-header{
+    display: flex;
+    gap: 10%;
+    width: 99%;
+    align-items: center;
+    border-bottom: solid 1px #456;
+    height: 2.5rem;
+    font-family: Graphik Web Semibold Regular;
+    color: white;
+  
+    h1{
+        width: 100%;
+        font-size: 1.5rem;
+    }
+}
+
 @media screen and (max-width: 768px) {
+    :host {
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
     :host {
         margin-top: 1rem;
     }

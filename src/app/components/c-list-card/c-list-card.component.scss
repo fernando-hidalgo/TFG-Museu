@@ -8,7 +8,7 @@
     display: flex;
     align-items: center;
     width: 99%;
-    gap: 2rem;
+    gap: 1rem;
     position: relative;
     border-top: 1px solid #456;
     border-bottom: 1px solid #456;
@@ -90,6 +90,19 @@
 
         &__text {
             max-width: 50%;
+        }
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .list-card {
+        &__cover {
+            width: 145px;
+            height: 101px;
+        }
+
+        &__text {
+            max-width: 82%;
         }
     }
 }
