@@ -21,6 +21,7 @@
         display: flex;
         align-items: center;
         padding-left: 8%;
+        margin-top: 0.5rem;
 
         &__img{
             font-size: 1.5rem;
@@ -49,6 +50,7 @@
         }
 
         &__profile{
+            margin-top: 0.5rem;
             cursor: pointer;
             display: flex;
             align-items: center;

@@ -26,7 +26,7 @@
 }
 
 .pagination-divider{
-  top: 40.5rem;
+  top: 43.5rem;
   position: absolute;
   width: 80%;
   border: 1px solid #456;
@@ -44,11 +44,12 @@
     justify-content: center;
   
     &__cards{
+      margin-right: 1.5rem;
       margin-top: 3rem;
       display: grid;
       grid-template-columns: repeat(8, 0px);
       grid-auto-rows: auto;
-      grid-gap: 10.5rem 7.5rem;
+      grid-gap: 11.5rem 7.5rem;
     }
 }
 
@@ -61,7 +62,7 @@
 
 .pagination {
   height: 0rem;
-  margin-top: 40.5rem;
+  margin-top: 43.5rem;
   position: absolute;
   font-family: Graphik Web Regular Regular;
 }
@@ -109,13 +110,15 @@
 
   .pagination {
     margin-right: 2.5rem;
-    top: 65rem;
+    top: 62rem;
   }
 
   .grid {
     margin-right: 5.5rem;
     &__cards{
+      margin-right: 0rem;
       grid-template-columns: repeat(3, 0px);
+      grid-gap: 10.5rem 7.5rem;
     }
   }
 

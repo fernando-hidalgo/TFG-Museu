@@ -20,7 +20,7 @@ export class ArtlistService {
         return this.httpClient.get(`${HOST}${AppEndpoints.ARTLIST_OF_USER}${userId}`);
     }
 
-    public getListContent(artlistId: number, params): Observable<Object> {
+    public getListContent(artlistId: number, params): Observable<any> {
         return this.httpClient.get(`${HOST}${AppEndpoints.ARTLIST_DETAILS}${artlistId}`, {params});
     }
 

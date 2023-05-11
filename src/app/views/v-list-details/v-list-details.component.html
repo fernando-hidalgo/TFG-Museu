@@ -1,71 +1,110 @@
-<div class="filters"> <!--TODO: Botón Reset para todos los filtros a la vez-->
-    <app-c-search-filter 
-        [searchResult]="data"
-        [filter]="data?.nameFilter"
-        mode="artlist"  
-        type="nameFilter"
-        (updateData)="updateData($event)"> <!--TODO: Sacar mode a una constante-->
-    </app-c-search-filter>
 
-    <app-c-search-filter 
-        [searchResult]="data"
-        [filter]="data?.artistFilter"
-        mode="artlist"
-        type="artistFilter"
-        (updateData)="updateData($event)">
-    </app-c-search-filter>
+
+<div class="list-details-container">
+    <div class="search-header">
+        <h1>{{listName}}</h1>
     
-    <app-c-search-filter 
-        [searchResult]="data"
-        [filter]="data?.styleFilter"
-        mode="artlist"
-        type="styleFilter"
-        (updateData)="updateData($event)">
-    </app-c-search-filter>
+        <div class="profile-header-buttons">
+            <div *ngIf="data?.artworks.length && currentUser" class="list-progress">
+                <span class="watched">
+                    Has visto {{totalSeen}} de {{data?.artworks.length}} obras
+                </span>
     
-    <app-c-search-filter 
-        [searchResult]="data"
-        [filter]="data?.museumFilter"
-        mode="artlist"
-        type="museumFilter"
-        (updateData)="updateData($event)">
-    </app-c-search-filter>
-</div>
-
-<span *ngIf="canEdit" class="edit-button" (click)="redirectToEdit()"></span>
-
-<div class="grid">
-    <div class="grid__cards">
-        <app-c-artwork-card 
-            *ngFor="let artwork of data?.artworks | paginate: { itemsPerPage: 13, currentPage: page }"
-            [data]="artwork"
-            [seen]="artwork.seen"
-            [userRating]="">
-        </app-c-artwork-card>
+                <div class="progress-and-percentage">
+                    <mat-progress-bar 
+                        class="progress-bar"
+                        [ngClass]="progress === 100 ? 'progress-bar__completed' : 'progress-bar__not-completed'"
+                        mode="determinate"
+                        [value]="progress">
+                    </mat-progress-bar>
+    
+                    <span class="percetange">
+                        {{progress}}%
+                    </span>
+                </div>
+            </div>
+    
+            <app-c-museu-button
+                text="Listas"
+                (click)="navigateToLists()">
+            </app-c-museu-button>
+    
+            <app-c-museu-button
+                text="Reiniciar"
+                colorMode="gray"
+                (click)="handleResetFilters()">
+            </app-c-museu-button>
+        </div>
     </div>
-
+    
+    <div class="list-description">
+        <span class="description" [innerHTML]="listDescription"></span>
+    </div>
+    
+    <div class="map-container"
+            leaflet
+            [leafletOptions]="options"
+            (leafletMapReady)="onMapReady($event)">
+    </div> <!--TODO: Para ocultar el mapa cuando no haya resultados, colocar el Empty State por encima (Z-Index)-->
+    
+    <hr class="map-divider">
+    
+    <div class="search-container">
+        <div class="filters">
+            <app-c-search-filter style="z-index: 1004;"
+                [searchResult]="data"
+                [filter]="data?.nameFilter.sort()"
+                id="filter1"
+                mode="artlist"
+                type="nameFilter"
+                (updateData)="updateData($event)"> <!--TODO: Sacar mode a una constante-->
+            </app-c-search-filter>
+        
+            <app-c-search-filter style="z-index: 1003;" 
+                [searchResult]="data"
+                [filter]="data?.artistFilter.sort()"
+                mode="artlist"
+                id="filter2"
+                type="artistFilter"
+                (updateData)="updateData($event)">
+            </app-c-search-filter>
+            
+            <app-c-search-filter style="z-index: 1002;"
+                [searchResult]="data"
+                [filter]="data?.styleFilter.sort()"
+                mode="artlist"
+                id="filter3"
+                type="styleFilter"
+                (updateData)="updateData($event)">
+            </app-c-search-filter>
+            
+            <app-c-search-filter style="z-index: 1001;"
+                [searchResult]="data"
+                [filter]="data?.museumFilter.sort()"
+                mode="artlist"
+                id="filter4"
+                type="museumFilter"
+                (updateData)="updateData($event)">
+            </app-c-search-filter>
+        </div>
+    </div>
+    
+    <div class="search-container">
+        <div class="page">
+            <div class="grid">
+                <div class="grid__cards">
+                    <app-c-artwork-card 
+                        *ngFor="let artwork of data?.artworks | paginate: { itemsPerPage: 24, currentPage: page }"
+                        [data]="artwork"
+                        [seen]="artwork.seen"
+                        [userRating]="artwork.userRating">
+                    </app-c-artwork-card>
+                </div>
+            </div>
+        </div>
+    
+        <hr class="pagination-divider">
+    </div>
+    
     <pagination-controls class="pagination" (pageChange)="page = $event"></pagination-controls>
 </div>
-
-<div *ngIf="data?.artworks.length && currentUser" class="list-progress">
-    <span class="watched">
-        Has visto {{totalSeen}} de {{data?.artworks.length}} obras
-    </span>
-
-    <span class="percetange">
-        {{progress}} <sup>%</sup>
-    </span>
-
-    <mat-progress-bar 
-        class="progress-bar"
-        [ngClass]="progress === 100 ? 'progress-bar__completed' : 'progress-bar__not-completed'"
-        mode="determinate"
-        [value]="progress">
-    </mat-progress-bar>
-</div>
-
-<div class="map-container"
-    leaflet
-    [leafletOptions]="options"
-    (leafletMapReady)="onMapReady($event)">
-</div> <!--TODO: Para ocultar el mapa cuando no haya resultados, colocar el Empty State por encima (Z-Index)-->

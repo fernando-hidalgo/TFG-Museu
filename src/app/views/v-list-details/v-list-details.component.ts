@@ -26,22 +26,29 @@ export class VListDetailsComponent implements OnInit {
   currentUser: number
   ownerId: number
   canEdit: boolean
+  listName: string
+  listDescription: string
+  params
 
   constructor(private route: ActivatedRoute, private router: Router, private artlistService: ArtlistService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.currentUser = this.authService.userMe()?.authId
+    const user = this.authService.userMe()
+    this.currentUser = user?.authId
     
     this.route.params.subscribe(async urlParams => {
-      let params = {}
+      this.params = {}
       this.artlistId = urlParams['artlistId']
       this.ownerId = urlParams['userId']
 
       this.canEdit = this.ownerId == this.currentUser;
       
-      if (this.currentUser) params['currentUserId'] = this.currentUser
+      if (this.currentUser) this.params['currentUserId'] = this.currentUser
 
-      this.artlistService.getListContent(this.artlistId, params).subscribe(data => {
+      this.artlistService.getListContent(this.artlistId, this.params).subscribe(data => {
+        const { listName, listDescription } = data;
+        this.listName = listName;
+        this.listDescription = listDescription;
         this.loadData(data);
         this.setProgressBar(data);
       });
@@ -50,6 +57,7 @@ export class VListDetailsComponent implements OnInit {
 
   updateData(event){
     this.loadData(event.data)
+    this.page = 1;
   }
 
   loadData(data){
@@ -108,5 +116,28 @@ export class VListDetailsComponent implements OnInit {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
       this.router.navigate([`/profile/${this.currentUser}/lists/${this.artlistId}/edit`])
     );
+  }
+
+  handleResetFilters() {
+    const filterToReset = ['filter1', 'filter2', 'filter3', 'filter4'];
+    this.resetFilters(filterToReset);
+    this.artlistService.getListContent(this.artlistId, this.params).subscribe(data => {
+      this.loadData(data);
+    });
+  }
+
+  resetFilters(filterToReset: string[]) {
+    filterToReset.forEach((filterName) => {
+      const inputElement = document.getElementById(filterName)?.querySelector('input');
+      
+      if (inputElement) {
+        inputElement.value = '';
+        inputElement.style.pointerEvents = 'auto';
+      }
+    });
+  }
+
+  navigateToLists() {
+    //this.router.navigate([this.router.url, 'lists']);
   }
 }
