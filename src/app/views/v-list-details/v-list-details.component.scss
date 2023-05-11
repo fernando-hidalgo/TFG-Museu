@@ -7,7 +7,7 @@
 }
 
 .search-header{
-  margin-top: 2rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
   display: flex;
   gap: 52.5rem;
@@ -32,8 +32,8 @@
 .description{
   font-family: Graphik Web Regular Regular;
   color: white;
+  width: 75%;
   display: inline-block;
-  max-width: 60%;
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-all;
@@ -46,7 +46,7 @@
 }
 
 .pagination-divider{
-  top: 64.5rem;
+  top: 65.5rem;
   position: absolute;
   width: 80%;
   border: 1px solid #456;
@@ -87,7 +87,7 @@
 
 .pagination {
   height: 0rem;
-  margin-top: 64.5rem;
+  margin-top: 65.5rem;
   position: absolute;
   font-family: Graphik Web Regular Regular;
 }

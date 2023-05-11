@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-c-image-uploader',
@@ -7,6 +7,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class CImageUploaderComponent implements OnInit {
   @Output("setImage") setImage: EventEmitter<any> = new EventEmitter();
+  @Input() colMode: boolean = false;
   selectedFiles?: FileList;
   preview: string;
 

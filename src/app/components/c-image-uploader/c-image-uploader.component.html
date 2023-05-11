@@ -1,4 +1,5 @@
-<div class="upload-container">
+<div [ngClass]="colMode? 'upload-container-col' : 'upload-container-row'" class="upload-container">
+
   <label for="file-upload" class="image-upload-box">
     <div class="upload-content">
       <img src="./../../../assets/img-upl.png" alt="Uploaded Image">
@@ -11,4 +12,5 @@
     <img [src]="preview" class="preview-container__viewer" />
     <div *ngIf="!preview" class="preview-container__text">Vista Previa</div>
   </div>
+  
 </div>

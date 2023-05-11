@@ -1,61 +1,76 @@
-<div class="view-container">
+<div class="align">
 
-    <form [formGroup]="editListForm">
-        <app-c-museu-button 
+    <div class="search-header">
+        <h1>Editar Lista</h1>
+
+        <div class="search-header-buttons">
+            <app-c-museu-button 
             type="submit"
             [text]="literals.buttonSave"
             (click)="saveListChanges()">
-        </app-c-museu-button>
-        
-        <app-c-museu-button 
-            [text]="literals.buttonDelete"
-            colorMode="red" 
-            (click)="deleteList()">
-        </app-c-museu-button> <!--TODO: El router debe estar el botón de modal de confirmación"-->
-
-        <app-c-museu-button 
-            [text]="literals.buttonCancel"
-            colorMode="gray" 
-            routerLink="{{baseRedirect}}/{{artlistId}}">
-        </app-c-museu-button>
-        
-        <div class="inputs-container">
-            <div class="inputs-container__align">
-                <label class="label" for="listName">Nombre</label>
-                <input class="input text" type="text" id="listName" name="listName" formControlName="listName"><br>
+            </app-c-museu-button>
             
-                <label class="label" for="listAddArtwork">Añadir obra</label>
-                <app-c-search-filter 
-                    [searchResult]="data"
-                    [editListOptions]="data?.editListOptions"
-                    mode="artlist-edit"
-                    type="nameFilter"
-                    (updateData)="updateData($event)"> <!--TODO: Sacar mode a una constante-->
-                </app-c-search-filter>
+            <app-c-museu-button 
+                [text]="literals.buttonDelete"
+                colorMode="red" 
+                (click)="deleteList()">
+            </app-c-museu-button> <!--TODO: El router debe estar el botón de modal de confirmación"-->
+            
+            <app-c-museu-button 
+                [text]="literals.buttonCancel"
+                colorMode="gray" 
+                routerLink="{{baseRedirect}}/{{artlistId}}">
+            </app-c-museu-button>
+        </div>
+    </div>
+
+    <form [formGroup]="editListForm">
+        <div class="inputs-container">
+
+            <div class="align-inputs-col">
+                <div class="labeled-input">
+                    <label class="label" for="listName">Nombre</label>
+                    <input class="input text" type="text" id="listName" name="listName" formControlName="listName"><br>
+                </div>
+            
+                <div class="labeled-input">
+                    <label class="label" for="listAddArtwork">Añadir obra</label>
+                    <app-c-search-filter 
+                        [searchResult]="data"
+                        [editListOptions]="data?.editListOptions"
+                        mode="artlist-edit"
+                        type="nameFilter"
+                        (updateData)="updateData($event)"> <!--TODO: Sacar mode a una constante-->
+                    </app-c-search-filter>
+                </div>
             </div>
-        
-            <div class="inputs-container__align">
-                <label class="label" for="listDescription">Descripción</label>
-                <textarea class="input textarea" rows="4" cols="50" id="listDescription" name="listDescription" formControlName="listDescription" ></textarea>
+
+            <div class="align-inputs-row">
+                <div class="labeled-input">
+                    <label class="label" for="listDescription">Descripción</label>
+                    <textarea class="input textarea" rows="4" cols="50" id="listDescription" name="listDescription" formControlName="listDescription" ></textarea>
+                </div>
+
+                <app-c-image-uploader [colMode]="true" (setImage)="setCoverImage($event)"></app-c-image-uploader>
             </div>
         </div>
-
-        <app-c-image-uploader (setImage)="setCoverImage($event)"></app-c-image-uploader>
     </form>
     
 
-    <div class="grid">
-    <div class="grid__cards">
-        <app-c-artwork-card 
-            *ngFor="let artwork of data?.artworks | paginate: { itemsPerPage: 13, currentPage: page }"
-            [data]="artwork"
-            [seen]="artwork.seen"
-            [editMode]="editMode"
-            [userRating]=""
-            (deleteArtwork)="deleteArtwork($event)">
-        </app-c-artwork-card>
+    <div class="page">
+        <div class="grid">
+            <div class="grid__cards">
+                <app-c-artwork-card 
+                    *ngFor="let artwork of data?.artworks | paginate: { itemsPerPage: 24, currentPage: page }"
+                    [data]="artwork"
+                    [seen]="artwork.seen"
+                    [userRating]="artwork.userRating">
+                </app-c-artwork-card>
+            </div>
+        </div>
     </div>
 
-    <pagination-controls class="pagination" (pageChange)="page = $event"></pagination-controls>
+    <hr class="pagination-divider">
 </div>
-</div>
+
+<pagination-controls class="pagination" (pageChange)="page = $event"></pagination-controls>

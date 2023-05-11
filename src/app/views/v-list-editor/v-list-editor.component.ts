@@ -58,17 +58,18 @@ export class VListEditorComponent implements OnInit {
     });
   }
 
-  loadData(data){
-    this.data = data;
-  }
-
   updateData(event){
+    this.page = 1;
     this.artlistService
     .getListToEdit(this.artlistId, { currentArtworks: [...this.data.artworks, event.data] })  //Los artworks actuales + el nuevo
     .pipe(
       tap(data => this.loadData(data))
     )
     .subscribe();
+  }
+
+  loadData(data){
+    this.data = data;
   }
 
   setCoverImage(event){

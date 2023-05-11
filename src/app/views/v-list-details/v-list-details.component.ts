@@ -57,7 +57,7 @@ export class VListDetailsComponent implements OnInit {
       this.artlistService.getListContent(this.artlistId, this.params).subscribe(data => {
         const { listName, listDescription } = data;
         this.listName = listName;
-        this.listDescription = listDescription;
+        this.listDescription = listDescription.replace(/\n/g, '<br>');
         this.loadData(data);
         this.setProgressBar(data);
       });

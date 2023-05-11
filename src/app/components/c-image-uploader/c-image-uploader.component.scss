@@ -4,9 +4,16 @@
   }
 }
 
-.upload-container {
+.upload-container-row {
   display: flex;
   align-items: center;
+  gap: 20px;
+}
+
+.upload-container-col {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   gap: 20px;
 }
 
