@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArtlistService } from 'src/app/services/artlist.service';
 import * as Leaflet from 'leaflet';
 import { AuthService } from 'src/app/services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CDialogComponent } from 'src/app/components/c-dialog/c-dialog.component';
 
 Leaflet.Icon.Default.imagePath = 'assets/';
 @Component({
@@ -30,7 +32,14 @@ export class VListDetailsComponent implements OnInit {
   listDescription: string
   params
 
-  constructor(private route: ActivatedRoute, private router: Router, private artlistService: ArtlistService, private authService: AuthService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private artlistService: ArtlistService,
+    private authService: AuthService,
+    private dialog: MatDialog,
+    private zone: NgZone
+  ) { }
 
   ngOnInit(): void {
     const user = this.authService.userMe()
@@ -96,28 +105,19 @@ export class VListDetailsComponent implements OnInit {
       return markers;
     }, []);
 
-    markersByMuseum.forEach((data, index) => {
-      const marker = this.generateMarker(data, index);
+    markersByMuseum.forEach((data) => {
+      const marker = this.generateMarker(data);
+      marker.addEventListener("click", ()=> {this.zone.run(() => this.openMapMuseumDialog(data))});
       this.map.addLayer(marker);
       this.markers.push(marker);
     });
   }
 
-  generateMarker(data: any, index: number) {
-    return Leaflet.marker(data.position).on('click', (event) => this.markerClicked(data, index))
+  generateMarker(data: any) {
+    return Leaflet.marker(data.position)
   }
 
-  markerClicked($event: any, index: number) {
-    //TODO: Hacer visible el Modal que muestra las obras de ese museo
-    console.log($event);
-  }
-
-  redirectToEdit(){
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
-      this.router.navigate([`/profile/${this.currentUser}/lists/${this.artlistId}/edit`])
-    );
-  }
-
+  /*HEADER BUTTONS*/
   handleResetFilters() {
     const filterToReset = ['filter1', 'filter2', 'filter3', 'filter4'];
     this.resetFilters(filterToReset);
@@ -138,6 +138,22 @@ export class VListDetailsComponent implements OnInit {
   }
 
   navigateToLists() {
-    //this.router.navigate([this.router.url, 'lists']);
+    this.router.navigate([this.router.url.replace(/\/\d+$/, '')]);
+  }
+
+  navigateToEdit(){
+    this.router.navigate([`/profile/${this.currentUser}/lists/${this.artlistId}/edit`])
+  }
+
+  /*DIALOG*/
+  openMapMuseumDialog(dialogData) {
+    this.dialog.open(CDialogComponent,{
+      data:{
+        type: "map",
+        museum: dialogData.museum,
+        artworks: dialogData.artworks
+      },
+      autoFocus: true
+    });
   }
 }

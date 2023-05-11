@@ -128,7 +128,7 @@ export class VArtworkDetailsComponent implements OnInit {
   openAddToListDialog() {
     this.dialog.open(CDialogComponent,{
       data:{
-        type: "list",
+        type: "add-list",
         userId: this.currentUser,
         artworkId: this.artwork.id
       },

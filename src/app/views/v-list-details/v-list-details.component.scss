@@ -67,6 +67,7 @@
 .grid {
     display: flex;
     justify-content: center;
+    margin-right: 3rem;
   
     &__cards{
       margin-top: 3rem;
@@ -140,7 +141,7 @@
 
   .pagination {
     margin-right: 2.5rem;
-    top: 75rem;
+    top: 56rem;
   }
 
   .grid {
@@ -152,8 +153,11 @@
   }
 
   .search-header{
-    gap: 3rem;
+    gap: 1rem;
     height: 4rem;
+  }
+  .profile-header-buttons{
+    gap: 0.5;
   }
 
   .pagination-divider{
@@ -164,6 +168,14 @@
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   .search-header{
     gap: 38.5rem;
+  }
+
+  .pagination-divider{
+    top: 65.5rem;
+  }
+
+  .pagination {
+    top: 1rem;
   }
 }
 
@@ -211,7 +223,6 @@ sup {
 
 .edit-button{
   cursor: pointer;
-  margin-top: 30px;
   display: block;
   height: 16px;
   width: 16px;

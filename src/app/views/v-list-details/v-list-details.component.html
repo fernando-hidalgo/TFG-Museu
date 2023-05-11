@@ -7,7 +7,7 @@
         <div class="profile-header-buttons">
             <div *ngIf="data?.artworks.length && currentUser" class="list-progress">
                 <span class="watched">
-                    Has visto {{totalSeen}} de {{data?.artworks.length}} obras
+                    Vistas {{totalSeen}} / {{data?.artworks.length}}
                 </span>
     
                 <div class="progress-and-percentage">
@@ -34,6 +34,9 @@
                 colorMode="gray"
                 (click)="handleResetFilters()">
             </app-c-museu-button>
+
+            
+            <span *ngIf="canEdit" class="edit-button" (click)="navigateToEdit()"></span>
         </div>
     </div>
     

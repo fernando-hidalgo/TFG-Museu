@@ -17,6 +17,10 @@ export class CDialogComponent implements OnInit {
   type: string;
   artworkId: number;
 
+  //Map Dialog
+  museum: string
+  artworksInMuseum: string[]
+
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: any,
     private fb: FormBuilder,
@@ -33,12 +37,15 @@ export class CDialogComponent implements OnInit {
         reviewArea: data.rating.text
       });
 
-    } else if (this.type === 'list') {
+    } else if (this.type === 'add-list') {
       this.artlistService.getUserLists(data.userId).subscribe(res => {
         this.artworkId = data.artworkId
         //Se eliminan las listas que ya tienen la presente obra añadida
         this.lists = res.filter(list => !list.artworks.some(artwork => artwork.id === data.artworkId));
       })
+    } else if (this.type === 'map') {
+      this.museum = data.museum;
+      this.artworksInMuseum = data.artworks
     }
   }
 
