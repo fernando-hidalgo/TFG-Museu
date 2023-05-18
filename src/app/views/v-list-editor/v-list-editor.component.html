@@ -62,6 +62,8 @@
             <div class="grid__cards">
                 <app-c-artwork-card 
                     *ngFor="let artwork of data?.artworks | paginate: { itemsPerPage: 24, currentPage: page }"
+                    [editMode]="editMode"
+                    (deleteArtwork)="deleteArtwork($event)"
                     [data]="artwork"
                     [seen]="artwork.seen"
                     [userRating]="artwork.userRating">
