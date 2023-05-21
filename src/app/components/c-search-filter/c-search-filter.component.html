@@ -10,12 +10,15 @@
     >
 
     <div *ngIf=" showOptions " class="filter__dropdown" id="{{type}}-dropdown" (mousemove)="dropdownBounds($event)">
-        <div class="filter__dropdown__results" *ngIf="(filter?.length > 0 && mode != 'artlist-edit') || (editListOptions?.length > 0 && mode == 'artlist-edit')">
-            <span *ngFor="let option of (mode != 'artlist-edit' ? filter : editListOptions)"
-                    class="filter__dropdown__results__option"
-                    (click)="filterSetOption(option.name || option, option.id || null)">
-                {{option.name || option}}
-            </span>
+        
+        <div 
+            *ngIf="(filter?.length > 0 && mode != filterMode.ARTLIST_EDIT) || (editListOptions?.length > 0 && mode == filterMode.ARTLIST_EDIT)"
+            class="filter__dropdown__results">
+                <span *ngFor="let option of (mode != filterMode.ARTLIST_EDIT ? filter : editListOptions)"
+                        class="filter__dropdown__results__option"
+                        (click)="filterSetOption(option.name || option, option.id || null)">
+                    {{option.name || option}}
+                </span>
         </div>
 
         <span *ngIf=" filter?.length === 0 || editListOptions?.length === 0"

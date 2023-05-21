@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ArtworkService } from 'src/app/services/artwork.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
+import { buttonColorMode, filterMode, filterToReset, filterType } from 'src/constants';
 
 @Component({
   selector: 'app-v-profile',
@@ -10,11 +11,17 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./v-profile.component.scss']
 })
 export class VProfileComponent implements OnInit {
-  currentUser: number
+  //CONSTANTS
+  filterToReset = filterToReset;
+  filterMode = filterMode;
+  filterType = filterType;
+  buttonColorMode = buttonColorMode
+
+  currentUser: number;
   page: number = 1;
   data;
   profileId: number;
-  userNickname
+  userNickname: string;
   params = {}
 
   constructor(
@@ -77,7 +84,6 @@ export class VProfileComponent implements OnInit {
   }
   
   handleResetFilters() {
-    const filterToReset = ['filter1', 'filter2', 'filter3', 'filter4'];
     this.resetFilters(filterToReset);
     this.getArtworksRatedByUser(this.profileId, this.params)
   }

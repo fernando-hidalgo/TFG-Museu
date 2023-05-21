@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ArtlistService } from 'src/app/services/artlist.service';
 import { ArtworkService } from 'src/app/services/artwork.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { filterMode } from 'src/constants';
 
 @Component({
   selector: 'app-c-search-filter',
@@ -16,6 +17,8 @@ export class CSearchFilterComponent implements OnInit {
   @Input() mode;
   @Input() editListOptions;
   @Output("updateData") updateData: EventEmitter<any> = new EventEmitter();
+
+  filterMode = filterMode;
 
   timeout = null;
   showOptions: boolean = false;
@@ -57,7 +60,7 @@ export class CSearchFilterComponent implements OnInit {
 
   filterLimitOptions(text){
     //Copia de los datos, para aplicarles cambios sin perder el original
-    this.mode == "artlist-edit" ?
+    this.mode == filterMode.ARTLIST_EDIT ?
       this.editListOptions = this.searchResult.editListOptions.filter(obj => obj.name.toLowerCase().includes(text.toLowerCase()))
     :
       this.filter = this.searchResult[this.type].filter(str => str.toLowerCase().includes(text.toLowerCase()));
@@ -65,8 +68,8 @@ export class CSearchFilterComponent implements OnInit {
 
   filterSetOption(option, id){
     const inputElement = document.getElementById(this.type) as HTMLInputElement;
-    inputElement.value = this.mode === "artlist-edit" ? "" : option;
-    inputElement.style.pointerEvents = this.mode === "artlist-edit" ? "auto" : "none";
+    inputElement.value = this.mode === filterMode.ARTLIST_EDIT ? "" : option;
+    inputElement.style.pointerEvents = this.mode === filterMode.ARTLIST_EDIT ? "auto" : "none";
 
     this.selectedId = id;
     this.findFiltered()
@@ -81,7 +84,7 @@ export class CSearchFilterComponent implements OnInit {
       if (value) params[field] = value;
     }
 
-    if (this.mode === "search") {
+    if (this.mode === filterMode.SEARCH) {
       if (this.currentUser) params['currentUserId'] = this.currentUser
 
       this.artworkService.findFiltered(params).subscribe(data => {
@@ -89,7 +92,7 @@ export class CSearchFilterComponent implements OnInit {
       });
     }
 
-    if (this.mode === "profile") {
+    if (this.mode === filterMode.PROFILE) {
       this.route.params.subscribe(async urlParams => {
         let profileId = urlParams['userId']
 
@@ -107,7 +110,7 @@ export class CSearchFilterComponent implements OnInit {
       });
     }
 
-    if(this.mode === "artlist") {
+    if(this.mode === filterMode.ARTLIST) {
       this.route.params.subscribe(async urlParams => {
         let artlistId = urlParams['artlistId']
         if (this.currentUser) params['currentUserId'] = this.currentUser
@@ -118,7 +121,7 @@ export class CSearchFilterComponent implements OnInit {
       });
     }
 
-    if(this.mode === "artlist-edit"){
+    if(this.mode === filterMode.ARTLIST_EDIT){
       this.artworkService.getArtworkById(this.selectedId).subscribe(data => {
         this.updateData.emit({ data });
       });

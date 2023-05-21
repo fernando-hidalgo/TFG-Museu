@@ -12,13 +12,13 @@
             
             <app-c-museu-button 
                 [text]="literals.buttonDelete"
-                colorMode="red" 
+                [colorMode]="buttonColorMode.RED"
                 (click)="deleteList()">
-            </app-c-museu-button> <!--TODO: El router debe estar el botón de modal de confirmación"-->
+            </app-c-museu-button>
             
             <app-c-museu-button 
                 [text]="literals.buttonCancel"
-                colorMode="gray" 
+                [colorMode]="buttonColorMode.GRAY"
                 routerLink="{{baseRedirect}}/{{artlistId}}">
             </app-c-museu-button>
         </div>
@@ -38,9 +38,9 @@
                     <app-c-search-filter 
                         [searchResult]="data"
                         [editListOptions]="data?.editListOptions"
-                        mode="artlist-edit"
-                        type="nameFilter"
-                        (updateData)="updateData($event)"> <!--TODO: Sacar mode a una constante-->
+                        [mode]="filterMode.ARTLIST_EDIT"
+                        [type]="filterType.NAME_FILTER"
+                        (updateData)="updateData($event)">
                     </app-c-search-filter>
                 </div>
             </div>

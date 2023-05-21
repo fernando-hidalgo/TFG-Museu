@@ -5,6 +5,7 @@ import * as Leaflet from 'leaflet';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CDialogComponent } from 'src/app/components/c-dialog/c-dialog.component';
+import { buttonColorMode, filterMode, filterToReset, filterType } from 'src/constants';
 
 Leaflet.Icon.Default.imagePath = 'assets/';
 @Component({
@@ -13,6 +14,12 @@ Leaflet.Icon.Default.imagePath = 'assets/';
   styleUrls: ['./v-list-details.component.scss']
 })
 export class VListDetailsComponent implements OnInit {
+  //CONSTANTS
+  filterToReset = filterToReset;
+  filterMode = filterMode;
+  filterType = filterType;
+  buttonColorMode = buttonColorMode
+
   data
   page: number = 1;
   progress: number;
@@ -119,7 +126,6 @@ export class VListDetailsComponent implements OnInit {
 
   /*HEADER BUTTONS*/
   handleResetFilters() {
-    const filterToReset = ['filter1', 'filter2', 'filter3', 'filter4'];
     this.resetFilters(filterToReset);
     this.artlistService.getListContent(this.artlistId, this.params).subscribe(data => {
       this.loadData(data);

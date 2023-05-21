@@ -101,7 +101,6 @@ export class CRatingStarsComponent implements OnInit {
     document.getElementById("stars-slider-hover").style.width = "0px";
     this.disabled = false;
 
-    //TODO: Esta petición debe estar realmente en un modal de confirmación
     this.ratingService.deleteRating(this.curretUserRating.id).subscribe(() => {
       const ratingId = this.curretUserRating.id
       this.curretUserRating = null;

@@ -4,7 +4,7 @@
         <h1>Buscador General</h1>
         <app-c-museu-button
             text="Reiniciar"
-            colorMode="gray"
+            [colorMode]="buttonColorMode.GRAY"
             (click)="handleResetFilters()">
         </app-c-museu-button>
     </div>
@@ -13,36 +13,36 @@
         <app-c-search-filter style="z-index: 1004;"
             [searchResult]="data"
             [filter]="data?.nameFilter.sort()"
-            id="filter1"
-            mode="search"
-            type="nameFilter"
-            (updateData)="updateData($event)"> <!--TODO: Sacar mode a una constante-->
+            [id]="filterToReset[0]"
+            [mode]="filterMode.SEARCH"
+            [type]="filterType.NAME_FILTER"
+            (updateData)="updateData($event)">
         </app-c-search-filter>
     
         <app-c-search-filter style="z-index: 1003;" 
             [searchResult]="data"
             [filter]="data?.artistFilter.sort()"
-            mode="search"
-            id="filter2"
-            type="artistFilter"
+            [mode]="filterMode.SEARCH"
+            [id]="filterToReset[1]"
+            [type]="filterType.ARTIST_FILTER"
             (updateData)="updateData($event)">
         </app-c-search-filter>
         
         <app-c-search-filter style="z-index: 1002;"
             [searchResult]="data"
             [filter]="data?.styleFilter.sort()"
-            mode="search"
-            id="filter3"
-            type="styleFilter"
+            [mode]="filterMode.SEARCH"
+            [id]="filterToReset[2]"
+            [type]="filterType.STYLE_FILTER"
             (updateData)="updateData($event)">
         </app-c-search-filter>
         
         <app-c-search-filter style="z-index: 1001;"
             [searchResult]="data"
             [filter]="data?.museumFilter.sort()"
-            mode="search"
-            id="filter4"
-            type="museumFilter"
+            [mode]="filterMode.SEARCH"
+            [id]="filterToReset[3]"
+            [type]="filterType.MUSEUM_FILTER"
             (updateData)="updateData($event)">
         </app-c-search-filter>
     </div>

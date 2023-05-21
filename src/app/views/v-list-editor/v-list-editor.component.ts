@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { of, switchMap, tap } from 'rxjs';
 import { ArtlistService } from 'src/app/services/artlist.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { buttonColorMode, filterMode, filterType } from 'src/constants';
 
 @Component({
   selector: 'app-v-list-editor',
@@ -11,6 +12,11 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./v-list-editor.component.scss']
 })
 export class VListEditorComponent implements OnInit {
+  //CONSTANTS
+  filterMode = filterMode;
+  filterType = filterType;
+  buttonColorMode = buttonColorMode
+
   data
   page: number = 1;
   editMode: boolean = true;
@@ -114,7 +120,6 @@ export class VListEditorComponent implements OnInit {
   }
 
   deleteList(){
-    //TODO: Debe abrir un modal de aviso, mover la lógica aqui presente a ese modal
     this.artlistService.deleteList(this.artlistId).subscribe(() => {
       this.redirectTo(this.baseRedirect)
     });

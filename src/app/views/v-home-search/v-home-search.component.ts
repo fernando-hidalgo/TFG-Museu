@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtworkService } from 'src/app/services/artwork.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { buttonColorMode, filterMode, filterToReset, filterType } from 'src/constants';
 
 @Component({
   selector: 'app-v-home-search',
@@ -9,9 +10,15 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 
 export class VHomeSearchComponent implements OnInit {
+  //CONSTANTS
+  filterToReset = filterToReset;
+  filterMode = filterMode;
+  filterType = filterType;
+  buttonColorMode = buttonColorMode
+
   data: any;
   page: number = 1;
-  currentUser: number
+  currentUser: number;
 
   constructor(private artworkService: ArtworkService, private authService: AuthService) { }
 
@@ -50,7 +57,7 @@ export class VHomeSearchComponent implements OnInit {
   }
   
   handleResetFilters() {
-    const filterToReset = ['filter1', 'filter2', 'filter3', 'filter4'];
+    this.page = 1;
     this.resetFilters(filterToReset);
     this.getAllArtworks();
   }
