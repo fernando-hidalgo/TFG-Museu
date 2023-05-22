@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { HOST } from "src/constants";
 import { AppEndpoints } from "../app.endpoints";
+import jwt_decode from "jwt-decode";
 
 @Injectable({
     providedIn: 'root'
@@ -39,9 +40,13 @@ export class AuthService {
         return false;
     }
 
+    isAdmin(){
+        return this.userMe()?.roles.includes('admin')
+    }
+
     userMe() {
         if (!this.isLogged()) return null;
-        const { id, nickname } = JSON.parse(atob(this.getToken().split('.')[1]));
-        return { authId: id, nickname };
+        var decoded = jwt_decode(this.getToken());
+        return { authId: decoded['id'], nickname: decoded['nickname'], roles: decoded['roles'] };
     }
 }

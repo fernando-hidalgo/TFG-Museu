@@ -12,16 +12,19 @@ import { ProfileGuard } from './guards/profile.guard';
 import { ListGuard } from './guards/list.guard';
 import { ListEditGuard } from './guards/list-edit.guard';
 import { ArtworksGuard } from './guards/artworks.guard';
+import { VAdminScrapingComponent } from './views/v-admin-scraping/v-admin-scraping.component';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
-  {path:'', component: VHomeSearchComponent},
-  {path:'search', component: VHomeSearchComponent},
+  {path:'', component: VHomeSearchComponent, canActivate: [AdminGuard]},
+  {path:'search', component: VHomeSearchComponent, canActivate: [AdminGuard]},
   {path:'login', component: VLoginSignupComponent, canActivate: [LoginGuard]},
-  {path:'artwork/:artworkId', component: VArtworkDetailsComponent, canActivate: [ArtworksGuard]},
-  {path:'profile/:userId', component: VProfileComponent, canActivate: [ProfileGuard]},
-  {path:'profile/:userId/lists', component: VListsComponent, canActivate: [ProfileGuard]},
-  {path:'profile/:userId/lists/:artlistId', component: VListDetailsComponent, canActivate: [ProfileGuard, ListGuard]},
-  {path:'profile/:userId/lists/:artlistId/edit', component: VListEditorComponent, canActivate: [ProfileGuard, ListGuard, ListEditGuard]}
+  {path:'artwork/:artworkId', component: VArtworkDetailsComponent, canActivate: [ArtworksGuard, AdminGuard]},
+  {path:'profile/:userId', component: VProfileComponent, canActivate: [ProfileGuard, AdminGuard]},
+  {path:'profile/:userId/lists', component: VListsComponent, canActivate: [ProfileGuard, AdminGuard]},
+  {path:'profile/:userId/lists/:artlistId', component: VListDetailsComponent, canActivate: [ProfileGuard, ListGuard, AdminGuard]},
+  {path:'profile/:userId/lists/:artlistId/edit', component: VListEditorComponent, canActivate: [ProfileGuard, ListGuard, ListEditGuard, AdminGuard]},
+  {path:'admin', component: VAdminScrapingComponent, canActivate: [AdminGuard]}
 ];
 
 @NgModule({

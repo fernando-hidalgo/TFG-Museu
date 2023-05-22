@@ -21,6 +21,9 @@ export class AppEndpoints {
     public static USER_NICKNAME = '/user/nickname/'
     public static USER_ACCOUNT_EXISTS = '/user/acount-exists'
 
+    public static SCRAPING_THYSSEN = '/scraping/thyssen'
+    public static SCRAPING_PICASSO = '/scraping/picasso'
+
     public static LOGIN = '/auth/login'
     public static REFRESH = '/auth/refresh'
 }

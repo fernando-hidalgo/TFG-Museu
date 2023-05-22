@@ -1,0 +1,21 @@
+<div class="admin-view">
+    <div class="button-container">
+        <app-c-museu-button 
+            text="Scraping Thyssen"
+            [disabled]="loading"
+            (click)="scrapingThyssen()">
+        </app-c-museu-button>
+
+        <app-c-museu-button 
+            text="Scraping Picasso"
+            [disabled]="loading"
+            (click)="scrapingPicasso()">
+        </app-c-museu-button>
+    </div>
+
+    <div *ngIf="loading" class="spinner-container">
+        <div class="spinner"></div>
+    </div>
+      
+    <span *ngIf="!loading" class="scraping-result">{{resultMessage}}</span>
+</div>

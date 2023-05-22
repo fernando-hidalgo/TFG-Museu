@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { filter, map, switchMap, tap } from 'rxjs';
+import { filter, switchMap, tap } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { NavbarService } from 'src/app/services/navbar.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class CCredentialsBoxComponent implements OnInit {
   @Input() literals;
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private userService: UserService, private router: Router) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private userService: UserService, private router: Router, private navbarService: NavbarService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -44,7 +45,15 @@ export class CCredentialsBoxComponent implements OnInit {
       switchMap(() => this.authService.login({nick_or_mail, password}))
     ).subscribe(logged => {
       this.authService.setToken(logged['token'])
-      this.router.navigate(['/search'])
+
+      this.navbarService.reloadNavbar();
+
+      if(this.authService.userMe().roles.includes('admin')) {
+        this.router.navigate(['/admin'])
+      } else {
+        this.router.navigate(['/search'])
+      }
+      
     });
   }
 

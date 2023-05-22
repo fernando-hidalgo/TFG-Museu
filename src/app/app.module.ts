@@ -32,6 +32,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { CImageUploaderComponent } from './components/c-image-uploader/c-image-uploader.component';
 import { interceptorProvider } from './interceptors/common.interceptor';
 import { SimplebarAngularModule } from 'simplebar-angular';
+import { VAdminScrapingComponent } from './views/v-admin-scraping/v-admin-scraping.component';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { SimplebarAngularModule } from 'simplebar-angular';
     VListsComponent,
     VListDetailsComponent,
     VListEditorComponent,
+    VAdminScrapingComponent
   ],
   imports: [
     BrowserModule,
