@@ -15,11 +15,11 @@ export class ArtworksGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.artworkService.getArtworkById(route.params['artworkId']).pipe(
       map(res => {
-        if (!res) this.router.navigate(['/search']); //TODO: Vista de error
+        if (!res) this.router.navigate(['/search']);
         return !!res;
       }),
       catchError(() => {
-        this.router.navigate(['/search']); //TODO: Vista de error
+        this.router.navigate(['/search']);
         return of(false);
       })
     );

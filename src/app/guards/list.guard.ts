@@ -23,27 +23,27 @@ export class ListGuard implements CanActivate {
     return this.userService.getUserById(userId).pipe(
       switchMap(userExists => {
         if (!userExists) {
-          this.router.navigate(['/search']); //TODO: Vista de error
+          this.router.navigate(['/search']);
           return of(false);
         }
 
         return this.artlistService.getListById(listId).pipe(
           map(listExists => {
             if (!listExists) {
-              this.router.navigate(['/search']); //TODO: Vista de error
+              this.router.navigate(['/search']);
               return false;
             }
 
             return true;
           }),
           catchError(() => {
-            this.router.navigate(['/search']); //TODO: Vista de error
+            this.router.navigate(['/search']);
             return of(false);
           })
         );
       }),
       catchError(() => {
-        this.router.navigate(['/search']); //TODO: Vista de error
+        this.router.navigate(['/search']);
         return of(false);
       })
     );

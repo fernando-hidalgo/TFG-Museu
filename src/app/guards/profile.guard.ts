@@ -15,7 +15,7 @@ export class ProfileGuard implements CanActivate {
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.userService.getUserById(next.params['userId']).pipe(
       map(exists => {
-        if (!exists) this.router.navigate(['/search']); //TODO: Vista de error
+        if (!exists) this.router.navigate(['/search']);
         return exists;
       })
     );

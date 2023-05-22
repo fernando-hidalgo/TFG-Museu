@@ -26,7 +26,7 @@ export class ListEditGuard implements CanActivate {
       const isOwner = this.authService.userMe()?.authId == ownerId;
   
       if (!isLogged || !isOwner) {
-        this.router.navigate(['/search']); // TODO: Vista de error
+        this.router.navigate(['/search']);
         return false;
       }
     }
