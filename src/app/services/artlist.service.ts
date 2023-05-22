@@ -32,6 +32,10 @@ export class ArtlistService {
         return this.httpClient.get(`${HOST}${AppEndpoints.ARTLIST_SEARCH}${artlistId}`, {params});
     }
 
+    public createList(body) {
+        return this.httpClient.post(`${HOST}${AppEndpoints.ARTLIST}`, body);
+    }
+
     public updateList(artlistId: number, body) {
         return this.httpClient.put(`${HOST}${AppEndpoints.ARTLIST}${artlistId}`, body);
     }

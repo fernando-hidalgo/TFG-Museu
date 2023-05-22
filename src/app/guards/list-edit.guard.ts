@@ -16,6 +16,7 @@ export class ListEditGuard implements CanActivate {
     private router: Router
   ) {}
   
+  //Comprueba si el usuario está autenticado y es dueño de la lista a editar
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const ownerId = next.params['userId'];
     const isEditRoute = state.url.includes('/edit');

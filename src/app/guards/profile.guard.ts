@@ -11,6 +11,7 @@ export class ProfileGuard implements CanActivate {
 
   constructor(private userService: UserService, private router: Router) { }
 
+  //Comprueba si ese perfil existe
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.userService.getUserById(next.params['userId']).pipe(
       map(exists => {

@@ -41,4 +41,18 @@ export class VListsComponent implements OnInit {
   navigateToProfile(){
     this.router.navigate(['/profile', this.userId]);
   }
+
+  createNewList(){
+    const body = {
+      name: 'Nueva lista',
+      text: '',
+      userId: this.currentUser
+    }
+
+    this.artlistService.createList(body).subscribe(() => {
+      this.artlistService.getUserLists(this.userId).subscribe(data => {
+        this.lists = data
+      })
+    })
+  }
 }

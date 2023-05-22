@@ -15,6 +15,7 @@ export class ListGuard implements CanActivate {
     private router: Router
   ) {}
 
+  //Compureba si la lista existe
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     const userId = next.params['userId'];
     const listId = next.params['artlistId'];
