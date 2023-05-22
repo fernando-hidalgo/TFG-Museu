@@ -1,5 +1,5 @@
 import { Component, NgZone, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { ArtlistService } from 'src/app/services/artlist.service';
 import * as Leaflet from 'leaflet';
 import { AuthService } from 'src/app/services/auth.service';
@@ -38,6 +38,7 @@ export class VListDetailsComponent implements OnInit {
   listName: string
   listDescription: string
   params
+  dialogRef
 
   constructor(
     private route: ActivatedRoute,
@@ -51,6 +52,13 @@ export class VListDetailsComponent implements OnInit {
   ngOnInit(): void {
     const user = this.authService.userMe()
     this.currentUser = user?.authId
+
+    //Cierra el dialogo si se hacen cambios de vista con el navbar
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart && this.dialogRef) {
+        this.dialogRef.close();
+      }
+    });
     
     this.route.params.subscribe(async urlParams => {
       this.params = {}
@@ -153,7 +161,7 @@ export class VListDetailsComponent implements OnInit {
 
   /*DIALOG*/
   openMapMuseumDialog(dialogData) {
-    this.dialog.open(CDialogComponent,{
+    this.dialogRef = this.dialog.open(CDialogComponent,{
       data:{
         type: "map",
         museum: dialogData.museum,

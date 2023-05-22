@@ -15,7 +15,13 @@ export class CCredentialsBoxComponent implements OnInit {
   @Input() literals;
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private userService: UserService, private router: Router, private navbarService: NavbarService) { }
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private userService: UserService,
+    private router: Router,
+    private navbarService: NavbarService
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({

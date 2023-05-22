@@ -14,9 +14,9 @@ export class CListCardComponent implements OnInit {
   constructor(private artlistService: ArtlistService) { }
 
   ngOnInit(): void {
-    this.artlistService.getCover(this.data.id).subscribe((data) => {
-      this.cover = data['url']
-    })
+    //this.artlistService.getCover(this.data.id).subscribe((data) => {
+    //  this.cover = data['url']
+    //})
   }
 
 }

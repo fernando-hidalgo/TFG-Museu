@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { CDialogComponent } from 'src/app/components/c-dialog/c-dialog.component';
 import { ArtworkService } from 'src/app/services/artwork.service';
@@ -23,8 +23,11 @@ export class VArtworkDetailsComponent implements OnInit {
   curretUserRating;
   disableReview: boolean;
 
+  dialogRef
+
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private artworkService: ArtworkService,
     private ratingService: RatingService,
     private authService: AuthService,
@@ -33,6 +36,13 @@ export class VArtworkDetailsComponent implements OnInit {
 
   async ngOnInit() {
     this.currentUser = this.authService.userMe()?.authId
+
+    //Cierra el dialogo si se hacen cambios de vista con el navbar
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart && this.dialogRef) {
+        this.dialogRef.close();
+      }
+    });
 
     this.route.params.subscribe(async params => {
       let artworkId = params['artworkId']
@@ -109,7 +119,7 @@ export class VArtworkDetailsComponent implements OnInit {
   }
 
   openReviewDialog() {
-    const dialogRef = this.dialog.open(CDialogComponent,{
+    this.dialogRef = this.dialog.open(CDialogComponent,{
       data:{
         type: "review",
         rating: this.curretUserRating,
@@ -117,7 +127,7 @@ export class VArtworkDetailsComponent implements OnInit {
       autoFocus: false
     });
 
-    dialogRef.afterClosed().subscribe((result: string) => {
+    this.dialogRef.afterClosed().subscribe((result: string) => {
       if (result) {
         this.curretUserRating = result
         this.ratings[0] = result //El primer rating siempre es del usuario logueado
@@ -126,7 +136,7 @@ export class VArtworkDetailsComponent implements OnInit {
   }
 
   openAddToListDialog() {
-    this.dialog.open(CDialogComponent,{
+    this.dialogRef = this.dialog.open(CDialogComponent,{
       data:{
         type: "add-list",
         userId: this.currentUser,
