@@ -20,8 +20,8 @@ export class UserService {
         return this.httpClient.get(`${HOST}${AppEndpoints.USER_NICKNAME}${id}`) as Observable<boolean>;
     }
 
-    public getUserByFields(params): Observable<Boolean> {
-        return this.httpClient.get(`${HOST}${AppEndpoints.USER_BY_FIELD}`, {params}) as Observable<Boolean>;
+    public userAvailable(params): Observable<Boolean> {
+        return this.httpClient.get(`${HOST}${AppEndpoints.USER_AVAILABLE}`, {params}) as Observable<Boolean>;
     }
 
     public checkUserAccountExists(params): Observable<Object> {

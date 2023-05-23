@@ -95,7 +95,7 @@ export function checkAvailability(userService: any, field: string): AsyncValidat
     const queryParam = {};
     queryParam[field] = control.value;
 
-    return userService.getUserByFields(queryParam)
+    return userService.userAvailable(queryParam)
       .pipe(
         map(isAvailable => isAvailable ? null : {taken: true})
       );

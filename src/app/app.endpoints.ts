@@ -13,11 +13,11 @@ export class AppEndpoints {
     public static ARTLIST_OF_USER = '/art-list/user/'
     public static ARTLIST_TO_EDIT = '/art-list/edit/'
     public static ARTLIST_COVER_IMAGE = '/art-list/cover/'
-    public static ADD_TO_LIST_MODAL = '/art-list/add-list-modal/'
+    public static ADD_TO_LIST_MODAL = '/art-list/modal/'
 
     public static USER = '/user/'
     public static CREATE_REGULAR_USER = '/user/create-regular-user'
-    public static USER_BY_FIELD = '/user/fields'
+    public static USER_AVAILABLE = '/user/available'
     public static USER_NICKNAME = '/user/nickname/'
     public static USER_ACCOUNT_EXISTS = '/user/acount-exists'
 
