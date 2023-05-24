@@ -4,10 +4,16 @@ import { Subject } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class NavbarService {
   private reloadNavbarSubject = new Subject<void>();
+  private reloadProfilePicSubject = new Subject<void>();
 
   reloadNavbar$ = this.reloadNavbarSubject.asObservable();
+  reloadProfilePic$ = this.reloadProfilePicSubject.asObservable();
 
   reloadNavbar() {
     this.reloadNavbarSubject.next();
+  }
+
+  reloadProfilePic() {
+    this.reloadProfilePicSubject.next();
   }
 }

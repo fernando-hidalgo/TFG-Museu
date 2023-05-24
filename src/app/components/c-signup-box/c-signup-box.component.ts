@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { map, switchMap } from 'rxjs/operators';
+import { finalize, map, switchMap, tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
+import { NavbarService } from 'src/app/services/navbar.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -15,7 +16,13 @@ export class CSignupBoxComponent implements OnInit {
   profileImage
   signupForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private userService: UserService, private authService: AuthService, private router: Router) { }
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private authService: AuthService,
+    private router: Router,
+    private navbarService: NavbarService
+  ) { }
 
   ngOnInit(): void {
 
@@ -66,13 +73,16 @@ export class CSignupBoxComponent implements OnInit {
   signupUser(){
     let { nickname, email, password } = this.signupForm.value;
 
-    //TODO: Falta la subida de la imagen de perfil
+    const profileImageToSave = new FormData();
+    profileImageToSave.append('file', this.profileImage);
 
-    this.userService.createUser({ nickname, email, password }).pipe(
-      switchMap(() => this.authService.login({ nick_or_mail: nickname, password }))
-    ).subscribe(logged => {
-      this.authService.setToken(logged['token'])
-      this.router.navigate(['/search'])
+    this.userService.createUser({ nickname, email, password }).subscribe(userId => {
+      this.userService.saveProfilePic(userId, profileImageToSave).subscribe(() => {
+        this.authService.login({ nick_or_mail: nickname, password }).subscribe(logged => {
+          this.authService.setToken(logged['token'])
+          this.router.navigate(['/search'])
+        })
+      })
     });
   }
 

@@ -28,7 +28,15 @@ export class UserService {
         return this.httpClient.get(`${HOST}${AppEndpoints.USER_ACCOUNT_EXISTS}`, {params});
     }
 
-    public createUser(body): Observable<Object> {
-        return this.httpClient.post(`${HOST}${AppEndpoints.CREATE_REGULAR_USER}`, body);
+    public createUser(body): Observable<number> {
+        return this.httpClient.post(`${HOST}${AppEndpoints.CREATE_REGULAR_USER}`, body) as Observable<number>;
+    }
+
+    public saveProfilePic(userId: number, file){
+        return this.httpClient.post(`${HOST}${AppEndpoints.USER_PROFILE_PIC}${userId}`, file);
+    }
+
+    public getProfilePic(userId: number): Observable<string>{
+        return this.httpClient.get(`${HOST}${AppEndpoints.USER_PROFILE_PIC}${userId}`) as Observable<string>;
     }
 }

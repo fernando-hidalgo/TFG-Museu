@@ -20,6 +20,7 @@ export class AppEndpoints {
     public static USER_AVAILABLE = '/user/available'
     public static USER_NICKNAME = '/user/nickname/'
     public static USER_ACCOUNT_EXISTS = '/user/acount-exists'
+    public static USER_PROFILE_PIC = '/user/profile/'
 
     public static SCRAPING_THYSSEN = '/scraping/thyssen'
     public static SCRAPING_PICASSO = '/scraping/picasso'

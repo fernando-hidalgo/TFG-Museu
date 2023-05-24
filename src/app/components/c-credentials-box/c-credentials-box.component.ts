@@ -53,6 +53,7 @@ export class CCredentialsBoxComponent implements OnInit {
       this.authService.setToken(logged['token'])
 
       this.navbarService.reloadNavbar();
+      this.navbarService.reloadProfilePic();
 
       if(this.authService.userMe().roles.includes('admin')) {
         this.router.navigate(['/admin'])

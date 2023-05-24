@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { HOST } from "src/constants";
 import { AppEndpoints } from "../app.endpoints";
 import jwt_decode from "jwt-decode";
+import { NavbarService } from "./navbar.service";
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +12,7 @@ import jwt_decode from "jwt-decode";
 
 export class AuthService {
 
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient, private navbarService: NavbarService) { }
 
     public login(body): Observable<Object> {
         return this.httpClient.post(`${HOST}${AppEndpoints.LOGIN}`, body);

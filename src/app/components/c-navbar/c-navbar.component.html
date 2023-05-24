@@ -9,7 +9,7 @@
 
     <div class="navbar__options">
         <div *ngIf="getMe()" class="navbar__options__profile dropdown">
-            <img class="navbar__options__profile__image shadowed" src="./assets/temp_profile.jpeg" alt="Avatar">
+            <img class="navbar__options__profile__image shadowed" [src]="profilePic" onerror=" src='./assets/temp_profile.jpeg'; " alt="Avatar">
             <span class="navbar__options__profile__nickname" > {{getMe()?.nickname}} <i class="arrow down"></i> </span>
             <div class="dropdown__content">
                 <hr>
