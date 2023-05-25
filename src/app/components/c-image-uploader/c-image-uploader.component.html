@@ -1,0 +1,16 @@
+<div [ngClass]="colMode? 'upload-container-col' : 'upload-container-row'" class="upload-container">
+
+  <label for="file-upload" class="image-upload-box">
+    <div class="upload-content">
+      <img src="./../../../assets/img-upl.png" alt="Uploaded Image">
+      <div class="upload-content__text">Haz click o arrastra la imagen</div>
+    </div>
+    <input id="file-upload" type="file" accept="image/*" (change)="selectFiles($event)" />
+  </label>
+
+  <div class="preview-container">
+    <img [src]="preview" class="preview-container__viewer" />
+    <div *ngIf="!preview" class="preview-container__text">Vista Previa</div>
+  </div>
+  
+</div>

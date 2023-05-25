@@ -1,0 +1,66 @@
+<div class="search-container">
+
+    <div class="search-header">
+        <h1>Buscador General</h1>
+        <app-c-museu-button
+            text="Reiniciar"
+            [colorMode]="buttonColorMode.GRAY"
+            (click)="handleResetFilters()">
+        </app-c-museu-button>
+    </div>
+    
+    <div class="filters">
+        <app-c-search-filter style="z-index: 1004;"
+            [searchResult]="data"
+            [filter]="data?.nameFilter.sort()"
+            [id]="filterToReset[0]"
+            [mode]="filterMode.SEARCH"
+            [type]="filterType.NAME_FILTER"
+            (updateData)="updateData($event)">
+        </app-c-search-filter>
+    
+        <app-c-search-filter style="z-index: 1003;" 
+            [searchResult]="data"
+            [filter]="data?.artistFilter.sort()"
+            [mode]="filterMode.SEARCH"
+            [id]="filterToReset[1]"
+            [type]="filterType.ARTIST_FILTER"
+            (updateData)="updateData($event)">
+        </app-c-search-filter>
+        
+        <app-c-search-filter style="z-index: 1002;"
+            [searchResult]="data"
+            [filter]="data?.styleFilter.sort()"
+            [mode]="filterMode.SEARCH"
+            [id]="filterToReset[2]"
+            [type]="filterType.STYLE_FILTER"
+            (updateData)="updateData($event)">
+        </app-c-search-filter>
+        
+        <app-c-search-filter style="z-index: 1001;"
+            [searchResult]="data"
+            [filter]="data?.museumFilter.sort()"
+            [mode]="filterMode.SEARCH"
+            [id]="filterToReset[3]"
+            [type]="filterType.MUSEUM_FILTER"
+            (updateData)="updateData($event)">
+        </app-c-search-filter>
+    </div>
+    
+    <div class="page">
+        <div class="grid">
+            <div class="grid__cards">
+                <app-c-artwork-card 
+                    *ngFor="let artwork of data?.artworks | paginate: { itemsPerPage: 24, currentPage: page }"
+                    [data]="artwork"
+                    [seen]="artwork.seen"
+                    [userRating]="">
+                </app-c-artwork-card>
+            </div>
+        </div>
+    </div>
+
+    <hr class="pagination-divider">
+</div>
+
+<pagination-controls class="pagination" (pageChange)="page = $event"></pagination-controls>

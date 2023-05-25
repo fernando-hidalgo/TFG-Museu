@@ -1,0 +1,16 @@
+<div class="rating-stars">
+    <mat-icon 
+        class="rating-stars__delete-rating" 
+        id="delete-rating" 
+        (click)="deleteRating()"
+    >close</mat-icon>
+
+    <div class="rating-stars__stars-slider" 
+        [ngClass]=" disabled ? 'disabled' : '' " 
+        (mousemove)="ratingHover($event)" 
+        (click)="ratingSet($event)" id="stars-slider"
+    >
+        <div class="rating-stars__stars-slider__hover" id="stars-slider-hover"></div>
+        <div class="rating-stars__stars-slider__selected" id="stars-slider-selected"></div>
+    </div>
+</div>

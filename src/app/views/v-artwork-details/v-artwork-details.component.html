@@ -1,0 +1,66 @@
+<div class="align">
+    <div class="artwork-tolist-container">
+        <img class="artwork-details__banner" [src]="artwork?.picLink" alt="Avatar">
+        <app-c-museu-button *ngIf="currentUser" (click)="openAddToListDialog()" text="Añadir a Lista"></app-c-museu-button>
+    </div>
+    
+    <div class="artwork-details__content">
+        <div class="artwork-details__content__title">
+            <h1 class="artwork-details__content__title__name">{{artwork?.name}}</h1>
+            <span class="artwork-details__content__title__artist-date">{{artwork?.date}} - {{artwork?.artist}} ({{artwork?.style}})</span>
+        </div>
+        <p *ngIf="artwork?.description != '-'" class="artwork-details__content__description" [innerHTML]="artwork?.description"></p>
+    </div>
+    
+    <div class="artwork-details__rating-box">
+        <div *ngIf="currentUser" class="artwork-details__rating-box__stars">
+            <span class="artwork-details__rating-box__title">Valoración</span>
+            <app-c-rating-stars 
+                *ngIf="curretUserRating || curretUserRating == '' "
+                [curretUserRating]="curretUserRating"
+                [artworkId]="artwork?.id"
+                (updateRatings)="updateRatings($event)">
+            </app-c-rating-stars>
+            <app-c-museu-button
+                (click)="openReviewDialog()"
+                [disabled]="disableReview"
+                [text]="curretUserRating != '' && curretUserRating?.text != '' ? literals.editReviewButton : literals.writeReviewButton">
+            </app-c-museu-button>
+        </div>
+        <span class="artwork-details__rating-box__info" style="border-top: 1px solid;"> Museo: {{artwork?.museum}} </span>
+        <span *ngIf="artwork?.colection != '-'" class="artwork-details__rating-box__info"> Colección: {{artwork?.colection}} </span>
+        <span class="artwork-details__rating-box__info"> Expuesto: {{artwork?.display ? 'Si' : 'No'}} </span>
+        <span *ngIf="artwork?.display && artwork?.room != '-'" class="artwork-details__rating-box__info"> Ubicación: {{artwork?.room}}</span>
+    </div>
+</div>
+
+<div class="rating-container">
+    <span class="rating-header">
+        <span class="rating-header__title">Reseñas</span>
+        <span class="rating-header__average-stars" [ngClass]="{
+            'half': artwork?.averageRating == 0.5,
+    
+            'one-full': artwork?.averageRating > 0.5 && artwork?.averageRating <= 1,
+            'one-half': artwork?.averageRating > 1 && artwork?.averageRating <= 1.5 ,
+    
+            'two-full': artwork?.averageRating > 1.5 && artwork?.averageRating <= 2,
+            'two-half': artwork?.averageRating > 2 && artwork?.averageRating <= 2.5,
+    
+            'three-full': artwork?.averageRating > 2.5 && artwork?.averageRating <= 3,
+            'three-half': artwork?.averageRating > 3 && artwork?.averageRating <= 3.5,
+    
+            'four-full': artwork?.averageRating > 3.5 && artwork?.averageRating <= 4,
+            'four-half': artwork?.averageRating > 4 && artwork?.averageRating <= 4.5,
+    
+            'five-full': artwork?.averageRating > 4.5  && artwork?.averageRating <= 5
+        }"></span>
+        <span class="rating-header__amount">(Media de {{ratings?.length}} reseñas)</span>
+    </span>
+    
+    <hr class="for-rating-header">
+    
+    <div class="rating-section">
+        <app-c-review-card *ngFor="let rating of ratings" [ratingData]="rating"></app-c-review-card>
+    </div>
+</div>
+

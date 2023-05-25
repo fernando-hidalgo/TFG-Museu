@@ -1,0 +1,85 @@
+.credential-box {
+  width: 500px;
+
+  &__title {
+    text-align: center;
+    font-family: Graphik Web Semibold Regular;
+    color: white;
+  }
+
+  &__content {
+    font-family: Graphik Web Regular Regular;
+    font-size: 20px;
+    color: white;
+    border: solid 1px white;
+    border-radius: 10px;
+    background-color: #1A1F25;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    align-items: center;
+
+    &__label {
+      margin-bottom: 10px;
+    }
+
+    &__input {
+      font-family: Graphik Web Regular Regular;
+      background-color: #CCDDED;
+      border-radius: 5px;
+      width: 96%;
+      height: 35px;
+      padding: 5px;
+      font-size: large;
+    }
+  }
+}
+
+.breather{
+  padding-bottom: 2%;
+}
+
+.button-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.signup-button{
+  margin-top: 5%;
+  justify-content: flex-end !important;
+}
+
+.input-section{
+  margin-bottom: 3%;
+}
+
+.password-requirements {
+  border: 1px solid gray;
+  padding: 10px;
+  color: gray;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.multiple-errors{
+  height: 20px;
+}
+
+.show-error{
+  visibility: hidden;
+  margin: 0;
+  text-align: left;
+}
+
+@media screen and (max-width: 768px) {
+  .credential-box {
+    width: 90%;
+    margin: 10% auto;
+
+    &__content {
+      padding: 20px;
+    }
+  }
+}

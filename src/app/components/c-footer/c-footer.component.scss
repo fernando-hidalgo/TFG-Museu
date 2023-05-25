@@ -1,0 +1,17 @@
+@mixin assignValue($properties, $value) {
+    @each $property in $properties {
+        #{$property}: $value
+    }
+}
+
+.footer{
+    z-index: 1;
+    height: 5%;
+    display: flex;
+    justify-content: space-between;
+    color: #9ab;
+    position: absolute;
+    font-family: Graphik Web Semibold Regular;
+    @include assignValue(bottom left right, 0);
+    background-color: #2c3440;
+}

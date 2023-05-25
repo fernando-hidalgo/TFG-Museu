@@ -1,0 +1,266 @@
+@mixin assignValue($properties, $value) {
+  @each $property in $properties {
+  #{$property}: $value
+  }
+}
+
+// Art Details View
+.artwork-tolist-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.artwork-details{
+  &__banner{
+    @include assignValue(left right, 0);
+    height: 300px;
+    object-fit: cover;
+    box-shadow: 17px 20px 20px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  &__content{
+    position: relative;
+    color: white;
+
+    &__title{
+      font-family: Graphik Web Semibold Regular;
+      display: flex;
+      flex-direction: column;
+      margin-top: -1.5rem;
+
+      &__name{
+        width: 28ch;
+      }
+
+      &__artist-date{
+        font-size: 20px;
+        margin-top: -15px;
+        text-decoration: underline;
+      }
+    }
+
+    &__description{
+      font-family: Graphik Web Regular Regular;
+      width: 45rem;
+    }
+  }
+
+  &__rating-box{
+    font-family: Graphik Web Regular Regular;
+    color: white;
+    position: relative;
+    background-color: #445565;
+    height: 100%;
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+
+      &__title{
+        font-size: 20px;
+      }
+
+      &__stars{
+        @include assignValue(gap margin-bottom, 1rem);
+        display: flex;
+        height: 35%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      &__top{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin-right: 29px;
+        gap: 5px;
+      
+        &__delete-rating{
+          cursor: pointer;
+          margin-top: 6px;
+          visibility: hidden;
+        }
+      
+        &__stars-slider{
+          background: url('../../../assets/sprite.d305a741.svg') no-repeat 1px -890px;
+          width: 180px;
+          height: 32px;
+          display: block;
+        
+          &__hover{
+            background: url('../../../assets/sprite.d305a741.svg') no-repeat 1px -960px;
+            height: 32px;
+            display: block;
+            width: 0px;
+          }
+        
+          &__selected{
+            background: url('../../../assets/sprite.d305a741.svg') no-repeat 1px -925px;;
+            height: 32px;
+            display: block;
+            width: 0px;
+          }
+        }
+      }
+
+    &__info{
+      @include assignValue(padding-top padding-bottom, 0.5rem);
+      border-bottom: 1px solid;
+    }
+  }
+}
+  
+.align{
+  gap: 3vw;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 2rem;
+}
+  
+.for-rating-header{
+  position: relative;
+  width: 90%;
+  margin-left: 4%;
+  border: 1px solid #456;
+  margin-bottom: -1px;
+}
+  
+.rating-header{
+  font-family: Graphik Web Regular Regular;
+  color: white;
+  position: relative;
+  margin-left: 4%;
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+
+  &__amount{
+    margin-top: 3px;
+    font-size: 10px;
+  }
+
+  &__average-stars{
+    margin-top: 2px;
+    height: 16px;
+    background: url('../../../assets/sprite.d305a741.svg') no-repeat -290px -90px;
+  }
+}
+
+.rating-container{
+  margin-bottom: 1rem;
+}
+
+.rating-section{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 50%;
+  width: 90%;
+  margin-left: 4%;
+}
+
+//STARS
+.one-full{
+  background-position: -450px -50px;
+  width: 13px;
+}
+
+.two-full{
+  background-position: -450px -50px;
+  width: 26px;
+}
+
+.three-full{
+  background-position: -450px -50px;
+  width: 39px;
+}
+
+.four-full{
+  background-position: -450px -50px;
+  width: 52px;
+}
+
+.five-full{
+  background-position: -450px -50px;
+  width: 65px;
+}
+
+.half{
+  background-position: -515px -50px;
+  width: 13px;
+}
+
+.one-half{
+  background-position: -502px -50px;
+  width: 26px;
+}
+
+.two-half{
+  background-position: -489px -50px;
+  width: 39px;
+}
+
+.three-half{
+  background-position: -476px -50px;
+  width: 52px;
+}
+
+.four-half{
+  background-position: -463px -50px;
+  width: 65px;
+}
+
+@media screen and (max-width: 768px) {
+  .align{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 1rem;
+    margin-bottom: 0rem;
+    gap: 7%;
+  }
+
+  .rating-header{
+    &__amount{
+      margin-top: 3px;
+      font-size: 12px;
+    }
+  }
+
+  .artwork-details{
+    &__content{
+      &__description{
+        font-family: Graphik Web Regular Regular;
+        width: 100%;
+      }
+
+      &__title{
+        @include assignValue(gap margin-top, 0rem);
+        align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: 2rem;
+
+        &__name{
+
+          width: 100%;
+          margin-bottom: 2%;
+        }
+
+        &__artist-date{
+          margin-top: 0rem;
+        }
+      }
+    }
+
+    &__rating-box{
+      margin-right: 1rem;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
+  }
+}

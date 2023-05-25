@@ -1,0 +1,44 @@
+.museu-button {
+  cursor: pointer;
+  background-color: #00b020;
+  color: white;
+  border: 0;
+  border-radius: 2px;
+  text-align: center;
+  font-family: Graphik Web Semibold Regular;
+  width: fit-content;
+  height: 30px;
+
+  &:hover {
+    background-color: #00a11d;
+  }
+}
+
+.disabled {
+  background-color: #404d59;
+  color: #678;
+
+  &:hover {
+    background-color: #404d59;
+  }
+}
+
+.red-mode{
+  background-color: #ec1200;
+  &:hover {
+    background-color: #c40f00;
+  }
+}
+
+.gray-mode{
+  background-color: #678;
+  &:hover {
+    background-color: #567;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .museu-button {
+    font-size: 15px;
+  }
+}
