@@ -1,0 +1,19 @@
+<div class="search-header">
+    <h1>Listas de {{userNickname}}</h1>
+    <div class="profile-header-buttons">
+        <app-c-museu-button *ngIf="candEdit"
+            text="Crear"
+            (click)="createNewList()">
+        </app-c-museu-button>
+
+        <app-c-museu-button
+            text="Perfil"
+            (click)="navigateToProfile()">
+        </app-c-museu-button>
+    </div>
+</div>
+
+<app-c-list-card 
+    *ngFor="let list of lists"
+    [data]="list">
+</app-c-list-card>

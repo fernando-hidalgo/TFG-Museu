@@ -1,0 +1,78 @@
+<div class="align">
+
+    <div class="search-header">
+        <h1>Editar Lista</h1>
+
+        <div class="search-header-buttons">
+            <app-c-museu-button 
+            type="submit"
+            [text]="literals.buttonSave"
+            (click)="saveListChanges()">
+            </app-c-museu-button>
+            
+            <app-c-museu-button 
+                [text]="literals.buttonDelete"
+                [colorMode]="buttonColorMode.RED"
+                (click)="deleteList()">
+            </app-c-museu-button>
+            
+            <app-c-museu-button 
+                [text]="literals.buttonCancel"
+                [colorMode]="buttonColorMode.GRAY"
+                routerLink="{{baseRedirect}}/{{artlistId}}">
+            </app-c-museu-button>
+        </div>
+    </div>
+
+    <form [formGroup]="editListForm">
+        <div class="inputs-container">
+
+            <div class="align-inputs-col">
+                <div class="labeled-input">
+                    <label class="label" for="listName">Nombre</label>
+                    <input class="input text" type="text" id="listName" name="listName" formControlName="listName"><br>
+                </div>
+            
+                <div class="labeled-input">
+                    <label class="label" for="listAddArtwork">Añadir obra</label>
+                    <app-c-search-filter 
+                        [searchResult]="data"
+                        [editListOptions]="data?.editListOptions"
+                        [mode]="filterMode.ARTLIST_EDIT"
+                        [type]="filterType.NAME_FILTER"
+                        (updateData)="updateData($event)">
+                    </app-c-search-filter>
+                </div>
+            </div>
+
+            <div class="align-inputs-row">
+                <div class="labeled-input">
+                    <label class="label" for="listDescription">Descripción</label>
+                    <textarea class="input textarea" rows="4" cols="50" id="listDescription" name="listDescription" formControlName="listDescription" ></textarea>
+                </div>
+
+                <app-c-image-uploader [colMode]="true" (setImage)="setCoverImage($event)"></app-c-image-uploader>
+            </div>
+        </div>
+    </form>
+    
+
+    <div class="page">
+        <div class="grid">
+            <div class="grid__cards">
+                <app-c-artwork-card 
+                    *ngFor="let artwork of data?.artworks | paginate: { itemsPerPage: 24, currentPage: page }"
+                    [editMode]="editMode"
+                    (deleteArtwork)="deleteArtwork($event)"
+                    [data]="artwork"
+                    [seen]="artwork.seen"
+                    [userRating]="artwork.userRating">
+                </app-c-artwork-card>
+            </div>
+        </div>
+    </div>
+
+    <hr class="pagination-divider">
+</div>
+
+<pagination-controls class="pagination" (pageChange)="page = $event"></pagination-controls>

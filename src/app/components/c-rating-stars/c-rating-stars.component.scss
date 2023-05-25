@@ -1,0 +1,38 @@
+.rating-stars{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-right: 29px;
+    gap: 5px;
+
+    &__delete-rating{
+      cursor: pointer;
+      margin-top: 6px;
+      visibility: hidden;
+    }
+
+    &__stars-slider{
+      background: url('../../../assets/sprite.d305a741.svg') no-repeat 1px -890px;
+      width: 180px;
+      height: 32px;
+      display: block;
+    
+      &__hover{
+        background: url('../../../assets/sprite.d305a741.svg') no-repeat 1px -960px;
+        height: 32px;
+        display: block;
+        width: 0px;
+      }
+    
+      &__selected{
+        background: url('../../../assets/sprite.d305a741.svg') no-repeat 1px -925px;;
+        height: 32px;
+        display: block;
+        width: 0px;
+      }
+    }
+}
+
+.disabled {
+  pointer-events: none;
+}

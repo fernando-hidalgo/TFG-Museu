@@ -1,0 +1,105 @@
+<div class="credential-box">
+    <h1 class="credential-box__title">Registro</h1>
+
+    <form [formGroup]="signupForm" class="credential-box__content">
+        <div>
+            <div class="input-section">
+                <div class="password-requirements">
+                    El nickname debe contener mínimo <b>5 caracteres</b>,  máximo <b>10 caracteres</b>, sin <u>espacios</u>
+                </div>
+
+                <label class="credential-box__content__label">{{ literals.userTitle }}*</label><br>
+                <input 
+                    class="credential-box__content__input"
+                    pattern="^(?!.*\s).{5,10}$"
+                    type="text" 
+                    formControlName="nickname"
+                >
+
+                <div class="multiple-errors">
+                    <mat-error *ngIf="nickname.invalid && !nickname.errors?.['taken'] && !nickname.errors?.['pattern'] && nickname.touched">
+                        Requerido
+                    </mat-error>
+
+                    <mat-error *ngIf="nickname.errors?.['pattern']">
+                        No cumple los requisitos
+                    </mat-error>
+    
+                    <mat-error *ngIf="nickname.errors?.['taken']">
+                        Nickname en uso
+                    </mat-error>
+                </div>
+            </div>
+
+            <div class="input-section">
+                <label class="credential-box__content__label">{{ literals.mailTitle }}*</label><br>
+                <input class="credential-box__content__input" type="text" formControlName="email">
+
+                <div class="multiple-errors">
+                    <mat-error *ngIf="email.invalid && !email.errors?.['email'] && !email.errors?.['taken'] && email.touched">
+                        Requerido
+                    </mat-error>
+                
+                    <mat-error *ngIf="email.errors?.['email'] && email.touched">
+                        No es un email
+                    </mat-error>
+                
+                    <mat-error *ngIf="email.errors?.['taken'] && email.touched">
+                        Email en uso
+                    </mat-error>
+                </div>
+            </div>
+
+            <div class="input-section">
+                <div class="password-requirements">
+                    La contraseña debe contener mínimo <b>8 caracteres</b>, y al menos un <u>símbolo</u>, una <u>letra mayúscula</u>, una <u>letra minúscula</u>, sin <u>espacios</u>
+                </div>
+                  
+
+                <label class="credential-box__content__label">{{ literals.passwordTitle }}*</label><br>
+                <input 
+                    class="credential-box__content__input"
+                    type="password"
+                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.*\s).{8,}$"
+                    formControlName="password"
+                >
+
+                <div class="multiple-errors">
+                    <mat-error *ngIf="password.invalid && !password.errors?.['pattern'] && password.touched">
+                        Requerido
+                    </mat-error>
+
+                    <mat-error *ngIf="password.errors?.['pattern'] && password.touched">
+                        No cumple los requisitos
+                    </mat-error>
+                </div>
+            </div>
+
+            <div class="input-section">
+                <label class="credential-box__content__label">{{ literals.repeatPasswordTitle }}*</label><br>
+                <input 
+                    class="credential-box__content__input"
+                    type="password"
+                    onpaste="return false;"
+                    ondrop="return false;"
+                    autocomplete="off" 
+                    formControlName="repeatPassword"
+                >
+
+                <mat-error [ngClass]="repeatPassword.errors?.['mismatch'] && repeatPassword.touched ? '' : 'show-error'">
+                    Los campos no coinciden
+                </mat-error>
+            </div>
+        </div>
+
+        <app-c-image-uploader (setImage)="setProfileImage($event)"></app-c-image-uploader>
+
+        <div class="button-container signup-button">
+            <app-c-museu-button 
+                [text]="literals.button" 
+                [disabled]="signupForm.invalid" 
+                (click)="signupUser()">
+            </app-c-museu-button>
+        </div>
+    <div>
+</div>

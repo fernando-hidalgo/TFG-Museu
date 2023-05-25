@@ -1,0 +1,28 @@
+<nav class="navbar">
+    
+    <div class="navbar__logo">
+        <a *ngIf="!isAdmin; else disabledLink" class="navbar__logo__img" id="navbar-home" routerLink="" >Museu</a>
+        <ng-template #disabledLink>
+            <span class="navbar__logo__img">Museu</span>
+        </ng-template>
+    </div>
+
+    <div class="navbar__options">
+        <div *ngIf="getMe()" class="navbar__options__profile dropdown">
+            <img class="navbar__options__profile__image shadowed" [src]="profilePic" onerror=" src='./assets/temp_profile.jpeg'; " alt="Avatar">
+            <span class="navbar__options__profile__nickname" > {{getMe()?.nickname}} <i class="arrow down"></i> </span>
+            <div class="dropdown__content">
+                <hr>
+                <a *ngIf="!isAdmin" routerLink="/profile/{{getMe()?.authId}}">Mis Obras</a>
+                <a *ngIf="!isAdmin" routerLink="/profile/{{getMe()?.authId}}/lists">Mis Listas</a>
+                <hr *ngIf="!isAdmin">
+                <a routerLink="/login" (click)="closeSession()">Cerrar Sesión</a>
+            </div>
+        </div>
+
+        <div *ngIf="!getMe()" routerLink="/login" class="navbar__options__profile">
+            <span class="navbar__options__profile__nickname" > Iniciar Sesión </span>
+        </div>
+    </div>
+
+</nav> 

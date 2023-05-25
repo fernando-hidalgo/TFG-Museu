@@ -1,0 +1,87 @@
+@mixin assignValue($properties, $value) {
+  @each $property in $properties {
+    #{$property}: $value;
+  }
+}
+
+.upload-container-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.upload-container-col {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.image-upload-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  text-align: center;
+  background-color: rgba(146, 153, 161, 0.35);
+  border-radius: 5px;
+  border: 2px dashed #9299A1;
+
+  &::before{
+    @include assignValue(top left right bottom, 0);
+
+    content: "";
+    position: absolute;
+    pointer-events: none;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: calc(2.5em - 10px);
+    object-fit: contain;
+    margin-bottom: 5px;
+  }
+}
+
+.upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__text {
+    font-family: Graphik Web Regular Regular;
+    color: white;
+    margin-top: 10px;
+  }
+}
+
+#file-upload {
+  @include assignValue(top left opacity, 0);
+  @include assignValue(width height, 100%);
+
+  position: absolute;
+  cursor: pointer;
+}
+
+.preview-container {
+  @include assignValue(width height, 100px);
+
+  position: relative;
+
+  &__viewer {
+    font-family: Graphik Web Regular Regular;
+    @include assignValue(max-width max-height, 100%);
+  }
+
+  &__text{
+    @include assignValue(top left, 50%);
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    color: #555;
+    font-weight: bold;
+  }
+}

@@ -1,0 +1,29 @@
+<div class="filter">
+    <input 
+        class="filter__input text" 
+        [placeholder]="placeholder"
+        (keyup)="triggerFilterOptions($event)" 
+        [id]="type"
+        autocomplete="off"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
+    >
+
+    <div *ngIf=" showOptions " class="filter__dropdown" id="{{type}}-dropdown" (mousemove)="dropdownBounds($event)">
+        
+        <div 
+            *ngIf="(filter?.length > 0 && mode != filterMode.ARTLIST_EDIT) || (editListOptions?.length > 0 && mode == filterMode.ARTLIST_EDIT)"
+            class="filter__dropdown__results">
+                <span *ngFor="let option of (mode != filterMode.ARTLIST_EDIT ? filter : editListOptions)"
+                        class="filter__dropdown__results__option"
+                        (click)="filterSetOption(option.name || option, option.id || null)">
+                    {{option.name || option}}
+                </span>
+        </div>
+
+        <span *ngIf=" filter?.length === 0 || editListOptions?.length === 0"
+            class="filter__dropdown__results__option empty-option">
+                Sin resultados
+        </span>
+    </div>
+</div>

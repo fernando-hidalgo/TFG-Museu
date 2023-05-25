@@ -1,0 +1,17 @@
+.admin-view{
+    display: flex;
+    flex-direction: column;
+    margin-top: 12rem;
+    align-items: center;
+    gap: 7rem;
+}
+
+.button-container{
+    display: flex;
+    gap: 15rem;
+}
+
+.scraping-result{
+    font-family: Graphik Web Semibold Regular;
+    color: white;
+}

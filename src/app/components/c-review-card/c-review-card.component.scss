@@ -1,0 +1,107 @@
+.review-card {
+  width: 100%;
+  border-bottom: 1px solid #456;
+  border-color: #2c3440;
+  display: flex;
+  gap: 10px;
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+.profile-image {
+  border-radius: 50%;
+  width: 29px;
+  height: 29px;
+}
+
+.header {
+  font-family: Graphik Web Regular Regular;
+  color: #9ab;
+  display: flex;
+  gap: 10px;
+}
+
+.author {
+  color: #abc;
+  font-family: Graphik Web Semibold Regular;
+  cursor: pointer;
+
+  &:hover{
+    color: #9ab;
+  }
+}
+
+.yourself {
+  color: #abc;
+  font-family: Graphik Web Italicc Regular;
+}
+
+.text-container {
+  margin-top: 0.5rem;
+}
+
+.text {
+  color: white;
+  font-family: Graphik Web Regular Regular;
+  display: inline-block;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.average-stars {
+  margin-top: 2px;
+  height: 16px;
+  background: url("../../../assets/sprite.d305a741.svg") no-repeat -290px -90px;
+}
+
+.one-full {
+  background-position: -450px -50px;
+  width: 13px;
+}
+
+.two-full {
+  background-position: -450px -50px;
+  width: 26px;
+}
+
+.three-full {
+  background-position: -450px -50px;
+  width: 39px;
+}
+
+.four-full {
+  background-position: -450px -50px;
+  width: 52px;
+}
+
+.five-full {
+  background-position: -450px -50px;
+  width: 65px;
+}
+
+.half {
+  background-position: -515px -50px;
+  width: 13px;
+}
+
+.one-half {
+  background-position: -502px -50px;
+  width: 26px;
+}
+
+.two-half {
+  background-position: -489px -50px;
+  width: 39px;
+}
+
+.three-half {
+  background-position: -476px -50px;
+  width: 52px;
+}
+
+.four-half {
+  background-position: -463px -50px;
+  width: 65px;
+}

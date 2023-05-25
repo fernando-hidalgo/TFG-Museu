@@ -1,0 +1,32 @@
+<div class="review-card">
+    <img class="profile-image" [src]="profilePic" onerror=" src='./assets/temp_profile.jpeg'; " alt="Avatar">
+    <div class="content">
+        <div class="header">
+            <div>
+                Por
+                <span class="author" [routerLink]="['/profile/', ratingData.user.id]">
+                    {{ratingData.user.nickname}}
+                </span>
+                <span class="yourself">
+                    {{ ratingData.user.id === myId? '(Tu)' : '' }}
+                </span>
+            </div>
+            <span class="average-stars one-full" [ngClass]="{
+                'one-full': ratingData.value === 1,
+                'two-full': ratingData.value === 2,
+                'three-full': ratingData.value === 3,
+                'four-full': ratingData.value === 4,
+                'five-full': ratingData.value === 5,
+                'half': ratingData.value == '0.5',
+                'one-half': ratingData.value == '1.5',
+                'two-half': ratingData.value == '2.5',
+                'three-half': ratingData.value == '3.5',
+                'four-half': ratingData.value == '4.5'
+            }"></span>
+        </div>
+        <div *ngIf="ratingData.text" class="text-container">
+            <span class="text" [innerHTML]="text"></span>
+        </div>
+    </div>
+</div>
+

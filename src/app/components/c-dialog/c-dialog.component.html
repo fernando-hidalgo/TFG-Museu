@@ -1,0 +1,70 @@
+<!--Escribir una Reseña-->
+<div *ngIf="type == 'review'" class="review-dialog">
+    <div class="header">
+        <h2 mat-dialog-title>Tu reseña</h2>
+        <mat-icon mat-dialog-close class="close-review-dialog">close</mat-icon>
+    </div>
+    
+    <mat-dialog-content class="input-section">
+        <form [formGroup]="writeReviewForm">
+            <textarea 
+                class="input textarea"
+                rows="4"
+                cols="50"
+                placeholder="Escribe aquí..."
+                id="reviewArea" 
+                name="reviewArea"
+                formControlName="reviewArea">
+            </textarea>
+        </form>
+    </mat-dialog-content>
+    
+    <mat-dialog-actions class="button-container">
+        <app-c-museu-button text="Guardar" (click)="saveReview()"></app-c-museu-button>
+    </mat-dialog-actions>
+</div>
+
+<!--Añadir Obra a Lista-->
+<div *ngIf="type == 'add-list'" class="review-dialog">
+    <div class="add-list-header">
+        <h2 mat-dialog-title>Añadir a...</h2>
+        <mat-icon mat-dialog-close class="close-review-dialog">close</mat-icon>
+    </div>
+    
+    <div class="list-search" id="{{type}}-dropdown">
+        <div class="list-search__results">
+            <span *ngFor="let list of lists"
+                    class="list-search__results__option"
+                    [id]="list.id"
+                    (click)="addToList(list.id)">
+                {{list.name}}
+            </span>
+        </div>
+
+        <span *ngIf="lists?.length === 0"
+            class="list-search__results__option empty-option">
+                Todas tus listas tienen esta obra
+        </span>
+    </div>
+
+    <mat-dialog-actions class="button-container breathe-amount">
+        <span class="amount-selected" *ngIf="listsToAdd?.length > 0"> {{listsToAdd?.length}} listas seleccionadas</span>
+        <app-c-museu-button text="Guardar" (click)="saveAddToList()"></app-c-museu-button>
+    </mat-dialog-actions>
+</div>
+
+<!--Obras de un Museo (Mapa)-->
+<div *ngIf="type == 'map'" class="review-dialog" style="z-index: 9999999;">
+    <div class="add-list-header">
+        <h2 mat-dialog-title>{{museum}}</h2>
+        <mat-icon mat-dialog-close class="close-review-dialog">close</mat-icon>
+    </div>
+
+    <div class="list-search" id="{{type}}-dropdown">
+        <div class="list-search__results">
+            <span *ngFor="let artwork of artworksInMuseum" class="list-search__results__option-map">
+                {{artwork}}
+            </span>
+        </div>
+    </div>
+</div>
