@@ -77,10 +77,6 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "options": {
-            "port": 0,
-            "host": "tfg-museu-production.up.railway.app"
-          },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {

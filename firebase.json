@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/tfg-museu",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
