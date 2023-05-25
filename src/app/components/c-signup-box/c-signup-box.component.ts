@@ -76,9 +76,15 @@ export class CSignupBoxComponent implements OnInit {
     const profileImageToSave = new FormData();
     profileImageToSave.append('file', this.profileImage);
 
+    //Se crea el usuario
     this.userService.createUser({ nickname, email, password }).subscribe(userId => {
-      this.userService.saveProfilePic(userId, profileImageToSave).subscribe(() => {
+      //Se guarda la imagen de perfil, que devuelve la URL
+      this.userService.saveProfilePic(userId, profileImageToSave).subscribe((profilePicURL) => {
+        //Se recarga el navbar con la URL
+        this.navbarService.reloadProfilePic(profilePicURL)
+        //Autenticación
         this.authService.login({ nick_or_mail: nickname, password }).subscribe(logged => {
+          //Guardado del token y redirección
           this.authService.setToken(logged['token'])
           this.router.navigate(['/search'])
         })

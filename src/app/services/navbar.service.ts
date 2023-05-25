@@ -13,7 +13,7 @@ export class NavbarService {
     this.reloadNavbarSubject.next();
   }
 
-  reloadProfilePic() {
-    this.reloadProfilePicSubject.next();
+  reloadProfilePic(profilePicURL?) {
+    this.reloadProfilePicSubject.next(profilePicURL);
   }
 }

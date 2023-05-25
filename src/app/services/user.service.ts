@@ -32,8 +32,8 @@ export class UserService {
         return this.httpClient.post(`${HOST}${AppEndpoints.CREATE_REGULAR_USER}`, body) as Observable<number>;
     }
 
-    public saveProfilePic(userId: number, file){
-        return this.httpClient.post(`${HOST}${AppEndpoints.USER_PROFILE_PIC}${userId}`, file);
+    public saveProfilePic(userId: number, file): Observable<string>{
+        return this.httpClient.post(`${HOST}${AppEndpoints.USER_PROFILE_PIC}${userId}`, file) as Observable<string>;
     }
 
     public getProfilePic(userId: number): Observable<string>{

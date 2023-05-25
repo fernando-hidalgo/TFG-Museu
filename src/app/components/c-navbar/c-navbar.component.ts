@@ -23,8 +23,8 @@ export class CNavbarComponent implements OnInit {
       this.reloadNavbar();
     });
 
-    this.navbarService.reloadProfilePic$.subscribe(() => {
-      this.reloadProfilePic();
+    this.navbarService.reloadProfilePic$.subscribe((profilePicURL) => {
+      this.reloadProfilePic(profilePicURL);
     });
 
     this.reloadProfilePic();
@@ -43,12 +43,16 @@ export class CNavbarComponent implements OnInit {
     this.isAdmin = this.authService.isAdmin() || false
   }
 
-  reloadProfilePic(){
-    const userId =  this.getMe()?.authId
-    this.userService.getProfilePic(userId).subscribe(signedURL => {
-      this.profilePic = signedURL
-      console.log(signedURL)
-    });
+  reloadProfilePic(profilePicURL?){
+    const userId = this.getMe()?.authId;
+
+    if (profilePicURL) {
+      this.profilePic = profilePicURL;
+    } else if (userId) {
+      this.userService.getProfilePic(userId).subscribe(signedURL => {
+        this.profilePic = signedURL;
+      });
+    }
   }
 
 }
