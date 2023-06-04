@@ -5,7 +5,7 @@ import * as Leaflet from 'leaflet';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CDialogComponent } from 'src/app/components/c-dialog/c-dialog.component';
-import { buttonColorMode, filterMode, filterToReset, filterType } from 'src/constants';
+import { buttonColorMode, filterMode, filterToReset, filterType } from 'src/app/app.interfaces';
 
 Leaflet.Icon.Default.imagePath = 'assets/';
 @Component({

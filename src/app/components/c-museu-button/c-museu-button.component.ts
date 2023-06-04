@@ -6,9 +6,9 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./c-museu-button.component.scss']
 })
 export class CMuseuButtonComponent implements OnInit {
-  @Input() text
-  @Input() disabled
-  @Input() colorMode
+  @Input() text: string
+  @Input() disabled: boolean
+  @Input() colorMode: string
 
   constructor() { }
 

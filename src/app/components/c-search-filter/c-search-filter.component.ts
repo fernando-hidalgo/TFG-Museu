@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ArtlistService } from 'src/app/services/artlist.service';
 import { ArtworkService } from 'src/app/services/artwork.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { filterMode } from 'src/constants';
+import { filterMode } from 'src/app/app.interfaces';
 
 @Component({
   selector: 'app-c-search-filter',

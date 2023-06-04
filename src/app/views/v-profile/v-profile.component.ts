@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ArtworkService } from 'src/app/services/artwork.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
-import { buttonColorMode, filterMode, filterToReset, filterType } from 'src/constants';
+import { buttonColorMode, filterMode, filterToReset, filterType } from 'src/app/app.interfaces';
 
 @Component({
   selector: 'app-v-profile',

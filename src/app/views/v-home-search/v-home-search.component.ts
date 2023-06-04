@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtworkService } from 'src/app/services/artwork.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { buttonColorMode, filterMode, filterToReset, filterType } from 'src/constants';
+import { buttonColorMode, filterMode, filterToReset, filterType } from 'src/app/app.interfaces';
 
 @Component({
   selector: 'app-v-home-search',

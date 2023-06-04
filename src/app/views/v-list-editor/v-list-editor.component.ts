@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { of, switchMap, tap } from 'rxjs';
 import { ArtlistService } from 'src/app/services/artlist.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { buttonColorMode, filterMode, filterType } from 'src/constants';
+import { buttonColorMode, filterMode, filterType } from 'src/app/app.interfaces';
 
 @Component({
   selector: 'app-v-list-editor',
