@@ -23,16 +23,15 @@
   }
 }
 
-.list-description{    
+.list-description{
   display: flex;
-  justify-content: center;
+  width: 75%;
   margin-bottom: 1.5rem;
 }
 
 .description{
   font-family: Graphik Web Regular Regular;
   color: white;
-  width: 75%;
   display: inline-block;
   overflow-wrap: break-word;
   word-wrap: break-word;
