@@ -1,5 +1,7 @@
-export const filterToReset = ['filter1', 'filter2', 'filter3', 'filter4'];
+/*INTERFACES*/
 
+
+/*ENUMS*/
 export enum filterMode {
     SEARCH = 'search', 
     PROFILE = 'profile',
@@ -18,3 +20,6 @@ export enum buttonColorMode {
     RED = 'red',
     GRAY = 'gray',
 }
+
+/*CONSTANTS*/
+export const filterToReset = ['filter1', 'filter2', 'filter3', 'filter4'];
